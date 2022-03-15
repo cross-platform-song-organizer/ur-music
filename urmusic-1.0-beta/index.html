@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>UR Music</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" type="image/jpg" href=""> <!-- Replace w/ shortcut img link -->
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/light.css"/>
+    <link rel="stylesheet" href="styles/styles.css"/>
+    <link rel="stylesheet" href="styles/all.min.css" />
+
+    <!-- Scripts -->
+
+</head>
+<html>
+    <body>        
+        <!-- Contains music library w/ all the songs-->
+        <main id="main">
+            <!-- Top bar stuff-->
+            <div class="top-bar">
+                <!-- Left side of the bar-->
+                <div class="sub-bar">
+                    <div id="hey-there" style="display: inline">
+                        <span id="greeting">Hey there, </span>
+                        <span id="user-name" style="display: inline">Person</span><span id="end-greeting">!</span>
+                    </div>
+                    
+                    <!-- Replace above with below later 
+                    
+                    <div id="hey-there" style="display: inline">
+                        <span id="greeting"></span
+                    ><span id="user-name" style="display: inline"></span><span id="end-greeting">!</span>
+                    </div>
+                -->
+                <div class="user-img">
+                    <!-- img gets replaced if the user provides one -->
+                    <img src="">
+                    <i class="fas fa-user"></i>
+                </div>
+                    
+                </div>
+
+                <!-- Right side of the bar; only for user's profile img-->
+                <div class="sub-bar">
+                    <h1>Your Library</h1>
+                    
+                    <div class="library-edits">
+                        <button><i class="fa fa-minus"></i></button>
+                        <button><i class="fa fa-plus"></i></button>
+                        <button><i class="fa fa-filter"></i></button>
+                    </div>
+                </div>
+            </div>
+            <article id="library">
+                <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
+                <div id="main-library-head">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Song title</th>
+                        <th>Artist</th>
+                        <th>Tags</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <!-- Temp dummy -->
+                <!--
+                    Important references:
+                    - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
+                -->
+                <div id="main-library-content">
+                  <table>
+                    <tbody>
+                      <tr id="booboo">
+                        <td>booboo</td>
+                        <td>Test artist name</td>
+                        <td><div class="first-tag">Lecture #1</div><div class="second-tag">Comfort listening</div></td>
+                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aad">
+                        <td>AAD</td>
+                        <td>AUSENCO</td>
+                        <td><div class="first-tag">Actually the worst song ever</div><div class="second-tag">Avant garde</div></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aax">
+                        <td>AAX</td>
+                        <td>ADELAIDE</td>
+                        <td><div class="first-tag">Songs in A Minor</div><div class="second-tag">When my girlfriend dumps me for the third time this week</div></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="booboo">
+                        <td>booboo</td>
+                        <td>Test artist name</td>
+                        <td><div class="first-tag">Thanks, I hate it</div><div class="second-tag">Lecture #2</div></td>
+                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aad">
+                        <td>AAD</td>
+                        <td>AUSENCO</td>
+                        <td><div class="first-tag">I would forever dump my girlfriend to meet the artist</div><div class="second-tag">Lecture #3</div></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aax">
+                        <td>AAX</td>
+                        <td>ADELAIDE</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="booboo">
+                        <td>booboo</td>
+                        <td>Test artist name</td>
+                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
+                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aad">
+                        <td>AAD</td>
+                        <td>AUSENCO</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aax">
+                        <td>AAX</td>
+                        <td>ADELAIDE</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="booboo">
+                        <td>booboo</td>
+                        <td>Test artist name</td>
+                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
+                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aad">
+                        <td>AAD</td>
+                        <td>AUSENCO</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aax">
+                        <td>AAX</td>
+                        <td>ADELAIDE</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="booboo">
+                        <td>booboo</td>
+                        <td>Test artist name</td>
+                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
+                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aad">
+                        <td>AAD</td>
+                        <td>AUSENCO</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aax">
+                        <td>AAX</td>
+                        <td>ADELAIDE</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="booboo">
+                        <td>booboo</td>
+                        <td>Test artist name</td>
+                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
+                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aad">
+                        <td>AAD</td>
+                        <td>AUSENCO</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                      <tr id="aax">
+                        <td>AAX</td>
+                        <td>ADELAIDE</td>
+                        <td></td>
+                        <td><i class="fas fa-ellipsis-v"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </article>
+            
+        </main>
+
+        <!-- Possible filter? Maybe just plain ol' search? -->
+        <section id="search">
+
+        </section>
+
+        <!-- All user account stuff -->
+        <section id="account">
+
+        </section>
+    <nav>
+        <button class="active"><i class="fa fa-book-open"></i></button>
+        <button><i class="fa fa-search"></i></button>
+        <button><i class="fa fa-user-cog"></i></button>
+    </nav>
+    </body>
+</html>

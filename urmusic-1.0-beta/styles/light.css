@@ -1,0 +1,43 @@
+
+body {
+    background: linear-gradient(to right, #B693D1, #698BC2);
+    color: white;
+}
+/* Palette color changes */ 
+nav button {
+    background-color: rgba(255,255,255,0.2);
+}
+nav button:hover, td:last-of-type:hover  {
+    background-color: #C8B6D7;
+}
+nav .active, nav button:active, td:last-of-type:active {
+    background-color: #A0C8D8;
+}
+.sub-bar button:hover i {
+    color:  #C8B6D7;
+}
+.sub-bar button:active i {
+    color:  #A0C8D8;
+}
+
+/* More specific light mode stuff*/
+.fas, .fa {
+    color: white;
+}
+tr:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+td, td:last-of-type {
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+nav, .user-img, .first-tag, .second-tag, #main-library-head {
+    background-color: rgba(255,255,255,0.3);
+}
+#main-library-content{
+    border: 1px solid rgba(255,255,255,0.3);
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+    -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}

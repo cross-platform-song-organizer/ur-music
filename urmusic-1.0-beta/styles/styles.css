@@ -1,0 +1,154 @@
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+ */
+ html {
+    font-family: sans-serif;
+}
+nav {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+nav button {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 25px 25px;
+    transition: 0.3s;
+    width: 33.5%;
+}
+/* Section stuff*/
+main, section {
+    -moz-animation: fadeEffect 1s;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+main {
+    vertical-align: middle;
+    margin-top: 25px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+section {
+    display: none;
+}
+/* Top Bar Stuff */
+.top-bar {
+    width: 100%;
+    top: 50%;
+    display: inline-block;
+}
+.sub-bar {
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: space-between;
+}
+.sub-bar:last-of-type {
+    margin-top: -15px;
+}
+#hey-there {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+}
+.user-img {
+    position: relative;
+    right: 0;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    border-radius: 100px;
+    margin-left: 6.5%;
+}
+i.fas.fa-user {
+    font-size: 50px;
+    left: 20%;
+    top: 15%;
+    position: absolute;
+}
+.user-img img {
+    position: absolute;
+    left: 43.6%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -o-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.sub-bar button {
+    padding: 15px;
+    background: transparent;
+    border: none;
+    color: transparent;
+}
+/* Table Styles */
+table{
+    width:100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table td {
+    overflow-wrap: break-word;
+   /* for long word case */
+    hyphens: auto;
+}
+th, th:last-of-type {
+    padding: 20px 15px;
+    font-size: 12px;
+}
+th {
+    text-align: left;
+}
+th:last-of-type{
+    font-weight: 500;
+    width: 2.5%;
+}
+td, td:last-of-type {
+    padding: 15px;
+    vertical-align: middle;
+    font-weight: 300;
+    text-align: left;
+    font-size: 15px;
+}
+td:last-of-type{
+    width: 2.5%;
+}
+/* being used only for the edit button for now;
+change if necessary*/
+.fas, .fa {
+    font-size: 20px;
+}
+.first-tag, .second-tag {
+    overflow: hidden;
+    display: inline-block;
+    max-width: 90%;
+    padding: 5px 10px 5px 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+    margin: 0 5px 5px 0;
+}
+/* Editing the size of the stuff itself */
+#main-library-head th {
+    font-size: 20px;
+}
+#main-library-content{
+    height:700px;
+   /* Need to add diff size for mobile usage*/
+    overflow-x: auto;
+    margin-top: 0px;
+}
+/* for custom scrollbar for webkit browser*/
+::-webkit-scrollbar {
+    width: 6px;
+}
