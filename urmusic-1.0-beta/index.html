@@ -46,15 +46,17 @@
                     <h1>Your Library</h1>
                     
                     <div class="library-edits">
-                        <button><i class="fa fa-minus"></i></button>
-                        <button><i class="fa fa-plus"></i></button>
-                        <button><i class="fa fa-filter"></i></button>
+                        <button id="delete"><i class="fa fa-minus"></i></button>
+                        <button id="add"><i class="fa fa-plus"></i></button>
+                        <button id="filter"><i class="fa fa-filter"></i></button>
                     </div>
                 </div>
             </div>
+            <article id="add-menu"></article>
+            <article id="filter-menu"></article>
             <article id="library">
                 <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
-                <div id="main-library-head">
+                <div>
                   <table>
                     <thead>
                       <tr>
@@ -66,7 +68,6 @@
                     </thead>
                   </table>
                 </div>
-                <!-- Temp dummy -->
                 <!--
                     Important references:
                     - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
@@ -74,114 +75,21 @@
                 <div id="main-library-content">
                   <table>
                     <tbody>
-                      <tr id="booboo">
-                        <td>booboo</td>
-                        <td>Test artist name</td>
-                        <td><div class="first-tag">Lecture #1</div><div class="second-tag">Comfort listening</div></td>
-                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aad">
-                        <td>AAD</td>
-                        <td>AUSENCO</td>
-                        <td><div class="first-tag">Actually the worst song ever</div><div class="second-tag">Avant garde</div></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aax">
-                        <td>AAX</td>
-                        <td>ADELAIDE</td>
-                        <td><div class="first-tag">Songs in A Minor</div><div class="second-tag">When my girlfriend dumps me for the third time this week</div></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="booboo">
-                        <td>booboo</td>
-                        <td>Test artist name</td>
-                        <td><div class="first-tag">Thanks, I hate it</div><div class="second-tag">Lecture #2</div></td>
-                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aad">
-                        <td>AAD</td>
-                        <td>AUSENCO</td>
-                        <td><div class="first-tag">I would forever dump my girlfriend to meet the artist</div><div class="second-tag">Lecture #3</div></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aax">
-                        <td>AAX</td>
-                        <td>ADELAIDE</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="booboo">
-                        <td>booboo</td>
-                        <td>Test artist name</td>
-                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
-                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aad">
-                        <td>AAD</td>
-                        <td>AUSENCO</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aax">
-                        <td>AAX</td>
-                        <td>ADELAIDE</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="booboo">
-                        <td>booboo</td>
-                        <td>Test artist name</td>
-                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
-                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aad">
-                        <td>AAD</td>
-                        <td>AUSENCO</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aax">
-                        <td>AAX</td>
-                        <td>ADELAIDE</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="booboo">
-                        <td>booboo</td>
-                        <td>Test artist name</td>
-                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
-                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aad">
-                        <td>AAD</td>
-                        <td>AUSENCO</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aax">
-                        <td>AAX</td>
-                        <td>ADELAIDE</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="booboo">
-                        <td>booboo</td>
-                        <td>Test artist name</td>
-                        <td><div class="first-tag">booooobooooooooobooooooooobooooooooobooooooooobooooooooooooo</div><div class="second-tag">Test 2</div></td>
-                        <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aad">
-                        <td>AAD</td>
-                        <td>AUSENCO</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
-                      <tr id="aax">
-                        <td>AAX</td>
-                        <td>ADELAIDE</td>
-                        <td></td>
-                        <td><i class="fas fa-ellipsis-v"></i></td>
-                      </tr>
+                      <!-- Temp data below -->
+                        <tr id="booboo">
+                          <td id="delete-1"><input type="checkbox"> </td>
+                          <td>booboo</td>
+                          <td>Test artist name</td>
+                          <td><div class="first-tag">Lecture #1</div><div class="second-tag">Comfort listening</div></td>
+                          <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
+                        </tr>
+                        <tr id="aad">
+                          <td id="delete-1"><input type="checkbox"> </td>
+                          <td>AAD</td>
+                          <td>AUSENCO</td>
+                          <td><div class="first-tag">Actually the worst song ever</div><div class="second-tag">Avant garde</div></td>
+                          <td><i class="fas fa-ellipsis-v"></i></td>
+                        </tr>
                     </tbody>
                   </table>
                 </div>

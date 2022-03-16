@@ -103,7 +103,7 @@ table td {
    /* for long word case */
     hyphens: auto;
 }
-th, th:last-of-type {
+th {
     padding: 20px 15px;
     font-size: 12px;
 }
@@ -114,12 +114,16 @@ th:last-of-type{
     font-weight: 500;
     width: 2.5%;
 }
-td, td:last-of-type {
+td {
     padding: 15px;
     vertical-align: middle;
     font-weight: 300;
     text-align: left;
     font-size: 15px;
+}
+
+td:first-of-type {
+    width: 2.5%;
 }
 td:last-of-type{
     width: 2.5%;
@@ -129,6 +133,17 @@ change if necessary*/
 .fas, .fa {
     font-size: 20px;
 }
+
+input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    transform: translateY(-0.075em);
+}
+
+
 .first-tag, .second-tag {
     overflow: hidden;
     display: inline-block;
@@ -138,6 +153,7 @@ change if necessary*/
     white-space: nowrap;
     margin: 0 5px 5px 0;
 }
+
 /* Editing the size of the stuff itself */
 #main-library-head th {
     font-size: 20px;

@@ -21,7 +21,7 @@ nav .active, nav button:active, td:last-of-type:active {
 }
 
 /* More specific light mode stuff*/
-.fas, .fa {
+.fas, .fa, input[type="checkbox"] {
     color: rgb(226, 226, 226);
 }
 tr:hover {
