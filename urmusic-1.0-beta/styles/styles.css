@@ -1,6 +1,6 @@
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
  */
- html {
+ html, button {
     font-family: sans-serif;
 }
 nav {
@@ -36,6 +36,10 @@ main {
 section {
     display: none;
 }
+
+button {
+    cursor: pointer;
+}
 /* Top Bar Stuff */
 .top-bar {
     width: 100%;
@@ -48,9 +52,6 @@ section {
     vertical-align: middle;
     align-items: center;
     justify-content: space-between;
-}
-.sub-bar:last-of-type {
-    margin-top: -15px;
 }
 #hey-there {
     font-family: 'Open Sans', sans-serif;
@@ -122,12 +123,33 @@ td {
     font-size: 15px;
 }
 
-td:first-of-type {
+td:first-of-type, th:first-of-type, td:last-of-type {
     width: 2.5%;
 }
-td:last-of-type{
-    width: 2.5%;
+
+td:last-of-type {
+    cursor: pointer;
 }
+
+td:first-of-type, th:first-of-type  {
+    display: none;
+}
+
+#yes, #no {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 15px;
+    transition: 0.3s;
+}
+
+#yes {
+    border-radius: 15px 0 0 0;
+}
+#no {
+    border-radius: 0 15px 0 0;
+}
+
 /* being used only for the edit button for now;
 change if necessary*/
 .fas, .fa {
@@ -136,6 +158,7 @@ change if necessary*/
 
 input[type="checkbox"] {
     appearance: none;
+    cursor: pointer;
     margin: 0;
     width: 20px;
     height: 20px;
@@ -143,6 +166,9 @@ input[type="checkbox"] {
     transform: translateY(-0.075em);
 }
 
+input[type="checkbox"]:checked:after {
+    content:"✔";
+}
 
 .first-tag, .second-tag {
     overflow: hidden;
@@ -156,7 +182,7 @@ input[type="checkbox"] {
 
 /* Editing the size of the stuff itself */
 #main-library-head th {
-    font-size: 20px;
+    font-size: 15px;
 }
 #main-library-content{
     height:700px;

@@ -4,24 +4,25 @@ body {
     color: rgb(226, 226, 226);
 }
 /* Palette color changes */ 
-nav button {
+nav button, 
+input[type="checkbox"]:hover {
     background-color: rgba(255,255,255,0.2);
 }
 nav button:hover, td:last-of-type:hover  {
     background-color: #290E3D;
 }
-nav .active, nav button:active, td:last-of-type:active {
+nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #041B3D;
 }
-.sub-bar button:hover i {
+.sub-bar button:focus i {
     color:  #290E3D;
 }
-.sub-bar button:active i {
+.sub-bar button:acfocustive i {
     color:  #041B3D;
 }
 
 /* More specific light mode stuff*/
-.fas, .fa, input[type="checkbox"] {
+.fas, .fa, input[type="checkbox"], button {
     color: rgb(226, 226, 226);
 }
 tr:hover {

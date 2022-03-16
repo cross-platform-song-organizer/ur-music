@@ -4,24 +4,34 @@ body {
     color: white;
 }
 /* Palette color changes */ 
-nav button {
+nav button, 
+input[type="checkbox"]:hover {
     background-color: rgba(255,255,255,0.2);
 }
-nav button:hover, td:last-of-type:hover  {
+
+nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover  {
     background-color: #C8B6D7;
 }
-nav .active, nav button:active, td:last-of-type:active {
+#confirm-popup #yes {
+    background-color: #f16565;
+}
+
+#confirm-popup #no {
+    background-color: lightgray;
+}
+
+nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #A0C8D8;
 }
 .sub-bar button:hover i {
     color:  #C8B6D7;
 }
-.sub-bar button:active i {
+.sub-bar button:focus i {
     color:  #A0C8D8;
 }
 
 /* More specific light mode stuff*/
-.fas, .fa, input[type="checkbox"] {
+.fas, .fa, input[type="checkbox"], button {
     color: white;
 }
 tr:hover {

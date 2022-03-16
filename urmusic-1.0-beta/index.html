@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="styles/styles.css"/>
     <link rel="stylesheet" href="styles/all.min.css" />
 
-    <!-- Scripts -->
+    <!-- JQuery -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" />
 
 </head>
 <html>
@@ -52,14 +55,17 @@
                     </div>
                 </div>
             </div>
-            <article id="add-menu"></article>
+            <article id="add-menu">
+
+            </article>
             <article id="filter-menu"></article>
             <article id="library">
                 <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
-                <div>
+                <div id="main-library-head">
                   <table>
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Song title</th>
                         <th>Artist</th>
                         <th>Tags</th>
@@ -76,15 +82,15 @@
                   <table>
                     <tbody>
                       <!-- Temp data below -->
-                        <tr id="booboo">
-                          <td id="delete-1"><input type="checkbox"> </td>
+                        <tr>
+                          <td><input type="checkbox"></td>
                           <td>booboo</td>
                           <td>Test artist name</td>
                           <td><div class="first-tag">Lecture #1</div><div class="second-tag">Comfort listening</div></td>
                           <td id="edit"><i class="fas fa-ellipsis-v"></i></td>
                         </tr>
-                        <tr id="aad">
-                          <td id="delete-1"><input type="checkbox"> </td>
+                        <tr>
+                          <td><input type="checkbox"><span class="checkmark"></span> </td>
                           <td>AAD</td>
                           <td>AUSENCO</td>
                           <td><div class="first-tag">Actually the worst song ever</div><div class="second-tag">Avant garde</div></td>
@@ -111,5 +117,10 @@
         <button><i class="fa fa-search"></i></button>
         <button><i class="fa fa-user-cog"></i></button>
     </nav>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1041.0.min.js"></script>
+    <script type="text/javascript" src="scripts/delete.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     </body>
 </html>
