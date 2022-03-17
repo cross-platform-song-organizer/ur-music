@@ -91,6 +91,38 @@ i.fas.fa-user {
     border: none;
     color: transparent;
 }
+
+/* TODO: add style */
+.form-popup {
+    /*display: none;*/
+    border: 3px solid #730ef7;
+    z-index: 9;
+}
+
+.form-container {
+    max-width: 500px;
+    padding: 10px;
+    background-color: #8d8d8d;
+}
+
+.form-container input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+label {
+    display: inline-block;
+    width: 80px;
+}
+
 /* Table Styles */
 table{
     width:100%;
