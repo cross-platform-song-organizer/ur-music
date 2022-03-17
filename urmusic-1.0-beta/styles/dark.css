@@ -8,16 +8,28 @@ nav button,
 input[type="checkbox"]:hover {
     background-color: rgba(255,255,255,0.2);
 }
-nav button:hover, td:last-of-type:hover  {
+
+nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover  {
     background-color: #290E3D;
+    color: rgb(226, 226, 226);
 }
+
+#confirm-popup #yes {
+    background-color: #5a1431;
+}
+
+#confirm-popup #no, #confirm-popup #clear {
+    background-color: lightgray;
+    color: gray;
+}
+
 nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #041B3D;
 }
-.sub-bar button:focus i {
+.sub-bar button:hover i {
     color:  #290E3D;
 }
-.sub-bar button:acfocustive i {
+.sub-bar button:focus i {
     color:  #041B3D;
 }
 
@@ -33,6 +45,9 @@ td, td:last-of-type {
 }
 nav, .user-img, .first-tag, .second-tag, #main-library-head {
     background-color: rgba(255,255,255,0.3);
+}
+#song-info  {
+    background-color: rgba(70, 70, 70, 0.75);
 }
 #main-library-content{
     border: 1px solid rgba(255,255,255,0.3);
