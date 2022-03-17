@@ -9,25 +9,39 @@ input[type="checkbox"]:hover {
     background-color: rgba(255,255,255,0.2);
 }
 
-nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover  {
+nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear  {
     background-color: #C8B6D7;
 }
 #confirm-popup #yes {
     background-color: #f16565;
 }
 
-#confirm-popup #no {
+#confirm-popup #no, #confirm-popup #clear {
     background-color: lightgray;
 }
 
-nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
+nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #A0C8D8;
 }
 .sub-bar button:hover i {
     color:  #C8B6D7;
 }
-.sub-bar button:focus i {
+.sub-bar button:focus i, .library-edits .active i {
     color:  #A0C8D8;
+}
+#song-info td, #song-info textarea {
+    color: #808080;
+    font-weight: 300;
+}
+#song-info .song-info-top {
+    background: linear-gradient(to right, #B693D1, #698BC2);
+    background: -webkit-linear-gradient(#B693D1, #698BC2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#song-info button {
+    background-color: #698bc27c;
 }
 
 /* More specific light mode stuff*/
@@ -43,6 +57,11 @@ td, td:last-of-type {
 nav, .user-img, .first-tag, .second-tag, #main-library-head {
     background-color: rgba(255,255,255,0.3);
 }
+
+#song-info  {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
 #main-library-content{
     border: 1px solid rgba(255,255,255,0.3);
 }
