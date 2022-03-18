@@ -16,7 +16,7 @@ nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-pop
     background-color: #f16565;
 }
 
-#confirm-popup #no, #confirm-popup #clear {
+#confirm-popup #no, #confirm-popup #clear{
     background-color: lightgray;
 }
 
@@ -29,18 +29,19 @@ nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:che
 .sub-bar button:focus i, .library-edits .active i {
     color:  #A0C8D8;
 }
-#song-info td, #song-info textarea {
+.song-info td, .song-info textarea, .select2-results__option {
     color: #808080;
     font-weight: 300;
 }
-#song-info .song-info-top {
+.song-info .song-info-top {
     background: linear-gradient(to right, #B693D1, #698BC2);
     background: -webkit-linear-gradient(#B693D1, #698BC2);
+    background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-#song-info button {
+.song-info button {
     background-color: #698bc27c;
 }
 
@@ -54,11 +55,12 @@ tr:hover {
 td, td:last-of-type {
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-nav, .user-img, .first-tag, .second-tag, #main-library-head {
+
+nav, .user-img, .first-tag, .second-tag, #main-library-head, table textarea:hover {
     background-color: rgba(255,255,255,0.3);
 }
 
-#song-info  {
+.song-info  {
     background-color: rgba(255, 255, 255, 0.9);
 }
 

@@ -46,7 +46,7 @@ td, td:last-of-type {
 nav, .user-img, .first-tag, .second-tag, #main-library-head {
     background-color: rgba(255,255,255,0.3);
 }
-#song-info  {
+.song-info  {
     background-color: rgba(70, 70, 70, 0.75);
 }
 #main-library-content{

@@ -1,69 +1,115 @@
 function addDialog() {
-    $(`<article id="add-popup" class="popup" style="display:none"> <!-- Reminder to assign default classes! -->
-    <div class="center">
-      <div>What song would you like to add?</div>
-
-      <!-- Basic song info -->
+    $(`<article id="add-popup" class="song-info">
+  <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
+     <div>Add a song</div>
+  </div>
+  <!-- Basic song info -->
   <table style="padding-top: 15px">
      <tbody>
         <tr>
            <td>Song</td>
-           <td><textarea>Song</textarea></td>
+           <td><textarea placeholder="Enter song title"></textarea></td>
         </tr>
         <tr>
            <td>Artist</td>
-           <td><textarea>Artist</textarea></td>
+           <td><textarea placeholder="Enter artist name"></textarea></td>
         </tr>
      </tbody>
   </table>
-      <div id="more-categories" style="display:none">
-        
-        <div>
-          <label for="album">Album</label>
-          <input type="text" placeholder="Enter album name" name="album" id="album-input">
-        </div>
+  <!-- Extra info; not needed -->
+  <table id="categories-button-table">
+     <tbody>
+        <tr>
+           <td>Link</td>
+           <td><textarea placeholder="Enter song link"></textarea></td>
+        </tr>
+        <tr>
+           <td>Notes</td>
+           <td><textarea placeholder="Enter notes"></textarea></td>
+        </tr>
+     </tbody>
+  </table>
+  <button class="more-button" id="categories-button"> View extra info </button>
+  <!-- Tags -->
+  <table id="tag-button-table">
+     <tbody>
+        <tr>
+           <td>Tags</td>
+           <td>
+              <div>
+                 <select id="tag-selection" multiple="multiple">`+tagString+
+                 `</select>
+                 </div>
+           </td>
+        </tr>
+     </tbody>
+  </table>
+  <div style="padding-bottom: 15px">
+  <button class="more-button" id="tag-button"> View tags </button>
+  <button style="display: none;">Update</button>
+  </div>
+  </div>
+  <div style="padding-bottom:15px">
+     <button id="save-song">Save</button>
+     <button id="cancel-song" onclick="closeInfo('#add-popup')">Cancel</button>
+  </div>
+</article>
+)
+}`).appendTo('body');
 
-        <div>
-          <label for="link">Link</label>
-          <input type="text" placeholder="Enter link to song" name="link" id="link-input">
-        </div>
+    $('#categories-button-table').hide();
+    $('#tag-button-table').hide();
 
-      </div>
+    infoSetUp();
 
-      <div>
-        <button id="more-categories-button" onclick="moreCategoriesToggle()">+ View more categories</button>
-      </div>
+    $('textarea').change(function () {
+        console.log(this);
+        console.log("New text: " + $(this).val());
+    })
 
-      <div id="tags-within-add" style="display:none">
-        <label for="tag-input">Tags</label>
+    $('#save-song').click(function () {
+        /* Necessary information */
+        let song = $("#add-popup table:first-of-type tr:first-of-type td:last-of-type textarea").val();
+        let artist = $("#add-popup table:first-of-type tr:last-of-type td:last-of-type textarea").val();
 
-        <!--Referenced https://www.w3schools.com/howto/howto_js_filter_dropdown.asp-->
-        <div class="dropdown">
-          <div id="tag-dropdown">
-            <input type="text" placeholder="Search for a tag" id="tag-dropdown-input" 
-            onkeyup="filterTagSearch()" style="min-width: 230px;"
-            onfocus="showDropdownOptions()" onblur="hideDropdownOptions()">
-            <div id="tag-dropdown-options" style="display: none;">
-              <p class="dropdown-tag" onclick="addExistingTag(this.textContent)">Tag 1</p>
-              <p class="dropdown-tag" onclick="addExistingTag(this.textContent)">Tag 2</p>
-              <p class="dropdown-tag" onclick="addExistingTag(this.textContent)">Tag 3</p>
-            </div>
-          </div>
-        </div>
+        if (song == "" || artist == "") {
+            //don't allow them to save!
+        }
+        else {
+            let link = $("#add-popup #categories-button-table tr:first-of-type td:last-of-type textarea").val();
+            let note = $("#add-popup #categories-button-table tr:last-of-type td:last-of-type textarea").val();
+            let tags_array = $("#tag-selection").select2("data");
+            console.log(tags_array);
+            var tags = [];
+            var tag_table = "";
 
-        <p>Tags to be added:</p>
-        <p id="tags-to-add" style="font-size:small;">(no tags have been added)</p>
-      </div>
+            var tags_updated = false;
 
-      <div>
-        <button id="tags-button" onclick="tagsToggle()">+ View tags</button>
-      </div>
+            for (var i = 0; i < tags_array.length; i++) {
+                tags.push(tags_array[i].text); 
+                if (!available_tags.includes(tags_array[i].text)) {
+                    available_tags.push(tags_array[i].text);
+                    tags_updated = true; 
+                }
 
-      <div>
-        <button onclick="cancelAdd()">Cancel</button>
-        <button onclick="saveAdd()">Save</button>
-      </div>
-    </div>
+                if (i <= 1) {
+                    tag_table += "<div class='first-tag'>" + tags_array[i].text + "</div>"
+                }
+            }
 
-  </article>`).appendTo('body');
+            //update song tags to show all available tags
+            if (tags_updated == true) remakeList();
+
+            let key = {song: song, artist: artist};
+            let value = {link: link, note: note, tags: tags};
+
+            all_songs.set(key,value);
+            console.log(all_songs);
+            closeInfo("#add-popup");
+
+            addCell (song,artist,tag_table);
+        }
+    })
 }
+
+    /* Gather info from this row to use */

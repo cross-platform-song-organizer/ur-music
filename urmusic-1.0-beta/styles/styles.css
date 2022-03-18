@@ -1,6 +1,6 @@
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
  */
- html, button, textarea {
+ html, button, textarea, .select2-results__option {
     font-family: sans-serif;
 }
 nav {
@@ -131,6 +131,7 @@ td:last-of-type {
 table textarea {
     background: transparent;
 }
+
 #library td:first-of-type, th:first-of-type {
     display: none;
 }
@@ -190,7 +191,7 @@ input[type="checkbox"]:checked:after {
 ::-webkit-scrollbar {
     width: 6px;
 }
-#song-info {
+.song-info, #add-popup {
     position: absolute;
     align-items: center;
     width: 90%;
@@ -205,36 +206,37 @@ input[type="checkbox"]:checked:after {
     border-top: white 2px solid;
     color: black;
 }
-#song-info button {
+.song-info button {
     border-radius: 10px;
     padding: .5em 2.5em .5em 2.5em;
 }
-#song-info table {
+.song-info table {
     width: 90%;
 }
-#song-info td {
+.song-info td {
     font-size: 20px;
 }
-#song-info div {
+.song-info div {
     font-size: 32px;
     font-weight: bold;
 }
 /* Select 2 Changes */
-#song-info td:first-of-type {
+.song-info td:first-of-type {
     width: 0%;
 }
-#song-info textarea {
+.song-info textarea {
     text-align: center;
     border: none;
     vertical-align: middle;
     resize: none;
     overflow: hidden;
 }
-#song-info #tags-table td:last-of-type {
+.song-info #tags-table td:last-of-type {
     text-align: left;
 }
-.select2-container--default .select2-selection--multiple, #song-info textarea {
+.select2-container--default .select2-selection--multiple, .song-info textarea {
     width: 40vw;
+    min-height: 2vw;
 }
 .select2-container--default .select2-selection--multiple {
     border: none !important;
