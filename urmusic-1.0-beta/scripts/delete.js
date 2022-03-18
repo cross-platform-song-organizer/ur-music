@@ -67,6 +67,4 @@ function confirmDialog(){
 /* Deletes everything that's checked */
 $('.checkbox').click(function () {
     itemsToDelete.push(this);
-    console.log("Something was checked!");
-    
  })

@@ -229,7 +229,6 @@ input[type="checkbox"]:checked:after {
     border: none;
     vertical-align: middle;
     resize: none;
-    overflow: hidden;
 }
 .song-info #tags-table td:last-of-type {
     text-align: left;

@@ -1,4 +1,4 @@
-var available_tags = ["Actually the worst song ever","Avant garde","Comfort listening","Lecture #1"];
+var available_tags = [];
 var tagString = "";
 var all_songs = new Map (); //contains all of the user's songs <3
 
@@ -69,7 +69,8 @@ function infoSetUp() {
     /* Sets up textareas to automatically resize as needed */
 
     $("textarea").each(function() {
-        this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+        this.setAttribute("style", "height:" + (this.scrollHeight) + "px;", "overflow-y", "scroll");
+        this.style.height = "auto";
     }).on("input", function() {
         this.style.height = "auto";
         this.style.height = (this.scrollHeight) + "px";
@@ -104,15 +105,22 @@ function remakeList () {
 }
 
 function addCell (song,artist,tag_table) {
-    $(`<tr>
-    <td><input type="checkbox"></td>
+
+    /*
+    * after a new cell is added, something funky happens. This is for the cases where we've 
+    * already added another cell before and are adding another one
+    */
+
+    $("tr").removeClass("new");
+    $(`<tr class="new">
+    <td><input type="checkbox" class="checkbox"></td>
     <td>`+song+`</td>
     <td>`+artist+`</td>
     <td>`+tag_table+`</td>
     <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
     </tr>`).appendTo("#main-library-content table tbody");
 
-    $('tr .view-more').click(function() {
+    $('.new .view-more').click(function() {
         console.log("Fading main");
         $("#main").fadeTo(200, 0.5);
         $("#main").css("pointer-events", "none");
@@ -121,11 +129,13 @@ function addCell (song,artist,tag_table) {
         $("nav").css("pointer-events", "none");
         console.log(this);
     
-        songDialog(this); /* Open dialogue window w/ info gathered*/
+        songDialog(this); // Open dialogue window w/ info gathered
 
-        $("#song-info").fadeIn(200); /* Show window*/
-    
-        /* Gather info from this row to use */
+        $("#song-info").fadeIn(200); // Show window
     
     })
+
+    $('.new .checkbox').click(function () {
+        itemsToDelete.push(this);
+     })
 }

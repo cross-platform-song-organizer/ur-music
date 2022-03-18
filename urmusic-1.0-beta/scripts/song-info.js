@@ -47,11 +47,11 @@ function songDialog(element) {
      <tbody>
         <tr>
            <td>Link</td>
-           <td><textarea placeholder="Not provided."></textarea></td>
+           <td><textarea placeholder="Not provided.">`+all_songs.get(song).link+`</textarea></td>
         </tr>
         <tr>
            <td>Notes</td>
-           <td><textarea placeholder="Not provided."></textarea></td>
+           <td><textarea placeholder="Not provided.">`+all_songs.get(song).note+`</textarea></td>
         </tr>
      </tbody>
   </table>
