@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="styles/all.min.css" />
 
     <!-- Scripts -->
+    <script type="text/javascript" src="scripts/add.js"></script>
+
 
 </head>
 <html>
@@ -90,10 +92,22 @@
                 <div id="tags-within-add" style="display:none">
                   <label for="tag-input">Tags</label>
 
-                  <!--This will ultimately be a dropdown menu of options that can be searched-->
-                  <input type="text" placeholder="(will be a dropdown menu)" name="tag-input" id="tag-input">
+                  <!--Referenced https://www.w3schools.com/howto/howto_js_filter_dropdown.asp-->
+                  <div class="dropdown">
+                    <div id="tag-dropdown">
+                      <input type="text" placeholder="Search for a tag" id="tag-dropdown-input" 
+                      onkeyup="filterTagSearch()" style="min-width: 230px;"
+                      onfocus="showDropdownOptions()" onblur="hideDropdownOptions()">
+                      <div id="tag-dropdown-options" style="display: none;">
+                        <p class="dropdown-tag" onclick="addExistingTag(this.textContent)">Tag 1</p>
+                        <p class="dropdown-tag" onclick="addExistingTag(this.textContent)">Tag 2</p>
+                        <p class="dropdown-tag" onclick="addExistingTag(this.textContent)">Tag 3</p>
+                      </div>
+                    </div>
+                  </div>
 
-                  <p style="font-size: small; font-style: italic;">Added tags will be displayed here</p>
+                  <p>Tags to be added:</p>
+                  <p id="tags-to-add" style="font-size:small;">(no tags have been added)</p>
                 </div>
 
                 <div>
@@ -166,8 +180,6 @@
         <button><i class="fa fa-search"></i></button>
         <button><i class="fa fa-user-cog"></i></button>
     </nav>
-
-    <script type="text/javascript" src="scripts/add.js"></script>
 
     </body>
 </html>

@@ -98,12 +98,10 @@ i.fas.fa-user {
     padding: 20px;
     background-color: #8d8d8d;
 }
-
 .form-container input[type=text]:focus {
     background-color: #ddd;
     outline: none;
 }
-
 .center {
     align-self: center;
     display: flex;
@@ -112,15 +110,24 @@ i.fas.fa-user {
     height: 100%;
     flex-direction: column;
 }
-
 label {
     display: inline-block;
     width: 80px;
 }
-
 button {
     margin-top: 4px;
     margin-bottom: 16px;
+}
+#tag-dropdown {
+    background-color: #f6f6f6be;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    margin-bottom: 16px;
+}
+.dropdown-tag {
+    border: 1px solid #8d8d8d;
+    margin: 0px;
+    padding: 8px;
 }
 
 /* Table Styles */
