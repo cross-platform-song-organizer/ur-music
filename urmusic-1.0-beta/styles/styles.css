@@ -127,6 +127,10 @@ td:first-of-type, th:first-of-type, td:last-of-type {
 td:last-of-type {
     cursor: pointer;
 }
+
+table textarea {
+    background: transparent;
+}
 #library td:first-of-type, th:first-of-type {
     display: none;
 }
