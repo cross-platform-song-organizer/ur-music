@@ -47,52 +47,66 @@
                     
                     <div class="library-edits">
                         <button id="delete"><i class="fa fa-minus"></i></button>
-                        <button id="add"><i class="fa fa-plus"></i></button>
+                        <button id="add" onclick="openAddPopup()"><i class="fa fa-plus"></i></button>
                         <button id="filter"><i class="fa fa-filter"></i></button>
                     </div>
                 </div>
             </div>
 
+            <!--This section of code creates the menu to add a song-->
+            <article id="add-popup" class="popup" style="display:none">
+              
+              <div class="center">
+                <h1>What song would you like to add?</h1>
 
+                <div>
+                  <label for="song-title">Song title *</label>
+                  <input type="text" placeholder="Enter song title" name="song-title" id="song-title-input">
+                </div>
 
-
-            <article id="add-menu">
-              <div class="form-popup"> <!--style="display: none"-->
-                <form class="form-container">
+                <div>
+                  <label for="artist">Artist *</label>
+                  <input type="text" placeholder="Enter artist name" name="artist" id="artist-input">
+                </div>
+                
+                <div id="more-categories" style="display:none">
                   
-                  <div class="center">
-                    <h1>What song would you like to add?</h1>
-
-                    <div>
-                      <label for="song-title">Song title *</label>
-                      <input type="text" placeholder="Enter song title" name="song-title" required>
-                    </div>
-
-                    <div>
-                      <label for="artist">Artist *</label>
-                      <input type="text" placeholder="Enter artist name" name="artist" required>
-                    </div>
-
-                    <div>
-                      <button>+ View more categories</button>
-                    </div>
-
-                    <div>
-                      <button>+ View tags</button>
-                    </div>
-
-                    <div>
-                      <button>Cancel</button>
-                      <button>Save</button>
-                    </div>
+                  <div>
+                    <label for="album">Album</label>
+                    <input type="text" placeholder="Enter album name" name="album" id="album-input">
                   </div>
 
-                </form>
+                  <div>
+                    <label for="link">Link</label>
+                    <input type="text" placeholder="Enter link to song" name="link" id="link-input">
+                  </div>
+
+                </div>
+
+                <div>
+                  <button id="more-categories-button" onclick="moreCategoriesToggle()">+ View more categories</button>
+                </div>
+
+                <div id="tags-within-add" style="display:none">
+                  <label for="tag-input">Tags</label>
+
+                  <!--This will ultimately be a dropdown menu of options that can be searched-->
+                  <input type="text" placeholder="(will be a dropdown menu)" name="tag-input" id="tag-input">
+
+                  <p style="font-size: small; font-style: italic;">Added tags will be displayed here</p>
+                </div>
+
+                <div>
+                  <button id="tags-button" onclick="tagsToggle()">+ View tags</button>
+                </div>
+
+                <div>
+                  <button onclick="cancelAdd()">Cancel</button>
+                  <button onclick="saveAdd()">Save</button>
+                </div>
               </div>
+
             </article>
-
-
-
 
             <article id="filter-menu"></article>
             <article id="library">
@@ -152,5 +166,8 @@
         <button><i class="fa fa-search"></i></button>
         <button><i class="fa fa-user-cog"></i></button>
     </nav>
+
+    <script type="text/javascript" src="scripts/add.js"></script>
+
     </body>
 </html>
