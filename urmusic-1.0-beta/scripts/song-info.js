@@ -8,6 +8,7 @@ remakeList();
 
 /* Sets up stuff for adding + editing + viewing song info */
 function infoSetUp() {
+   turnOff();
     /* Everything to enable Select2 */
     $("#tag-selection").each(function(index, element) {
         $(this).select2({
@@ -15,8 +16,6 @@ function infoSetUp() {
             width: "100%" // just for stack-snippet to show properly
         });
     });
-    var selected = [];
-
 
     $(".js-programmatic-disable").on("click", function() {
         $("#tag-selection").prop("disabled", false);
@@ -64,42 +63,6 @@ function remakeList() {
     for (var i = 0; i < available_tags.length; i++) {
         tagString += "<option>" + available_tags[i] + "</option>";
     }
-}
-
-function addCell(song, artist, tag_table) {
-
-    /*
-     * after a new cell is added, something funky happens. This is for the cases where we've 
-     * already added another cell before and are adding another one
-     */
-
-    $("tr").removeClass("new");
-    $(`<tr class="new">
-   <td><input type="checkbox" class="checkbox"></td>
-   <td>` + song + `</td>
-   <td>` + artist + `</td>
-   <td>` + tag_table + `</td>
-   <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
-   </tr>`).appendTo("#main-library-content table tbody");
-
-    $('.new .view-more').click(function() {
-        console.log("Fading main");
-        $("#main").fadeTo(200, 0.5);
-        $("#main").css("pointer-events", "none");
-
-        $("nav").fadeTo(200, 0.5);
-        $("nav").css("pointer-events", "none");
-        console.log(this);
-
-        songDialog(this); // Open dialogue window w/ info gathered
-
-        $("#song-info").fadeIn(200); // Show window
-
-    })
-
-    $('.new .checkbox').click(function() {
-        itemsToDelete.push(this);
-    })
 }
 
 /*
@@ -158,8 +121,8 @@ function addDialog() {
   </div>
   </div>
   <div style="padding-bottom:15px">
-     <button id="save-song">Save</button>
-     <button id="cancel-song" onclick="closeInfo('#add-popup')">Cancel</button>
+     <button class="save" id="save-song">Save</button>
+     <button class="cancel" id="cancel-song" onclick="closeInfo('#add-popup')">Cancel</button>
   </div>
 </article>
 )
@@ -187,6 +150,7 @@ function addDialog() {
 
 /* Info pop-up when 'see more' is clicked */
 function songDialog(element) {
+   turnOff();
     row = $(element.closest('tr')).find('td');
 
     var song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
@@ -247,7 +211,7 @@ function songDialog(element) {
   </div>
   <div style="padding-bottom:15px">
 
-     <button onclick="save('#song-info')">Save changes</button>
+     <button class="save" onclick="save('#song-info')">Save changes</button>
      <button onclick="closeInfo('#song-info')">Close</button>
   </div>
 </article>
@@ -303,7 +267,6 @@ function save(table) {
         let link = $(table + " #categories-button-table tr:first-of-type td:last-of-type textarea").val();
         let note = $(table + " #categories-button-table tr:last-of-type td:last-of-type textarea").val();
         let tags_array = $("#tag-selection").select2("data");
-        //console.log(tags_array);
         var tags = [];
         var tag_table = "";
 
@@ -335,7 +298,6 @@ function save(table) {
 
         if (table == "#add-popup") {
            all_songs.set(key, value);
-           addCell(songname, artist, tag_table);
            closeInfo(table);
         }
         else {
@@ -353,6 +315,5 @@ function save(table) {
             row[2].innerHTML = artist;
             $(row[3]).html(tag_table);
         }
-        console.log(all_songs.get(key));
     }
 }

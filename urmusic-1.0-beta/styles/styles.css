@@ -3,14 +3,27 @@
  html, button, textarea, .select2-results__option {
     font-family: sans-serif;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* needed for container min-height */
+}
+
+main, section {
+    position: relative;
+    height: auto !important;
+    min-height: 100%;
+}
 nav {
+    margin-top: -16vh;
+    margin-left: 10%;
+    margin-right: 10%;
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;
     border-radius: 30px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
 }
 nav button {
     float: left;
@@ -131,7 +144,7 @@ td:last-of-type {
 #library td:first-of-type, th:first-of-type {
     display: none;
 }
-#yes, #no, #clear {
+#confirm-popup #yes, #confirm-popup #no, #confirm-popup #clear {
     border: none;
     outline: none;
     cursor: pointer;
@@ -144,7 +157,7 @@ td:last-of-type {
 #no {
     border-radius: 0 15px 0 0;
 }
-#clear {
+#confirm-popup #clear {
     border-radius: 15px 15px 0 0;
 }
 /* being used only for the edit button for now;
@@ -164,7 +177,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked:after {
     content:"✔";
 }
-.first-tag, .second-tag {
+.tag {
     overflow: hidden;
     display: inline-block;
     max-width: 90%;
@@ -178,10 +191,10 @@ input[type="checkbox"]:checked:after {
     font-size: 15px;
 }
 #main-library-content{
-    height:700px;
    /* Need to add diff size for mobile usage*/
     overflow-x: auto;
     margin-top: 0px;
+    height: 50vh;
 }
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {
@@ -192,7 +205,7 @@ input[type="checkbox"]:checked:after {
     align-items: center;
     width: 90%;
     left: 5%;
-    top: 25%;
+    top: 10vh;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
