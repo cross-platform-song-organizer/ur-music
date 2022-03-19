@@ -1,17 +1,201 @@
+var row;
+var tags;
+var song = "";
+remakeList();
+/*
+ ***************** SONG STUFF *****************
+ */
+
+/* Sets up stuff for adding + editing + viewing song info */
+function infoSetUp() {
+    /* Everything to enable Select2 */
+    $("#tag-selection").each(function(index, element) {
+        $(this).select2({
+            tags: true,
+            width: "100%" // just for stack-snippet to show properly
+        });
+    });
+    var selected = [];
+
+
+    $(".js-programmatic-disable").on("click", function() {
+        $("#tag-selection").prop("disabled", false);
+        $("#tag-selection").prop("disabled", false);
+    });
+
+    $(".js-programmatic-enable").on("click", function() {
+        $("#tag-selection").prop("disabled", true);
+        $("#tag-selection").prop("disabled", true);
+    });
+
+    /* Sets up textareas to automatically resize as needed */
+
+    $("textarea").each(function() {
+        this.setAttribute("style", "height:" + (this.scrollHeight) + "px;", "overflow-y", "scroll");
+        this.style.height = "auto";
+    }).on("input", function() {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
+    });
+
+    //functionalities for viewing more stuff for adding, editing, and viewing songs
+    $(".more-button").click(function() {
+        console.log("Clicked the 'tags' button");
+        var button_id = "#" + $(this).attr('id');
+        var table_id = "#" + $(this).attr('id') + "-table";
+        console.log(table_id);
+        if (!$(this).hasClass("active")) {
+            $(this).addClass("active");
+            $(table_id).show();
+            $(button_id).html("Hide " + ($(button_id).html()).substr($(button_id).html().indexOf("View") + 4));
+            console.log(("#" + $(this).attr('id')));
+        } else {
+            $(this).removeClass("active");
+            $(table_id).hide();
+            $(button_id).html("View " + ($(button_id).html()).substr($(button_id).html().indexOf("Hide") + 4));
+        }
+    })
+}
+
+//updates all the tags + puts them in alphabetical order
+function remakeList() {
+    available_tags.sort();
+    tagString = "";
+    for (var i = 0; i < available_tags.length; i++) {
+        tagString += "<option>" + available_tags[i] + "</option>";
+    }
+}
+
+function addCell(song, artist, tag_table) {
+
+    /*
+     * after a new cell is added, something funky happens. This is for the cases where we've 
+     * already added another cell before and are adding another one
+     */
+
+    $("tr").removeClass("new");
+    $(`<tr class="new">
+   <td><input type="checkbox" class="checkbox"></td>
+   <td>` + song + `</td>
+   <td>` + artist + `</td>
+   <td>` + tag_table + `</td>
+   <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
+   </tr>`).appendTo("#main-library-content table tbody");
+
+    $('.new .view-more').click(function() {
+        console.log("Fading main");
+        $("#main").fadeTo(200, 0.5);
+        $("#main").css("pointer-events", "none");
+
+        $("nav").fadeTo(200, 0.5);
+        $("nav").css("pointer-events", "none");
+        console.log(this);
+
+        songDialog(this); // Open dialogue window w/ info gathered
+
+        $("#song-info").fadeIn(200); // Show window
+
+    })
+
+    $('.new .checkbox').click(function() {
+        itemsToDelete.push(this);
+    })
+}
+
+/*
+ ************ Adding a new song ************
+ */
+
+function addDialog() {
+    $(`<article id="add-popup" class="song-info">
+  <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
+     <div>Add a song</div>
+  </div>
+  <!-- Basic song info -->
+  <table style="padding-top: 15px">
+     <tbody>
+        <tr>
+           <td>Song</td>
+           <td><textarea placeholder="Enter song title"></textarea></td>
+        </tr>
+        <tr>
+           <td>Artist</td>
+           <td><textarea placeholder="Enter artist name"></textarea></td>
+        </tr>
+     </tbody>
+  </table>
+  <!-- Extra info; not needed -->
+  <table id="categories-button-table">
+     <tbody>
+        <tr>
+           <td>Link</td>
+           <td><textarea placeholder="Enter song link"></textarea></td>
+        </tr>
+        <tr>
+           <td>Notes</td>
+           <td><textarea placeholder="Enter notes"></textarea></td>
+        </tr>
+     </tbody>
+  </table>
+  <button class="more-button" id="categories-button"> View extra info </button>
+  <!-- Tags -->
+  <table id="tag-button-table">
+     <tbody>
+        <tr>
+           <td>Tags</td>
+           <td>
+              <div>
+                 <select id="tag-selection" multiple="multiple">` + tagString +
+        `</select>
+                 </div>
+           </td>
+        </tr>
+     </tbody>
+  </table>
+  <div style="padding-bottom: 15px">
+  <button class="more-button" id="tag-button"> View tags </button>
+  <button style="display: none;">Update</button>
+  </div>
+  </div>
+  <div style="padding-bottom:15px">
+     <button id="save-song">Save</button>
+     <button id="cancel-song" onclick="closeInfo('#add-popup')">Cancel</button>
+  </div>
+</article>
+)
+}`).appendTo('body');
+
+    $('#categories-button-table').hide();
+    $('#tag-button-table').hide();
+
+    infoSetUp();
+
+    $('textarea').change(function() {
+        console.log(this);
+        console.log("New text: " + $(this).val());
+    })
+
+    $('#save-song').click(function() {
+        /* Necessary information */
+        save("#add-popup");
+    })
+}
+
+/*
+ ************ Viewing a new song ************
+ */
+
 /* 
 When clicking "view more", this stuff happens 
 also, please reuse this code for "add" and "edit"
 */
-var row;
-var tags;
-var song = "";
 
 /* Info pop-up when 'see more' is clicked */
 function songDialog(element) {
     row = $(element.closest('tr')).find('td');
 
-    var song = all_songs.get(row[1].innerHTML+";"+row[2].innerHTML);
-    console.log(song);
+    var song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
+    //console.log(song);
 
     tags = song.tags;
 
@@ -68,7 +252,7 @@ function songDialog(element) {
   </div>
   <div style="padding-bottom:15px">
 
-     <button onclick="save()">Save changes</button>
+     <button onclick="save('#song-info')">Save changes</button>
      <button onclick="closeInfo('#song-info')">Close</button>
   </div>
 </article>
@@ -84,7 +268,7 @@ function songDialog(element) {
     $('#tag-selection').val(tags).trigger('change');
 
     $('.fa-edit').click(function() {
-        console.log("I was clicked!");
+        //console.log("I was clicked!");
         if ($(this).hasClass("active")) {
             disable();
         } else {
@@ -98,72 +282,79 @@ function songDialog(element) {
      * For editing purposes
      */
 
-    function disable () {
-      $(".fa-edit").removeClass("active")
-      console.log("Deactivating.");
-      $(".select2-selection ").css("pointer-events", "none");
-      $('input[type="text"], textarea').attr('readonly','readonly');
+    function disable() {
+        $(".fa-edit").removeClass("active")
+        //console.log("Deactivating.");
+        $(".select2-selection ").css("pointer-events", "none");
+        $('input[type="text"], textarea').attr('readonly', 'readonly');
     }
+
 }
+function save(table) {
+    //console.log("We went here!");
 
-function save() {
-   console.log("We went here!");
+    /* NEED TO CHECK THIS CODE */
+    let songname = $(table + " table:first-of-type tr:first-of-type td:last-of-type textarea").val();
+    let artist = $(table + " table:first-of-type tr:last-of-type td:last-of-type textarea").val();
 
-   /* NEED TO CHECK THIS CODE */
-   let songname = $("#song-info table:first-of-type tr:first-of-type td:last-of-type textarea").val();
-   let artist = $("#song-info table:first-of-type tr:last-of-type td:last-of-type textarea").val();
+    console.log(songname + " " + artist);
+    if (songname == "" || artist == "") {
+        //don't allow them to save!
+        alert("Please check song and artist fields before saving."); //replace with another module or something (change away from alert)
+    } else {
+        let link = $(table + " #categories-button-table tr:first-of-type td:last-of-type textarea").val();
+        let note = $(table + " #categories-button-table tr:last-of-type td:last-of-type textarea").val();
+        let tags_array = $("#tag-selection").select2("data");
+        //console.log(tags_array);
+        var tags = [];
+        var tag_table = "";
 
-   console.log(songname + " " + artist);
-   if (song == "" || artist == "") {
-       //don't allow them to save!
-       alert("Please check song and artist fields before saving.");
-   } else {
-       let link = $("#song-info #categories-button-table tr:first-of-type td:last-of-type textarea").val();
-       let note = $("#song-info #categories-button-table tr:last-of-type td:last-of-type textarea").val();
-       let tags_array = $("#tag-selection").select2("data");
-       console.log(tags_array);
-       var tags = [];
-       var tag_table = "";
+        var tags_updated = false;
 
-       var tags_updated = false;
+        for (var i = 0; i < tags_array.length; i++) {
+            tags.push(tags_array[i].text);
 
-       for (var i = 0; i < tags_array.length; i++) {
-           tags.push(tags_array[i].text);
-           
-           if (!available_tags.includes(tags_array[i].text)) {
-             console.log("Updated tags");
-               available_tags.push(tags_array[i].text);
-               tags_updated = true;
-           }
+            if (!available_tags.includes(tags_array[i].text)) {
+                //console.log("Updated tags");
+                available_tags.push(tags_array[i].text);
+                tags_updated = true;
+            }
 
-           if (i <= 1) {
-               tag_table += "<div class='first-tag'>" + tags_array[i].text + "</div>"
-           }
-       }
-       if (tags_updated == true) remakeList();
-
-       //rename keys: https://stackoverflow.com/questions/4647817/javascript-object-rename-key
-       if (song.song != songname || song.artist != artist) {
-           all_songs.delete(song);
-           console.log(all_songs);
-           console.log("Deleted " + song);
-           let key = songname + ";" + artist;
-            let value = {song: songname, artist: artist, link: link, note: note, tags: tags};
-
-            all_songs.set(key,value);
+            if (i <= 1) {
+                tag_table += "<div class='first-tag'>" + tags_array[i].text + "</div>"
+            }
         }
-       else {
-          //update stuff
-       all_songs.get(song).link = link;
-       all_songs.get(song).note = note;
-       all_songs.get(song).tags = tags;
-       }
+        if (tags_updated == true) remakeList();
 
-       //update in table
+        let value = {
+            song: songname,
+            artist: artist,
+            link: link,
+            note: note,
+            tags: tags
+        };
+        let key = songname + ";" + artist;
 
-       row[1].innerHTML = songname;
-       row[2].innerHTML = artist;
-       $(row[3]).html(tag_table);
-       console.log(all_songs);
-   }
+        if (table == "#add-popup") {
+           all_songs.set(key, value);
+           addCell(songname, artist, tag_table);
+           closeInfo(table);
+        }
+        else {
+            if (song.song != songname || song.artist != artist) {
+                all_songs.delete(song);
+                all_songs.set(key, value);
+            } else {
+                //update stuff
+                all_songs.get(song).link = link;
+                all_songs.get(song).note = note;
+                all_songs.get(song).tags = tags;
+            }
+            //update in table
+            row[1].innerHTML = songname;
+            row[2].innerHTML = artist;
+            $(row[3]).html(tag_table);
+        }
+        console.log(all_songs.get(key));
+    }
 }
