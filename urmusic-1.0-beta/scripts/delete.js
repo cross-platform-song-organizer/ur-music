@@ -5,28 +5,35 @@ $('td:first-of-type input').addClass('checkbox');
 
 $('#delete').click(function() {
     if (!$('#delete').hasClass("active")) {
-        $('#main-library-content td:first-of-type').css({"display": "table-cell"});
-        $('#main-library-content th:first-of-type').css({"display": "table-cell"});
+        $('#main-library-content td:first-of-type').css({
+            "display": "table-cell"
+        });
+        $('#main-library-content th:first-of-type').css({
+            "display": "table-cell"
+        });
         confirmDialog();
         $('#delete').addClass("active");
 
         $("#add").removeClass("active");
         $("#filter").removeClass("active");
-    }
-    else {
+    } else {
         turnOff();
     }
 })
 
-function turnOff () {
+function turnOff() {
     /* Need to add confirmation panel, which leads to deleting */
-    $('#main-library-content td:first-of-type').css ({"display": "none"});
-    $('#main-library-content th:first-of-type').css ({"display": "none"});
+    $('#main-library-content td:first-of-type').css({
+        "display": "none"
+    });
+    $('#main-library-content th:first-of-type').css({
+        "display": "none"
+    });
     $('#confirm-popup').remove();
     $('#delete').removeClass("active");
 }
 
-function confirmDialog(){
+function confirmDialog() {
     $(`<div id="confirm-popup"> 
             <div style="display: flex; justify-content: space-between">
             <div style="display: flex; gap: 0;"> 
@@ -37,8 +44,8 @@ function confirmDialog(){
             </div> 
     </div>`).appendTo('.top-bar');
 
-     //Pass true to a callback function
-     $("#yes").click(function () {
+    //Pass true to a callback function
+    $("#yes").click(function() {
         $("#myModal").css('display', 'hidden');
         console.log("We clicked yes!");
         $('#delete').focus(); /* Maintains focus on delete button */
@@ -50,24 +57,28 @@ function confirmDialog(){
             $($(itemsToDelete[i]).closest("tr")).remove();
         }
     });
-      
-     //Pass false to callback function
-     $("#confirm-popup #no").click(function () {
-        $('#main-library-content td:first-of-type').css ({"display": "none"});
-        $('#main-library-content th:first-of-type').css ({"display": "none"});
+
+    //Pass false to callback function
+    $("#confirm-popup #no").click(function() {
+        $('#main-library-content td:first-of-type').css({
+            "display": "none"
+        });
+        $('#main-library-content th:first-of-type').css({
+            "display": "none"
+        });
         $('#confirm-popup').remove();
         $('#delete').removeClass("active");
         itemsToDelete = [];
-     });
+    });
 
-     $("#confirm-popup #clear").click(function () {
-         console.log("Clicked clear!");
+    $("#confirm-popup #clear").click(function() {
+        console.log("Clicked clear!");
         $('.checkbox').prop("checked", false);
         itemsToDelete = [];
-     })
-  }
+    })
+}
 
 /* Deletes everything that's checked */
-$('.checkbox').click(function () {
+$('.checkbox').click(function() {
     itemsToDelete.push(this);
- })
+})

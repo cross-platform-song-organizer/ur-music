@@ -8,7 +8,7 @@ remakeList();
 
 /* Sets up stuff for adding + editing + viewing song info */
 function infoSetUp() {
-   turnOff();
+    turnOff();
     /* Everything to enable Select2 */
     $("#tag-selection").each(function(index, element) {
         $(this).select2({
@@ -150,7 +150,7 @@ function addDialog() {
 
 /* Info pop-up when 'see more' is clicked */
 function songDialog(element) {
-   turnOff();
+    turnOff();
     row = $(element.closest('tr')).find('td');
 
     var song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
@@ -241,6 +241,7 @@ function songDialog(element) {
             $("button:contains('Save changes')").show();
         }
     })
+
     function disable() {
         $(".fa-edit").removeClass("active")
         //console.log("Deactivating.");
@@ -297,10 +298,9 @@ function save(table) {
         let key = songname + ";" + artist;
 
         if (table == "#add-popup") {
-           all_songs.set(key, value);
-           closeInfo(table);
-        }
-        else {
+            all_songs.set(key, value);
+            closeInfo(table);
+        } else {
             if (song.song != songname || song.artist != artist) {
                 all_songs.delete(song);
                 all_songs.set(key, value);

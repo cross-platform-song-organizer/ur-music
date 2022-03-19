@@ -1,4 +1,5 @@
 var filter_tags = [];
+
 function addFilter() {
     $(`<article id="filter-popup" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
@@ -13,7 +14,7 @@ function addFilter() {
            <td>
               <div>
                  <select id="tag-selection" multiple="multiple">` + tagString +
-                 `</select>
+        `</select>
                  </div>
            </td>
         </tr>
@@ -24,7 +25,7 @@ function addFilter() {
   </div>
   <div style="padding-bottom:15px;">
     
-    <button id="filter-songs">Filter</button>
+    <button class="save" id="filter-songs">Filter</button>
     <button id="cancel-song" onclick="closeInfo('#filter-popup')">Cancel</button>
     </div>
 </article>
@@ -50,9 +51,14 @@ function addFilter() {
 
         //save current filters for later
         filter_tags = temp;
-        console.log(filter_tags);
+        console.log("Here are our tags: " + filter_tags);
+        makeTable(filter_tags);
 
-        closeInfo("#filter-popup");
+        $("#main").fadeTo(200, 1);
+        $("#main").css("pointer-events", "auto");
+        $("nav").fadeTo(200, 1);
+        $("nav").css("pointer-events", "auto");
+        $("#filter-popup").remove();
     })
 
 }
