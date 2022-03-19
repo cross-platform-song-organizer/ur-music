@@ -10,18 +10,10 @@ var song = "";
 function songDialog(element) {
     row = $(element.closest('tr')).find('td');
 
-    let iterator = all_songs.keys();
+    var song = all_songs.get(row[1].innerHTML+";"+row[2].innerHTML);
+    console.log(song);
 
-    for (const item of iterator) {
-        //found song
-        if (item.song == row[1].innerHTML && item.artist == row[2].innerHTML) {
-            song = item;
-            console.log("Found song");
-            break;
-        }
-    }
-
-    tags = all_songs.get(song).tags;
+    tags = song.tags;
 
     $(`<article id="song-info" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
@@ -46,11 +38,11 @@ function songDialog(element) {
      <tbody>
         <tr>
            <td>Link</td>
-           <td><textarea placeholder="Not provided.">` + all_songs.get(song).link + `</textarea></td>
+           <td><textarea placeholder="Not provided.">` + song.link + `</textarea></td>
         </tr>
         <tr>
            <td>Notes</td>
-           <td><textarea placeholder="Not provided.">` + all_songs.get(song).note + `</textarea></td>
+           <td><textarea placeholder="Not provided.">` + song.note + `</textarea></td>
         </tr>
      </tbody>
   </table>
@@ -124,6 +116,7 @@ function save() {
    console.log(songname + " " + artist);
    if (song == "" || artist == "") {
        //don't allow them to save!
+       alert("Please check song and artist fields before saving.");
    } else {
        let link = $("#song-info #categories-button-table tr:first-of-type td:last-of-type textarea").val();
        let note = $("#song-info #categories-button-table tr:last-of-type td:last-of-type textarea").val();
@@ -154,8 +147,8 @@ function save() {
            all_songs.delete(song);
            console.log(all_songs);
            console.log("Deleted " + song);
-           let key = {song: songname, artist: artist};
-            let value = {link: link, note: note, tags: tags};
+           let key = songname + ";" + artist;
+            let value = {song: songname, artist: artist, link: link, note: note, tags: tags};
 
             all_songs.set(key,value);
         }

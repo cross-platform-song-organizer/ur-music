@@ -73,7 +73,7 @@ function addDialog() {
         let artist = $("#add-popup table:first-of-type tr:last-of-type td:last-of-type textarea").val();
 
         if (song == "" || artist == "") {
-            //don't allow them to save!
+            alert("Please check song and artist fields before saving.");
         }
         else {
             let link = $("#add-popup #categories-button-table tr:first-of-type td:last-of-type textarea").val();
@@ -100,8 +100,8 @@ function addDialog() {
             //update song tags to show all available tags
             if (tags_updated == true) remakeList();
 
-            let key = {song: song, artist: artist};
-            let value = {link: link, note: note, tags: tags};
+            let key = song + ";" + artist;
+            let value = {song: song, artist: artist, link: link, note: note, tags: tags};
 
             all_songs.set(key,value);
             console.log(all_songs);
