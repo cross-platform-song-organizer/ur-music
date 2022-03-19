@@ -286,7 +286,9 @@ function save(table) {
                 tag_table += "<div class='first-tag'>" + tags_array[i].text + "</div>"
             }
         }
-        if (tags_updated == true) remakeList();
+        if (tags_updated == true) {
+            remakeList();
+        }
 
         let value = {
             song: songname,

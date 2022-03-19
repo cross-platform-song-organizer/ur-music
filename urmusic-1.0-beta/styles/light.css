@@ -2,7 +2,6 @@ body {
     background: linear-gradient(to right, #B693D1, #698BC2);
     color: white;
 }
-
 .clear {
     -webkit-text-fill-color: white;
 }
@@ -11,7 +10,6 @@ nav button,
 input[type="checkbox"]:hover, .song-info .song-info-top i {
     background-color: rgba(255,255,255,0.2);
 }
-
 nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info button:hover {
     background-color: #C8B6D7;
 }
@@ -21,11 +19,9 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 .save {
     background-color: #52b684;
 }
-
 .cancel, .clear, button {
     background-color: lightgray;
 }
-
 nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #A0C8D8;
 }
@@ -46,7 +42,6 @@ nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:che
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .song-info .song-info-top i.active {
     background: linear-gradient(to right, #698BC2, #B693D1);
     background: -webkit-linear-gradient(#698BC2, #B693D1);
@@ -54,7 +49,6 @@ nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:che
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 /* More specific light mode stuff*/
 .fas, .fa, input[type="checkbox"], button {
     color: white;
@@ -65,19 +59,15 @@ tr:hover {
 td, td:last-of-type {
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-
 nav, .user-img, .tag, #main-library-head, table textarea:hover {
     background-color: rgba(255,255,255,0.3);
 }
-
-table textarea {
+table textarea, span.select2-selection.select2-selection--multiple {
     background-color: rgba(255,255,255,0.5);
 }
-
 .song-info {
     background-color: rgba(255, 255, 255, 0.9);
 }
-
 #main-library-content{
     border: 1px solid rgba(255,255,255,0.3);
 }

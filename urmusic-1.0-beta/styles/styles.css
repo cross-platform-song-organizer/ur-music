@@ -4,6 +4,10 @@
     font-family: sans-serif;
 }
 
+body {
+    overflow-y: hidden;
+}
+
 html,
 body {
   margin: 0;
@@ -262,6 +266,10 @@ textarea.disabled {
     font-size: 15px;
     border: none;
 }
+.select2-container .select2-selection {
+    height: 50px;
+    overflow-y: scroll;
+} 
 /* Stuff that can be used everywhere */
 .center {
     display: flex;
