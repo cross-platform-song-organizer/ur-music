@@ -185,11 +185,6 @@ function addDialog() {
  ************ Viewing a new song ************
  */
 
-/* 
-When clicking "view more", this stuff happens 
-also, please reuse this code for "add" and "edit"
-*/
-
 /* Info pop-up when 'see more' is clicked */
 function songDialog(element) {
     row = $(element.closest('tr')).find('td');
@@ -260,36 +255,39 @@ function songDialog(element) {
 }`).appendTo('body');
     $('#categories-button-table').hide();
     $('#tag-button-table').hide();
+    $("button:contains('Save changes')").hide();
 
     infoSetUp(); //all the other stuff for things to work
-
-    disable();
+    disable(); //don't automatically enable edit mode
 
     $('#tag-selection').val(tags).trigger('change');
 
+    /*
+     ********* EDIT STUFF *********
+     */
     $('.fa-edit').click(function() {
         //console.log("I was clicked!");
         if ($(this).hasClass("active")) {
             disable();
         } else {
             $(this).addClass("active");
+            $("textarea").removeClass("disabled");
             $(".select2-selection").css("pointer-events", "inherit");
             $('input[type="text"], textarea').removeAttr('readonly');
+            $("button:contains('Save changes')").show();
         }
     })
-
-    /*
-     * For editing purposes
-     */
-
     function disable() {
         $(".fa-edit").removeClass("active")
         //console.log("Deactivating.");
         $(".select2-selection ").css("pointer-events", "none");
         $('input[type="text"], textarea').attr('readonly', 'readonly');
+        $("button:contains('Save changes')").hide();
+        $("textarea").addClass("disabled");
     }
-
 }
+
+// Used for both adding + editing
 function save(table) {
     //console.log("We went here!");
 

@@ -68,7 +68,11 @@ nav, .user-img, .first-tag, .second-tag, #main-library-head, table textarea:hove
     background-color: rgba(255,255,255,0.3);
 }
 
-.song-info  {
+table textarea {
+    background-color: rgba(255,255,255,0.5);
+}
+
+.song-info {
     background-color: rgba(255, 255, 255, 0.9);
 }
 

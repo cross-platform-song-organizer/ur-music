@@ -128,10 +128,6 @@ td:last-of-type {
     cursor: pointer;
 }
 
-table textarea {
-    background: transparent;
-}
-
 #library td:first-of-type, th:first-of-type {
     display: none;
 }
@@ -230,6 +226,11 @@ input[type="checkbox"]:checked:after {
     vertical-align: middle;
     resize: none;
 }
+
+textarea.disabled {
+    background-color: transparent;
+}
+
 .song-info #tags-table td:last-of-type {
     text-align: left;
 }
