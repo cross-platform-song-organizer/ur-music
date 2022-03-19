@@ -43,7 +43,9 @@ function confirmDialog(){
         $('#delete').focus(); /* Maintains focus on delete button */
 
         for (var i = 0; i < itemsToDelete.length; i++) {
+            var row = $(itemsToDelete[i]).closest("tr").find('td');
             console.log($(itemsToDelete[i]).closest("tr"));
+            all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML);
             $($(itemsToDelete[i]).closest("tr")).remove();
         }
     });
