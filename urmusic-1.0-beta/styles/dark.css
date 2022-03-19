@@ -1,38 +1,65 @@
-
 body {
     background: linear-gradient(to right, #41076D, #0C316E);
     color: rgb(226, 226, 226);
 }
+.clear {
+    -webkit-text-fill-color: rgb(226, 226, 226);
+}
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover {
+input[type="checkbox"]:hover, .song-info{
     background-color: rgba(255,255,255,0.2);
 }
-
 nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover  {
     background-color: #290E3D;
     color: rgb(226, 226, 226);
 }
-
-#confirm-popup #yes {
+nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info button:hover {
+    background-color: #33114d;
+}
+.delete {
     background-color: #5a1431;
 }
-
-#confirm-popup #no, #confirm-popup #clear {
-    background-color: lightgray;
-    color: gray;
+.save {
+    background-color: #52b684;
 }
-
+.cancel, .clear, button {
+    background-color: rgb(172, 172, 172);
+}
 nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #041B3D;
 }
 .sub-bar button:hover i {
     color:  #290E3D;
 }
-.sub-bar button:focus i {
+.sub-bar button:focus i, .library-edits .active i {
     color:  #041B3D;
 }
-
+.song-info td {
+    color: rgb(214, 214, 214);
+    font-weight: 500;
+}
+.song-info textarea, .select2-results__option {
+    color: rgb(226, 226, 226);
+    font-weight: 300;
+}
+.song-info .song-info-top {
+    background: rgb(226, 226, 226);
+    background: rgb(226, 226, 226);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.song-info .song-info-top i.active {
+    background: linear-gradient(to right, #B693D1, #0C316E);
+    background: -webkit-linear-gradient(#B693D1, #0C316E);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.song-info button {
+    background-color: rgb(41, 40, 40);
+}
 /* More specific light mode stuff*/
 .fas, .fa, input[type="checkbox"], button {
     color: rgb(226, 226, 226);
@@ -43,11 +70,14 @@ tr:hover {
 td, td:last-of-type {
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-nav, .user-img, .first-tag, .second-tag, #main-library-head {
+nav, .user-img, .tag, #main-library-head, table textarea:hover  {
     background-color: rgba(255,255,255,0.3);
 }
-#song-info  {
-    background-color: rgba(70, 70, 70, 0.75);
+table textarea, span.select2-selection.select2-selection--multiple {
+    background-color: rgba(255,255,255,0.5);
+}
+.song-info, span.select2-selection.select2-selection--multiple li.select2-selection__choice  {
+    background-color: rgba(48, 48, 48, 0.75);
 }
 #main-library-content{
     border: 1px solid rgba(255,255,255,0.3);

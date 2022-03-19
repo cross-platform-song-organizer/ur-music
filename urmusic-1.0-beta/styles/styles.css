@@ -1,16 +1,33 @@
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
  */
- html, button, textarea {
+ html, button, textarea, .select2-results__option {
     font-family: sans-serif;
 }
+
+body {
+    overflow-y: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* needed for container min-height */
+}
+
+main, section {
+    position: relative;
+    height: auto !important;
+    min-height: 100%;
+}
 nav {
+    margin-top: -16vh;
+    margin-left: 10%;
+    margin-right: 10%;
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;
     border-radius: 30px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
 }
 nav button {
     float: left;
@@ -127,10 +144,11 @@ td:first-of-type, th:first-of-type, td:last-of-type {
 td:last-of-type {
     cursor: pointer;
 }
+
 #library td:first-of-type, th:first-of-type {
     display: none;
 }
-#yes, #no, #clear {
+#confirm-popup #yes, #confirm-popup #no, #confirm-popup #clear {
     border: none;
     outline: none;
     cursor: pointer;
@@ -143,7 +161,7 @@ td:last-of-type {
 #no {
     border-radius: 0 15px 0 0;
 }
-#clear {
+#confirm-popup #clear {
     border-radius: 15px 15px 0 0;
 }
 /* being used only for the edit button for now;
@@ -163,7 +181,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked:after {
     content:"✔";
 }
-.first-tag, .second-tag {
+.tag {
     overflow: hidden;
     display: inline-block;
     max-width: 90%;
@@ -177,21 +195,21 @@ input[type="checkbox"]:checked:after {
     font-size: 15px;
 }
 #main-library-content{
-    height:700px;
    /* Need to add diff size for mobile usage*/
     overflow-x: auto;
     margin-top: 0px;
+    height: 50vh;
 }
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {
     width: 6px;
 }
-#song-info {
+.song-info, #add-popup {
     position: absolute;
     align-items: center;
     width: 90%;
     left: 5%;
-    top: 25%;
+    top: 10vh;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
@@ -201,36 +219,41 @@ input[type="checkbox"]:checked:after {
     border-top: white 2px solid;
     color: black;
 }
-#song-info button {
+.song-info button {
     border-radius: 10px;
     padding: .5em 2.5em .5em 2.5em;
 }
-#song-info table {
+.song-info table {
     width: 90%;
 }
-#song-info td {
+.song-info td {
     font-size: 20px;
 }
-#song-info div {
+.song-info div {
     font-size: 32px;
     font-weight: bold;
 }
 /* Select 2 Changes */
-#song-info td:first-of-type {
+.song-info td:first-of-type {
     width: 0%;
 }
-#song-info textarea {
+.song-info textarea {
     text-align: center;
     border: none;
     vertical-align: middle;
     resize: none;
-    overflow: hidden;
 }
-#song-info #tags-table td:last-of-type {
+
+textarea.disabled {
+    background-color: transparent;
+}
+
+.song-info #tags-table td:last-of-type {
     text-align: left;
 }
-.select2-container--default .select2-selection--multiple, #song-info textarea {
+.select2-container--default .select2-selection--multiple, .song-info textarea {
     width: 40vw;
+    min-height: 2vw;
 }
 .select2-container--default .select2-selection--multiple {
     border: none !important;
@@ -243,6 +266,10 @@ input[type="checkbox"]:checked:after {
     font-size: 15px;
     border: none;
 }
+.select2-container .select2-selection {
+    height: 50px;
+    overflow-y: scroll;
+} 
 /* Stuff that can be used everywhere */
 .center {
     display: flex;
