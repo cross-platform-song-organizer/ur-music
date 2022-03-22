@@ -1,0 +1,8 @@
+{
+    "routes": {
+      "/*.html": "index.html"
+    },
+
+    "root":"/urmusic-1.0-beta",
+    "https_only": true
+}
