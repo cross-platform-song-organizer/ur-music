@@ -1,6 +1,6 @@
 {
     "routes": {
-      "/*.html": "index"
+      "/*.html": "index.html"
     },
 
     "root":"/app",
