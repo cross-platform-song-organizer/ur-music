@@ -79,11 +79,11 @@ function addDialog() {
   <table style="padding-top: 15px">
      <tbody>
         <tr>
-           <td>Song</td>
+           <td>Song*</td>
            <td><textarea placeholder="Enter song title"></textarea></td>
         </tr>
         <tr>
-           <td>Artist</td>
+           <td>Artist*</td>
            <td><textarea placeholder="Enter artist name"></textarea></td>
         </tr>
      </tbody>
@@ -163,18 +163,21 @@ function songDialog(element) {
     $(`<article id="song-info" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
      <div>Song info</div>
-     <i class="fa fa-edit" style="cursor: pointer;"></i>
+        <div>
+        <i class="fa fa-edit" style="cursor: pointer;"></i>
+        <i class="fa fa-trash" style="cursor: pointer;"></i> <!-- needs pop-up asking for confirmation that they want to delete the song -->
+        </div>
   </div>
   <div id="missing">Please fill in all required fields.</div>
   <!-- Basic song info -->
   <table style="padding-top: 15px">
      <tbody>
         <tr>
-           <td>Song *</td>
+           <td>Song*</td>
            <td><textarea>` + song.song + `</textarea></td>
         </tr>
         <tr>
-           <td>Artist *</td>
+           <td>Artist*</td>
            <td><textarea>` + song.artist + `</textarea></td>
         </tr>
      </tbody>
@@ -321,7 +324,8 @@ function save(table) {
             //update in table
             row[1].innerHTML = songname;
             row[2].innerHTML = artist;
-            $(row[3]).html(tag_table);
+            row[3].innerHTML = link;
+            $(row[4]).html(tag_table);
             disable();
         }
     }

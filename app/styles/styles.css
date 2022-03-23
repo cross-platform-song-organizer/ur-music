@@ -138,6 +138,16 @@ td {
     text-align: left;
     font-size: 15px;
 }
+
+.link a:link {
+    text-decoration: none;
+}
+.link {  
+    border: none;
+    color: transparent;
+    border-radius: 0.75vw;
+    padding: 0.5vw 1vw 0.5vw 1vw;
+}
 td:first-of-type, th:first-of-type, td:last-of-type {
     width: 2.5%;
 }

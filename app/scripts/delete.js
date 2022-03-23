@@ -39,8 +39,8 @@ function confirmDialog() {
             <div style="display: flex; gap: 0;"> 
                 <button class="delete" id="yes">Confirm</button>
                 <button class="cancel" id="no">Cancel</button>
+                <button class="clear" id="clear" style="margin-left: 2vw">Clear</button>
             </div>
-            <div><button class="clear" id="clear">Clear</button></div>
             </div> 
     </div>`).appendTo('.top-bar');
 

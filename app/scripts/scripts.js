@@ -74,7 +74,7 @@ function makeTable(reqs) {
                     console.log(tag_table);
                 }
             }
-            addCell(value.song, value.artist, tag_table);
+            addCell(value.song, value.artist, value.link, tag_table);
         } else if (reqs.every(i => value.tags.includes(i))) {
             var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
@@ -84,7 +84,7 @@ function makeTable(reqs) {
                     console.log(tag_table);
                 }
             }
-            addCell(value.song, value.artist, tag_table);
+            addCell(value.song, value.artist, value.link, tag_table);
         }
     }
 
@@ -93,7 +93,16 @@ function makeTable(reqs) {
     }
 }
 
-function addCell(song, artist, tag_table) {
+function urlExists(str){
+    var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; //must be a link
+    if(!regex .test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+function addCell(song, artist, link, tag_table) {
 
     /*
      * after a new cell is added, something funky happens. This is for the cases where we've 
@@ -101,14 +110,31 @@ function addCell(song, artist, tag_table) {
      */
     console.log("Got to adding a cell");
 
+
     $("tr").removeClass("new");
-    $(`<tr class="new">
-   <td><input type="checkbox" class="checkbox"></td>
-   <td>` + song + `</td>
-   <td>` + artist + `</td>
-   <td>` + tag_table + `</td>
-   <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
-   </tr>`).appendTo("#main-library-content table tbody");
+    if (urlExists(link) == true) {
+        $(`<tr class="new">
+            <td><input type="checkbox" class="checkbox"></td>
+            <td>` + song + `</td>
+            <td>` + artist + `</td>
+            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
+            <td>` + tag_table + `</td>
+            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
+            </tr>`).appendTo("#main-library-content table tbody");
+    }
+    else {
+        
+        $(`<tr class="new">
+            <td><input type="checkbox" class="checkbox"></td>
+            <td>` + song + `</td>
+            <td>` + artist + `</td>
+            <td></td>
+            <td>` + tag_table + `</td>
+            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
+            </tr>`).appendTo("#main-library-content table tbody");
+    
+    }
+    
 
     $('.new .view-more').click(function() {
         console.log("Fading main");
