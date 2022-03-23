@@ -1,6 +1,6 @@
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
  */
- html, button, textarea, .select2-results__option {
+ html, button, textarea, .select2-results__option, #missing {
     font-family: sans-serif;
 }
 
@@ -226,7 +226,7 @@ input[type="checkbox"]:checked:after {
 .song-info table {
     width: 90%;
 }
-.song-info td {
+.song-info td, #missing {
     font-size: 20px;
 }
 .song-info div {
@@ -242,6 +242,9 @@ input[type="checkbox"]:checked:after {
     border: none;
     vertical-align: middle;
     resize: none;
+}
+#missing {
+    padding-top: 15px;
 }
 
 textarea.disabled {

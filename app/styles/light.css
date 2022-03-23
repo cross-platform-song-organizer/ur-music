@@ -31,7 +31,7 @@ nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:che
 .sub-bar button:focus i, .library-edits .active i {
     color:  #A0C8D8;
 }
-.song-info td, .song-info textarea, .select2-results__option {
+.song-info td, .song-info textarea, .select2-results__option, #missing {
     color: #808080;
     font-weight: 300;
 }

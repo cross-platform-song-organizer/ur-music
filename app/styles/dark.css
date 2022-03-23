@@ -35,7 +35,7 @@ nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:chec
 .sub-bar button:focus i, .library-edits .active i {
     color:  #041B3D;
 }
-.song-info td {
+.song-info td, #missing {
     color: rgb(214, 214, 214);
     font-weight: 500;
 }

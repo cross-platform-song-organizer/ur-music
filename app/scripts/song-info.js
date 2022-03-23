@@ -75,6 +75,7 @@ function addDialog() {
      <div>Add a song</div>
   </div>
   <!-- Basic song info -->
+  <div id="missing">Please fill in all required fields.</div>
   <table style="padding-top: 15px">
      <tbody>
         <tr>
@@ -130,6 +131,7 @@ function addDialog() {
 
     $('#categories-button-table').hide();
     $('#tag-button-table').hide();
+    $('#missing').hide();
 
     infoSetUp();
 
@@ -163,15 +165,16 @@ function songDialog(element) {
      <div>Song info</div>
      <i class="fa fa-edit" style="cursor: pointer;"></i>
   </div>
+  <div id="missing">Please fill in all required fields.</div>
   <!-- Basic song info -->
   <table style="padding-top: 15px">
      <tbody>
         <tr>
-           <td>Song</td>
+           <td>Song *</td>
            <td><textarea>` + song.song + `</textarea></td>
         </tr>
         <tr>
-           <td>Artist</td>
+           <td>Artist *</td>
            <td><textarea>` + song.artist + `</textarea></td>
         </tr>
      </tbody>
@@ -220,6 +223,7 @@ function songDialog(element) {
     $('#categories-button-table').hide();
     $('#tag-button-table').hide();
     $("button:contains('Save changes')").hide();
+    $('#missing').hide();
 
     infoSetUp(); //all the other stuff for things to work
     disable(); //don't automatically enable edit mode
@@ -241,15 +245,14 @@ function songDialog(element) {
             $("button:contains('Save changes')").show();
         }
     })
-
-    function disable() {
-        $(".fa-edit").removeClass("active")
-        //console.log("Deactivating.");
-        $(".select2-selection ").css("pointer-events", "none");
-        $('input[type="text"], textarea').attr('readonly', 'readonly');
-        $("button:contains('Save changes')").hide();
-        $("textarea").addClass("disabled");
-    }
+}
+function disable() {
+    $(".fa-edit").removeClass("active")
+    //console.log("Deactivating.");
+    $(".select2-selection ").css("pointer-events", "none");
+    $('input[type="text"], textarea').attr('readonly', 'readonly');
+    $("button:contains('Save changes')").hide();
+    $("textarea").addClass("disabled");
 }
 
 // Used for both adding + editing
@@ -263,8 +266,11 @@ function save(table) {
     console.log(songname + " " + artist);
     if (songname == "" || artist == "") {
         //don't allow them to save!
-        alert("Please check song and artist fields before saving."); //replace with another module or something (change away from alert)
+        console.log("Missing something!");
+        $('#missing').show();
+        
     } else {
+        $('#missing').hide();
         let link = $(table + " #categories-button-table tr:first-of-type td:last-of-type textarea").val();
         let note = $(table + " #categories-button-table tr:last-of-type td:last-of-type textarea").val();
         let tags_array = $("#tag-selection").select2("data");
@@ -316,6 +322,7 @@ function save(table) {
             row[1].innerHTML = songname;
             row[2].innerHTML = artist;
             $(row[3]).html(tag_table);
+            disable();
         }
     }
 }
