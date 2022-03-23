@@ -61,6 +61,7 @@ button {
     width: 100%;
     top: 50%;
     display: inline-block;
+    position: relative;
 }
 .sub-bar {
     width: 100%;
@@ -270,6 +271,40 @@ textarea.disabled {
     height: 50px;
     overflow-y: scroll;
 } 
+/* Notification popups
+   Reference: https://www.w3schools.com/howto/howto_js_alert.asp */
+.alert {
+    display: none;
+    padding: 20px;
+    background-color: rgb(201, 201, 201);
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    justify-content: space-between;
+    animation-duration: 3s;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+}
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
 /* Stuff that can be used everywhere */
 .center {
     display: flex;
