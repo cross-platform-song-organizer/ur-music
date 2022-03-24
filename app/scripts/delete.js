@@ -47,32 +47,33 @@ function confirmDialog() {
     //Pass true to a callback function
     $("#yes").click(function() {
         $("#myModal").css('display', 'hidden');
-        console.log("We clicked yes!");
         $('#delete').focus(); /* Maintains focus on delete button */
-
-        var numItemsToDelete = itemsToDelete.length;
 
         for (var i = 0; i < itemsToDelete.length; i++) {
             var row = $(itemsToDelete[i]).closest("tr").find('td');
-            console.log($(itemsToDelete[i]).closest("tr"));
-            all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML);
+            all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
             $($(itemsToDelete[i]).closest("tr")).remove();
         }
 
         //Display alert that song was deleted successfully
-        //TODO: Find way to count number of songs deleted in that specific round, not overall
-        //Currently, if you delete 2 songs and then 3 songs, the second popup says you deleted 5 songs
         var div = document.getElementById("top-alert");
         var notificationString = "";
         if (numItemsToDelete == 1) {
             notificationString = "You successfully deleted 1 song!";
         } else {
-            notificationString = "You successfully deleted " + numItemsToDelete + " songs!";
+            notificationString = "You successfully deleted " + itemsToDelete.length + " songs!";
         }
         document.getElementById("text-of-alert").textContent = notificationString;
         div.style.display = "flex";
-        setTimeout(function() {div.style.animationName = "fadeOut";}, 3000);
-        setTimeout(function() { div.style.display = "none"; div.style.animationName = "";}, 6000);
+        setTimeout(function() {
+            div.style.animationName = "fadeOut";
+        }, 3000);
+        setTimeout(function() {
+            div.style.display = "none";
+            div.style.animationName = "";
+        }, 6000);
+
+        itemsToDelete = [];
     });
 
     //Pass false to callback function
@@ -89,7 +90,6 @@ function confirmDialog() {
     });
 
     $("#confirm-popup #clear").click(function() {
-        console.log("Clicked clear!");
         $('.checkbox').prop("checked", false);
         itemsToDelete = [];
     })

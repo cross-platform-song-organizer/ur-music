@@ -1,6 +1,6 @@
 var row;
 var tags;
-var song = "";
+var song;
 remakeList();
 /*
  ***************** SONG STUFF *****************
@@ -39,15 +39,12 @@ function infoSetUp() {
 
     //functionalities for viewing more stuff for adding, editing, and viewing songs
     $(".more-button").click(function() {
-        console.log("Clicked the 'tags' button");
         var button_id = "#" + $(this).attr('id');
         var table_id = "#" + $(this).attr('id') + "-table";
-        console.log(table_id);
         if (!$(this).hasClass("active")) {
             $(this).addClass("active");
             $(table_id).show();
             $(button_id).html("Hide " + ($(button_id).html()).substr($(button_id).html().indexOf("View") + 4));
-            console.log(("#" + $(this).attr('id')));
         } else {
             $(this).removeClass("active");
             $(table_id).hide();
@@ -137,14 +134,21 @@ function addDialog() {
 
     infoSetUp();
 
-    $('textarea').change(function() {
-        console.log(this);
-        console.log("New text: " + $(this).val());
-    })
-
     $('#save-song').click(function() {
-        /* Necessary information */
-        save("#add-popup");
+        save('#add-popup');
+        closeInfo("#add-popup");
+
+        //Display alert that song was added or edited successfully
+        var div = document.getElementById("top-alert");
+        document.getElementById("text-of-alert").textContent = "Your song was successfully added!";
+        div.style.display = "flex";
+        setTimeout(function() {
+            div.style.animationName = "fadeOut";
+        }, 3000);
+        setTimeout(function() {
+            div.style.display = "none";
+            div.style.animationName = "";
+        }, 6000);
     })
 }
 
@@ -157,8 +161,7 @@ function songDialog(element) {
     turnOff();
     row = $(element.closest('tr')).find('td');
 
-    var song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
-    //console.log(song);
+    song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
 
     tags = song.tags;
 
@@ -220,7 +223,7 @@ function songDialog(element) {
   </div>
   <div style="padding-bottom:15px">
 
-     <button class="save" onclick="save('#song-info')">Save changes</button>
+     <button class="save">Save changes</button>
      <button onclick="closeInfo('#song-info')">Close</button>
   </div>
 </article>
@@ -242,7 +245,6 @@ function songDialog(element) {
      ********* EDIT STUFF *********
      */
     $('.fa-edit').click(function() {
-        //console.log("I was clicked!");
         if ($(this).hasClass("active")) {
             disable();
         } else {
@@ -253,10 +255,19 @@ function songDialog(element) {
             $("button:contains('Save changes')").show();
         }
     })
+
+    $('.fa-trash').click(function() {
+        all_songs.delete(song.song + ";" + song.artist); //delete this song
+        closeInfo('#song-info');
+    })
+
+    $('.save').click(function() {
+        update(song);
+    })
 }
+
 function disable() {
-    $(".fa-edit").removeClass("active")
-    //console.log("Deactivating.");
+    $(".fa-edit").removeClass("active");
     $(".select2-selection ").css("pointer-events", "none");
     $('input[type="text"], textarea').attr('readonly', 'readonly');
     $("button:contains('Save changes')").hide();
@@ -264,8 +275,30 @@ function disable() {
 }
 
 // Used for both adding + editing
+function update(old_song) {
+    all_songs.delete(old_song.song + ";" + old_song.artist);
+    save("#song-info");
+    disable();
+    makeTable();
+
+    //Display alert that song was added or edited successfully
+    //TODO: Make pop-up appear on top of the view/edit song window
+    //Also consider if we can have different messages for adding vs editing
+    var div = document.getElementById("top-alert");
+    document.getElementById("text-of-alert").textContent = "Your song was successfully updated!";
+    div.style.display = "flex";
+    setTimeout(function() {
+        div.style.animationName = "fadeOut";
+    }, 3000);
+    setTimeout(function() {
+        div.style.display = "none";
+        div.style.animationName = "";
+    }, 6000);
+}
+
+
+// Used for both adding + editing
 function save(table) {
-    //console.log("We went here!");
     $('#missing').hide();
     $('#invalid').hide();
 
@@ -274,19 +307,12 @@ function save(table) {
     let artist = $(table + " table:first-of-type tr:last-of-type td:last-of-type textarea").val();
     let link = $(table + " #categories-button-table tr:first-of-type td:last-of-type textarea").val();
 
-    console.log(songname + " " + artist);
     if (songname == "" || artist == "") {
         //don't allow them to save!
-        console.log("Missing something!");
         $('#missing').show();
-        
-    } 
-    else if (link != "" && urlExists(link) == false) {
-        console.log("Invalid link");
+    } else if (link != "" && urlExists(link) == false) {
         $('#invalid').show();
-    }
-    else {
-        $('#missing').hide();
+    } else {
         let note = $(table + " #categories-button-table tr:last-of-type td:last-of-type textarea").val();
         let tags_array = $("#tag-selection").select2("data");
         var tags = [];
@@ -298,7 +324,6 @@ function save(table) {
             tags.push(tags_array[i].text);
 
             if (!available_tags.includes(tags_array[i].text)) {
-                //console.log("Updated tags");
                 available_tags.push(tags_array[i].text);
                 tags_updated = true;
             }
@@ -319,45 +344,16 @@ function save(table) {
             tags: tags
         };
         let key = songname + ";" + artist;
-
-        if (table == "#add-popup") {
-            all_songs.set(key, value);
-            closeInfo(table);
-        } else {
-            if (song.song != songname || song.artist != artist) {
-                all_songs.delete(song);
-                all_songs.set(key, value);
-            } else {
-                //update stuff
-                all_songs.get(song).link = link;
-                all_songs.get(song).note = note;
-                all_songs.get(song).tags = tags;
-            }
-            //update in table
-            row[1].innerHTML = songname;
-            row[2].innerHTML = artist;
-            row[3].innerHTML = link;
-            $(row[4]).html(tag_table);
-            disable();
-        }
-
-        //Display alert that song was added or edited successfully
-        //TODO: Make pop-up appear on top of the view/edit song window
-        //Also consider if we can have different messages for adding vs editing
-        var div = document.getElementById("top-alert");
-        document.getElementById("text-of-alert").textContent = "Your song list was successfully updated!";
-        div.style.display = "flex";
-        setTimeout(function() {div.style.animationName = "fadeOut";}, 3000);
-        setTimeout(function() { div.style.display = "none"; div.style.animationName = "";}, 6000);
+        all_songs.set(key, value);
     }
 }
 
-function urlExists(str){
+function urlExists(str) {
     var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; //must be a link
-    if(regex .test(str)) {
-        if ((str.includes("open.spotify")&&str.includes("track"))||(str.includes("music.apple")&&str.includes("album"))||(str.includes("music.youtube")&&str.includes("watch"))) {
+    if (regex.test(str)) {
+        if ((str.includes("open.spotify") && str.includes("track")) || (str.includes("music.apple") && str.includes("album")) || (str.includes("music.youtube") && str.includes("watch"))) {
             return true;
         }
     }
     return false;
-  }
+}
