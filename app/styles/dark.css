@@ -7,7 +7,7 @@ body {
 }
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover, .song-info{
+input[type="checkbox"]:hover, .song-info, .song-info-top i{
     background-color: rgba(255,255,255,0.2);
 }
 nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover  {
@@ -61,7 +61,7 @@ nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:chec
     background-color: rgb(41, 40, 40);
 }
 /* More specific light mode stuff*/
-.fas, .fa, input[type="checkbox"], button {
+.fas, .fa, input[type="checkbox"], button, .link a, .alert {
     color: rgb(226, 226, 226);
 }
 tr:hover {
