@@ -4,6 +4,9 @@ var tag_occur = new Map(); //keeps how many times a tag has been used; if it rea
 var tagString = "";
 var all_songs = new Map(); //contains all of the user's songs <3
 makeTable();
+$("nav button:first-of-type").addClass("active");
+$("section").not("#main").hide();
+//$("#main").hide();
 
 /* Opens pop-ups */
 $('.view-more').click(function() {
@@ -39,7 +42,7 @@ function closeInfo(closer) {
 function makeTable(reqs) {
     //in the case no requirements are given, we set the array to empty
     //clears table
-    $("#main-library-content table tbody").empty();
+    $("  .library-content table tbody").empty();
 
     //sorts all songs based on song title
     var sorted_songs = new Map([...all_songs.entries()].sort());
@@ -70,8 +73,8 @@ function makeTable(reqs) {
         }
     }
 
-    if ($("#main-library-content table tbody").is(':empty')) {
-        $("#main-library-content table tbody").append("No songs exist.");
+    if ($("  .library-content table tbody").is(':empty')) {
+        $("  .library-content table tbody").append("No songs exist.");
     }
 }
 
@@ -91,7 +94,7 @@ function addCell(song, artist, link, tag_table) {
             <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
-            </tr>`).appendTo("#main-library-content table tbody");
+            </tr>`).appendTo("  .library-content table tbody");
     } else {
         $(`<tr class="new">
             <td><input type="checkbox" class="checkbox"></td>
@@ -100,8 +103,7 @@ function addCell(song, artist, link, tag_table) {
             <td></td>
             <td>` + tag_table + `</td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
-            </tr>`).appendTo("#main-library-content table tbody");
-
+            </tr>`).appendTo("  .library-content table tbody");
     }
 
     $('.new .view-more').click(function() {
@@ -121,3 +123,18 @@ function addCell(song, artist, link, tag_table) {
         itemsToDelete.push(this);
     })
 }
+
+$('nav button').click(function () {
+    $("nav button").removeClass("active");
+    $(this).addClass("active");
+    $("section").hide();
+    if (this.innerHTML.includes("book")) {
+        $("#main").show();
+    }
+    else if (this.innerHTML.includes("search")) {
+        $("#search").show();
+    }
+    else {
+        $("#account").show();
+    }
+})

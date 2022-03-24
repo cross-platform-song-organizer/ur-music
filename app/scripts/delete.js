@@ -5,10 +5,10 @@ $('td:first-of-type input').addClass('checkbox');
 
 $('#delete').click(function() {
     if (!$('#delete').hasClass("active")) {
-        $('#main-library-content td:first-of-type').css({
+        $('  .library-content td:first-of-type').css({
             "display": "table-cell"
         });
-        $('#main-library-content th:first-of-type').css({
+        $('  .library-content th:first-of-type').css({
             "display": "table-cell"
         });
         confirmDialog();
@@ -23,10 +23,10 @@ $('#delete').click(function() {
 
 function turnOff() {
     /* Need to add confirmation panel, which leads to deleting */
-    $('#main-library-content td:first-of-type').css({
+    $('   .library-content td:first-of-type').css({
         "display": "none"
     });
-    $('#main-library-content th:first-of-type').css({
+    $('   .library-content th:first-of-type').css({
         "display": "none"
     });
     $('#confirm-popup').remove();
@@ -78,10 +78,10 @@ function confirmDialog() {
 
     //Pass false to callback function
     $("#confirm-popup #no").click(function() {
-        $('#main-library-content td:first-of-type').css({
+        $('  .library-content td:first-of-type').css({
             "display": "none"
         });
-        $('#main-library-content th:first-of-type').css({
+        $('  .library-content th:first-of-type').css({
             "display": "none"
         });
         $('#confirm-popup').remove();
