@@ -328,5 +328,14 @@ function save(table) {
             $(row[4]).html(tag_table);
             disable();
         }
+
+        //Display alert that song was added or edited successfully
+        //TODO: Make pop-up appear on top of the view/edit song window
+        //Also consider if we can have different messages for adding vs editing
+        var div = document.getElementById("top-alert");
+        document.getElementById("text-of-alert").textContent = "Your song list was successfully updated!";
+        div.style.display = "flex";
+        setTimeout(function() {div.style.animationName = "fadeOut";}, 3000);
+        setTimeout(function() { div.style.display = "none"; div.style.animationName = "";}, 6000);
     }
 }
