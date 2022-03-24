@@ -80,11 +80,11 @@ function addDialog() {
      <tbody>
         <tr>
            <td>Song*</td>
-           <td><textarea placeholder="Enter song title"></textarea></td>
+           <td><textarea placeholder="Enter song title" title="Required."></textarea></td>
         </tr>
         <tr>
            <td>Artist*</td>
-           <td><textarea placeholder="Enter artist name"></textarea></td>
+           <td><textarea placeholder="Enter artist name" title="Required."></textarea></td>
         </tr>
      </tbody>
   </table>
@@ -174,11 +174,11 @@ function songDialog(element) {
      <tbody>
         <tr>
            <td>Song*</td>
-           <td><textarea>` + song.song + `</textarea></td>
+           <td><textarea title="Required.">` + song.song + `</textarea></td>
         </tr>
         <tr>
            <td>Artist*</td>
-           <td><textarea>` + song.artist + `</textarea></td>
+           <td><textarea title="Required.">` + song.artist + `</textarea></td>
         </tr>
      </tbody>
   </table>
