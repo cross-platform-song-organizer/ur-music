@@ -291,7 +291,6 @@ textarea.disabled {
 .alert {
     display: none;
     padding: 20px;
-    background-color: rgb(201, 201, 201);
     color: white;
     margin-bottom: 15px;
     border-radius: 25px;

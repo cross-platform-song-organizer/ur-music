@@ -23,7 +23,7 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 .save {
     background-color: #52b684;
 }
-.cancel, .clear, button {
+.cancel, .clear, button, .alert {
     background-color: rgb(172, 172, 172);
 }
 nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
