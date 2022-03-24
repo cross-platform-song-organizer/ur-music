@@ -1,5 +1,6 @@
 var filter_tags = [];
 
+
 function addFilter() {
     $(`<article id="filter-popup" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">

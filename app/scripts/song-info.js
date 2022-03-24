@@ -262,7 +262,9 @@ function songDialog(element) {
     })
 
     $('.save').click(function() {
-        update(song);
+        let songname = $("#add-popup table:first-of-type tr:first-of-type td:last-of-type textarea").val();
+        let artist = $("#add-popup table:first-of-type tr:last-of-type td:last-of-type textarea").val();
+        update(song, (songname + ";" + artist));
     })
 }
 
@@ -275,11 +277,12 @@ function disable() {
 }
 
 // Used for both adding + editing
-function update(old_song) {
+function update(old_song, new_song) {
     all_songs.delete(old_song.song + ";" + old_song.artist);
     save("#song-info");
     disable();
     makeTable();
+    updateOccurences(old_song.tags, all_songs.get(new_song).tags);
 
     //Display alert that song was added or edited successfully
     //TODO: Make pop-up appear on top of the view/edit song window
@@ -322,18 +325,9 @@ function save(table) {
 
         for (var i = 0; i < tags_array.length; i++) {
             tags.push(tags_array[i].text);
-
-            if (!available_tags.includes(tags_array[i].text)) {
-                available_tags.push(tags_array[i].text);
-                tags_updated = true;
-            }
-
             if (i <= 1) {
                 tag_table += "<div class='first-tag'>" + tags_array[i].text + "</div>"
             }
-        }
-        if (tags_updated == true) {
-            remakeList();
         }
 
         let value = {
@@ -345,7 +339,49 @@ function save(table) {
         };
         let key = songname + ";" + artist;
         all_songs.set(key, value);
+
+        if (table == "#add-popup") updateOccurences(tags, []);
     }
+}
+
+function updateOccurences (new_tags, old_tags) {
+    var updated = false;
+
+    if (old_tags === [] || old_tags == undefined) { //no tags are in the old list
+        for (var i = 0; i < new_tags.length; i++) {
+            if (!tag_occur.has(new_tags[i])) {
+                tag_occur.set(new_tags[i],1);
+                available_tags.push(new_tags[i]);
+                updated = true;
+            }
+            else tag_occur.set(new_tags[i],tag_occur.get(new_tags[i])+1);
+        }
+    }
+    else { 
+        const temp1 = new_tags.filter(val => !old_tags.includes(val)); //all our new tags to add
+        const temp2 = $.grep(old_tags, function(value) {
+            return $.inArray(value, new_tags) < 0;
+        });
+
+        for (var k = 0; k < temp1.length; k++) { //add to available tags
+            if (!tag_occur.has(temp1[k])) {
+                tag_occur.set(temp1[k],1);
+                available_tags.push(temp1[k]);
+                updated = true;
+            }
+            else tag_occur.set(temp1[k],tag_occur.get(temp1[k])+1);
+        }
+        for (var j = 0; i < temp2.length; j++) { //delete from available tags if neccessary
+            if (tag_occur.get(temp2[j])==1) {
+                tag_occur.delete(temp2[j]);
+                arr = arr.filter(e => e !== temp2[j]); //delete tag from being available
+                updated = true;
+            }
+            else tag_occur.set(temp2[j],tag_occur.get(temp1[j])-1);
+        }
+    }
+
+    if (updated == true) remakeList();
 }
 
 function urlExists(str) {

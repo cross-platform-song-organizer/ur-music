@@ -1,4 +1,6 @@
 var available_tags = [];
+var tag_occur = new Map(); //keeps how many times a tag has been used; if it reaches -1, delete the tag
+
 var tagString = "";
 var all_songs = new Map(); //contains all of the user's songs <3
 makeTable();
