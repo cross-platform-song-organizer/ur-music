@@ -76,6 +76,7 @@ function addDialog() {
   </div>
   <!-- Basic song info -->
   <div id="missing">Please fill in all required fields.</div>
+  <div id="invalid" style="width:80%; text-align: center;">Please provide a valid Spotify, Apple Music, or Youtube Music link.</div>
   <table style="padding-top: 15px">
      <tbody>
         <tr>
@@ -132,6 +133,7 @@ function addDialog() {
     $('#categories-button-table').hide();
     $('#tag-button-table').hide();
     $('#missing').hide();
+    $('#invalid').hide();
 
     infoSetUp();
 
@@ -169,6 +171,7 @@ function songDialog(element) {
         </div>
   </div>
   <div id="missing">Please fill in all required fields.</div>
+  <div id="invalid">Please provide a valid Spotify, Apple Music, or Youtube Music link.</div>
   <!-- Basic song info -->
   <table style="padding-top: 15px">
      <tbody>
@@ -226,10 +229,12 @@ function songDialog(element) {
     $('#categories-button-table').hide();
     $('#tag-button-table').hide();
     $("button:contains('Save changes')").hide();
-    $('#missing').hide();
 
     infoSetUp(); //all the other stuff for things to work
     disable(); //don't automatically enable edit mode
+
+    $('#missing').hide();
+    $('#invalid').hide();
 
     $('#tag-selection').val(tags).trigger('change');
 
@@ -261,10 +266,13 @@ function disable() {
 // Used for both adding + editing
 function save(table) {
     //console.log("We went here!");
+    $('#missing').hide();
+    $('#invalid').hide();
 
     /* NEED TO CHECK THIS CODE */
     let songname = $(table + " table:first-of-type tr:first-of-type td:last-of-type textarea").val();
     let artist = $(table + " table:first-of-type tr:last-of-type td:last-of-type textarea").val();
+    let link = $(table + " #categories-button-table tr:first-of-type td:last-of-type textarea").val();
 
     console.log(songname + " " + artist);
     if (songname == "" || artist == "") {
@@ -272,9 +280,13 @@ function save(table) {
         console.log("Missing something!");
         $('#missing').show();
         
-    } else {
+    } 
+    else if (link != "" && urlExists(link) == false) {
+        console.log("Invalid link");
+        $('#invalid').show();
+    }
+    else {
         $('#missing').hide();
-        let link = $(table + " #categories-button-table tr:first-of-type td:last-of-type textarea").val();
         let note = $(table + " #categories-button-table tr:last-of-type td:last-of-type textarea").val();
         let tags_array = $("#tag-selection").select2("data");
         var tags = [];
@@ -339,3 +351,13 @@ function save(table) {
         setTimeout(function() { div.style.display = "none"; div.style.animationName = "";}, 6000);
     }
 }
+
+function urlExists(str){
+    var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; //must be a link
+    if(regex .test(str)) {
+        if ((str.includes("open.spotify")&&str.includes("track"))||(str.includes("music.apple")&&str.includes("album"))||(str.includes("music.youtube")&&str.includes("watch"))) {
+            return true;
+        }
+    }
+    return false;
+  }

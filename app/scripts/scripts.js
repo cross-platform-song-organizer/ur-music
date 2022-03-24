@@ -93,15 +93,6 @@ function makeTable(reqs) {
     }
 }
 
-function urlExists(str){
-    var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; //must be a link
-    if(!regex .test(str)) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
 function addCell(song, artist, link, tag_table) {
 
     /*
@@ -112,7 +103,7 @@ function addCell(song, artist, link, tag_table) {
 
 
     $("tr").removeClass("new");
-    if (urlExists(link) == true) {
+    if (link != "") {
         $(`<tr class="new">
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>

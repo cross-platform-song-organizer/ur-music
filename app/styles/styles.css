@@ -1,6 +1,6 @@
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
  */
- html, button, textarea, .select2-results__option, #missing {
+ html, button, textarea, .select2-results__option, #missing, #invalid {
     font-family: sans-serif;
 }
 
@@ -218,6 +218,8 @@ input[type="checkbox"]:checked:after {
 .song-info, #add-popup {
     position: absolute;
     align-items: center;
+    max-height: 80%;
+    overflow-y: scroll;
     width: 90%;
     left: 5%;
     top: 10vh;
@@ -237,7 +239,7 @@ input[type="checkbox"]:checked:after {
 .song-info table {
     width: 90%;
 }
-.song-info td, #missing {
+.song-info td, #missing, #invalid {
     font-size: 20px;
 }
 .song-info div {
@@ -254,7 +256,7 @@ input[type="checkbox"]:checked:after {
     vertical-align: middle;
     resize: none;
 }
-#missing {
+#missing, #invalid {
     padding-top: 15px;
 }
 
