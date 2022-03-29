@@ -1,6 +1,4 @@
 /* TO DO: When a song is deleted here, it will also be deleted on our server. */
-var itemsToDelete = [];
-
 $('td:first-of-type input').addClass('checkbox');
 
 $('#delete').click(function() {
@@ -18,6 +16,7 @@ $('#delete').click(function() {
         $("#filter").removeClass("active");
     } else {
         turnOff();
+        $('.checkbox').prop("checked", false);
     }
 })
 
@@ -34,6 +33,8 @@ function turnOff() {
 }
 
 function confirmDialog() {
+
+    var itemsToDelete = new Array();
     $(`<div id="confirm-popup"> 
             <div style="display: flex; justify-content: space-between">
             <div style="display: flex; gap: 0;"> 
@@ -48,6 +49,9 @@ function confirmDialog() {
     $("#yes").click(function() {
         $("#myModal").css('display', 'hidden');
         $('#delete').focus(); /* Maintains focus on delete button */
+
+        itemsToDelete = []; //make sure it's empty
+        itemsToDelete = $('.checkbox:checked');
 
         //Displays delete confirmation
         if (itemsToDelete.length > 0) {
@@ -83,43 +87,37 @@ function confirmDialog() {
         $('.checkbox').prop("checked", false);
         itemsToDelete = [];
     });
+
+    function deleteOnceConfirmed() {
+        document.getElementById("confirm-delete-popup").style.display = "none";
+    
+        for (var i = 0; i < itemsToDelete.length; i++) {
+            var row = $(itemsToDelete[i]).closest("tr").find('td');
+            all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
+            $($(itemsToDelete[i]).closest("tr")).remove();
+        }
+    
+        //Display alert that song was deleted successfully
+        var div = document.getElementById("top-alert");
+        var notificationString = "";
+        if (itemsToDelete.length == 1) {
+            notificationString = "You successfully deleted 1 song!";
+        } else {
+            notificationString = "You successfully deleted " + itemsToDelete.length + " songs!";
+        }
+        document.getElementById("text-of-alert").textContent = notificationString;
+        div.style.display = "flex";
+        setTimeout(function() {
+            div.style.animationName = "fadeOut";
+        }, 3000);
+        setTimeout(function() {
+            div.style.display = "none";
+            div.style.animationName = "";
+        }, 6000);
+    
+    }
 }
 
-function cancelDelete() {
+function cancelDelete() { //where is this used?
     document.getElementById("confirm-delete-popup").style.display = "none";
 }
-
-function deleteOnceConfirmed() {
-    document.getElementById("confirm-delete-popup").style.display = "none";
-
-    for (var i = 0; i < itemsToDelete.length; i++) {
-        var row = $(itemsToDelete[i]).closest("tr").find('td');
-        all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
-        $($(itemsToDelete[i]).closest("tr")).remove();
-    }
-
-    //Display alert that song was deleted successfully
-    var div = document.getElementById("top-alert");
-    var notificationString = "";
-    if (itemsToDelete.length == 1) {
-        notificationString = "You successfully deleted 1 song!";
-    } else {
-        notificationString = "You successfully deleted " + itemsToDelete.length + " songs!";
-    }
-    document.getElementById("text-of-alert").textContent = notificationString;
-    div.style.display = "flex";
-    setTimeout(function() {
-        div.style.animationName = "fadeOut";
-    }, 3000);
-    setTimeout(function() {
-        div.style.display = "none";
-        div.style.animationName = "";
-    }, 6000);
-
-    itemsToDelete = [];
-}
-
-/* Deletes everything that's checked */
-$('.checkbox').click(function() {
-    itemsToDelete.push(this);
-})

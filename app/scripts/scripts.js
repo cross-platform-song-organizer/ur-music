@@ -116,8 +116,4 @@ function addCell(song, artist, link, tag_table) {
         $("#song-info").fadeIn(200); // Show window
 
     })
-
-    $('.new .checkbox').click(function() {
-        itemsToDelete.push(this);
-    })
 }
