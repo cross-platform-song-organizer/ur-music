@@ -170,7 +170,7 @@ function songDialog(element) {
      <div>Song info</div>
         <div>
         <i class="fa fa-edit" style="cursor: pointer;"></i>
-        <i class="fa fa-trash" style="cursor: pointer;"></i> <!-- needs pop-up asking for confirmation that they want to delete the song -->
+        <i class="fa fa-trash" style="cursor: pointer;"></i>
         </div>
   </div>
   <div id="missing">Please fill in all required fields.</div>
@@ -257,8 +257,9 @@ function songDialog(element) {
     })
 
     $('.fa-trash').click(function() {
-        all_songs.delete(song.song + ";" + song.artist); //delete this song
-        closeInfo('#song-info');
+        document.getElementById("confirm-delete-popup").style.display = "block";
+        document.getElementById("confirm-delete").onclick = deleteFromSongView;
+        document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete the song.";
     })
 
     $('.save').click(function() {
@@ -266,6 +267,12 @@ function songDialog(element) {
         let artist = $("#add-popup table:first-of-type tr:last-of-type td:last-of-type textarea").val();
         update(song, (songname + ";" + artist));
     })
+}
+
+function deleteFromSongView() {
+    document.getElementById("confirm-delete-popup").style.display = "none";
+    all_songs.delete(song.song + ";" + song.artist); //delete this song
+    closeInfo('#song-info');
 }
 
 function disable() {

@@ -51,8 +51,15 @@ function confirmDialog() {
 
         //Displays delete confirmation
         if (itemsToDelete.length > 0) {
-            console.log("displaying delete confirmation");
-            document.getElementById("confirm-delete").style.display = "block";
+            document.getElementById("confirm-delete-popup").style.display = "block";
+            document.getElementById("confirm-delete").onclick = deleteOnceConfirmed;
+            
+            //Vary warning message based on number of songs to delete
+            if (itemsToDelete.length === 1) {
+                document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete the selected song.";
+            } else {
+                document.getElementById("delete-confirm-warning").textContent = `WARNING: This will permanently delete the ${itemsToDelete.length} selected songs.`;
+            }
         } else {
             console.log("Error: no songs selected to delete");
         }
@@ -79,12 +86,11 @@ function confirmDialog() {
 }
 
 function cancelDelete() {
-    document.getElementById("confirm-delete").style.display = "none";
+    document.getElementById("confirm-delete-popup").style.display = "none";
 }
 
 function deleteOnceConfirmed() {
-    console.log("delete has been confirmed");
-    document.getElementById("confirm-delete").style.display = "none";
+    document.getElementById("confirm-delete-popup").style.display = "none";
 
     for (var i = 0; i < itemsToDelete.length; i++) {
         var row = $(itemsToDelete[i]).closest("tr").find('td');
