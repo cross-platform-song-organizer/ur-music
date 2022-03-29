@@ -43,37 +43,19 @@ function confirmDialog() {
             </div>
             </div> 
     </div>`).appendTo('.top-bar');
-
+        
     //Pass true to a callback function
     $("#yes").click(function() {
         $("#myModal").css('display', 'hidden');
         $('#delete').focus(); /* Maintains focus on delete button */
 
-        for (var i = 0; i < itemsToDelete.length; i++) {
-            var row = $(itemsToDelete[i]).closest("tr").find('td');
-            all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
-            $($(itemsToDelete[i]).closest("tr")).remove();
-        }
-
-        //Display alert that song was deleted successfully
-        var div = document.getElementById("top-alert");
-        var notificationString = "";
-        if (numItemsToDelete == 1) {
-            notificationString = "You successfully deleted 1 song!";
+        //Displays delete confirmation
+        if (itemsToDelete.length > 0) {
+            console.log("displaying delete confirmation");
+            document.getElementById("confirm-delete").style.display = "block";
         } else {
-            notificationString = "You successfully deleted " + itemsToDelete.length + " songs!";
+            console.log("Error: no songs selected to delete");
         }
-        document.getElementById("text-of-alert").textContent = notificationString;
-        div.style.display = "flex";
-        setTimeout(function() {
-            div.style.animationName = "fadeOut";
-        }, 3000);
-        setTimeout(function() {
-            div.style.display = "none";
-            div.style.animationName = "";
-        }, 6000);
-
-        itemsToDelete = [];
     });
 
     //Pass false to callback function
@@ -86,13 +68,49 @@ function confirmDialog() {
         });
         $('#confirm-popup').remove();
         $('#delete').removeClass("active");
+        $('.checkbox').prop("checked", false);
         itemsToDelete = [];
     });
 
     $("#confirm-popup #clear").click(function() {
         $('.checkbox').prop("checked", false);
         itemsToDelete = [];
-    })
+    });
+}
+
+function cancelDelete() {
+    document.getElementById("confirm-delete").style.display = "none";
+}
+
+function deleteOnceConfirmed() {
+    console.log("delete has been confirmed");
+    document.getElementById("confirm-delete").style.display = "none";
+
+    for (var i = 0; i < itemsToDelete.length; i++) {
+        var row = $(itemsToDelete[i]).closest("tr").find('td');
+        all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
+        $($(itemsToDelete[i]).closest("tr")).remove();
+    }
+
+    //Display alert that song was deleted successfully
+    var div = document.getElementById("top-alert");
+    var notificationString = "";
+    if (itemsToDelete.length == 1) {
+        notificationString = "You successfully deleted 1 song!";
+    } else {
+        notificationString = "You successfully deleted " + itemsToDelete.length + " songs!";
+    }
+    document.getElementById("text-of-alert").textContent = notificationString;
+    div.style.display = "flex";
+    setTimeout(function() {
+        div.style.animationName = "fadeOut";
+    }, 3000);
+    setTimeout(function() {
+        div.style.display = "none";
+        div.style.animationName = "";
+    }, 6000);
+
+    itemsToDelete = [];
 }
 
 /* Deletes everything that's checked */

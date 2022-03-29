@@ -287,7 +287,8 @@ textarea.disabled {
     overflow-y: scroll;
 } 
 /* Notification popups
-   Reference: https://www.w3schools.com/howto/howto_js_alert.asp */
+   References: https://www.w3schools.com/howto/howto_js_alert.asp 
+               https://www.w3schools.com/howto/howto_css_modals.asp */
 .alert {
     display: none;
     padding: 20px;
@@ -317,6 +318,28 @@ textarea.disabled {
 }
 .closebtn:hover {
     color: black;
+}
+.confirm-delete {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*overflow: auto; Enable scroll if needed */
+    z-index: 1;
+}
+.confirm-content {
+    background-color: rgb(161, 161, 161);
+    border-radius: 25px;
+    margin: 15% auto;
+    padding: 10px;
+    width: 60%;
+    text-align: center;
+  }
+.delete-popup-btn {
+    border-radius: 10px;
+    padding: .5em 2.5em .5em 2.5em;
 }
 /* Stuff that can be used everywhere */
 .center {

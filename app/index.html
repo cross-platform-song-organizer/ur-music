@@ -25,6 +25,17 @@
          <div id="text-of-alert">[Alert text]</div>
          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
       </div>
+      <!-- Delete confirmation popup -->
+      <div class="confirm-delete" id="confirm-delete">
+         <div class="confirm-content" style="align-items: center;">
+            <p>WARNING: This will permanently delete the selected song(s).</p>
+            <p>Are you sure you want to do this?</p>
+            <div style="padding-bottom:15px">
+               <button class="delete-popup-btn" id="confirm-delete" onclick="deleteOnceConfirmed()" style="background-color: red">Confirm</button>
+               <button class="delete-popup-btn" id="cancel-delete" onclick="cancelDelete()">Cancel</button>
+            </div>
+         </div>
+      </div>
       <main id="main">
          <!-- Top bar stuff-->
          <div class="top-bar">
