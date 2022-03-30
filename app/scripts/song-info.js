@@ -394,7 +394,7 @@ function updateOccurences (new_tags, old_tags) {
 function urlExists(str) {
     var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; //must be a link
     if (regex.test(str)) {
-        if ((str.includes("open.spotify") && str.includes("track")) || (str.includes("music.apple") && str.includes("album")) || (str.includes("music.youtube") && str.includes("watch"))) {
+        if ((str.includes("open.spotify") && str.includes("track")) || (str.includes("music.apple") && str.includes("album")) || (str.includes("youtube") && str.includes("watch"))) {
             return true;
         }
     }
