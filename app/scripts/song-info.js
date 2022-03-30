@@ -135,6 +135,14 @@ function addDialog() {
     infoSetUp();
 
     $('#save-song').click(function() {
+
+        $('#invalid').hide(); //in case it was being shown before
+        let link = $("#categories-button-table tr:first-of-type td:last-of-type textarea").val();
+
+        if (link != "" && urlExists(link) == false) {
+            $('#invalid').show();
+            return;
+        }
         save('#add-popup');
         closeInfo("#add-popup");
 
