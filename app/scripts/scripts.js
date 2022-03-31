@@ -23,7 +23,7 @@ $('.view-more').click(function() {
     } else if ($(this).hasClass("fa-filter")) {
         addFilter();
     }
-})
+});
 
 /* Used to call whatever needs to be closed */
 function closeInfo(closer) {
@@ -48,13 +48,14 @@ function makeTable(reqs) {
     const iterator1 = sorted_songs.values();
     for (let value of iterator1) {
 
+
+        var tag_table = "";
         /*
          * if all the required tags exist in the song, 
          * then we'll update the table accordingly
          */
 
         if (reqs == undefined) {
-            var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) {
                     tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
@@ -62,7 +63,6 @@ function makeTable(reqs) {
             }
             addCell(value.song, value.artist, value.link, tag_table);
         } else if (reqs.every(i => value.tags.includes(i))) {
-            var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
             }
@@ -115,5 +115,5 @@ function addCell(song, artist, link, tag_table) {
 
         $("#song-info").fadeIn(200); // Show window
 
-    })
+    });
 }

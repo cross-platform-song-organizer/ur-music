@@ -50,7 +50,7 @@ function infoSetUp() {
             $(table_id).hide();
             $(button_id).html("View " + ($(button_id).html()).substr($(button_id).html().indexOf("Hide") + 4));
         }
-    })
+    });
 }
 
 //updates all the tags + puts them in alphabetical order
@@ -143,8 +143,8 @@ function addDialog() {
             $('#invalid').show();
             return;
         }
-        save('#add-popup');
-        closeInfo("#add-popup");
+        if (save('#add-popup') != false ) {
+            closeInfo("#add-popup");
 
         //Display alert that song was added or edited successfully
         var div = document.getElementById("top-alert");
@@ -157,7 +157,8 @@ function addDialog() {
             div.style.display = "none";
             div.style.animationName = "";
         }, 6000);
-    })
+        }
+    });
 }
 
 /*
@@ -173,9 +174,7 @@ function songDialog(element) {
 
     tags = song.tags;
 
-    var already_updated = false;
-
-    var previous;
+    var previous = song;
 
     $(`<article id="song-info" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
@@ -266,29 +265,77 @@ function songDialog(element) {
             $('input[type="text"], textarea').removeAttr('readonly');
             $("button:contains('Save changes')").show();
         }
-    })
+    });
 
     $('.fa-trash').click(function() {
         document.getElementById("confirm-delete-popup").style.display = "block";
         document.getElementById("confirm-delete").onclick = deleteFromSongView;
         document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete the song.";
-    })
+    });
 
     $('.save').click(function() {
-        console.log(previous);
+
+        $('#missing').hide();
+        $('#invalid').hide();
+       
         let songname = $("table:first-of-type tr:first-of-type td:last-of-type textarea").val();
         let artist = $("table:first-of-type tr:last-of-type td:last-of-type textarea").val();
-        if (already_updated == false) {
-            update(song, (songname + ";" + artist));
-            already_updated = true;
-            previous = all_songs.get(songname + ";" + artist);
+        let link = $("#categories-button-table tr:first-of-type td:last-of-type textarea").val();
+
+        if (songname == "" || artist == "") {
+            //don't allow them to save!
+            $('#missing').show();
+        }
+        else if (link != "" && urlExists(link) == false) {
+            $('#invalid').show();
         }
         else {
-            update(previous, (songname + ";" + artist));
+            disable();
+            all_songs.delete(previous.song + ";" + previous.artist);
+            let tags_array = $("#tag-selection").select2("data");
+            var tags = [];
+            let note = $(" #categories-button-table tr:last-of-type td:last-of-type textarea").val();
+    
+            for (var i = 0; i < tags_array.length; i++) {
+                tags.push(tags_array[i].text);
+            }
+
+            let value = {
+                song: songname,
+                artist: artist,
+                link: link,
+                note: note,
+                tags: tags
+            };
+
+            let key = songname + ";" + artist;
+
+            all_songs.set(key, value);
+
+
+            if (previous.tags == undefined) previous.tags = [];
+            if (tags == undefined) tags = [];
+            
+            updateOccurences(tags,previous.tags);
+
             previous = all_songs.get(songname + ";" + artist);
+            makeTable();
+
+            //Display alert that song was added or edited successfully
+            //TODO: Make pop-up appear on top of the view/edit song window
+            //Also consider if we can have different messages for adding vs editing
+            var div = document.getElementById("top-alert");
+            document.getElementById("text-of-alert").textContent = "Your song was successfully updated!";
+            div.style.display = "flex";
+            setTimeout(function() {
+                div.style.animationName = "fadeOut";
+            }, 3000);
+            setTimeout(function() {
+                div.style.display = "none";
+                div.style.animationName = "";
+            }, 6000);
         }
-        
-    })
+    });
 }
 
 function deleteFromSongView() {
@@ -304,35 +351,6 @@ function disable() {
     $("button:contains('Save changes')").hide();
     $("textarea").addClass("disabled");
 }
-
-// Used for both adding + editing
-function update(old_song, new_song) {
-    console.log(old_song);
-    console.log(new_song);
-    all_songs.delete(old_song.song + ";" + old_song.artist);
-    save("#song-info");
-    disable();
-    makeTable();
-    updateOccurences(old_song.tags, all_songs.get(new_song).tags);
-
-    //Display alert that song was added or edited successfully
-    //TODO: Make pop-up appear on top of the view/edit song window
-    //Also consider if we can have different messages for adding vs editing
-    var div = document.getElementById("top-alert");
-    document.getElementById("text-of-alert").textContent = "Your song was successfully updated!";
-    div.style.display = "flex";
-    setTimeout(function() {
-        div.style.animationName = "fadeOut";
-    }, 3000);
-    setTimeout(function() {
-        div.style.display = "none";
-        div.style.animationName = "";
-    }, 6000);
-
-    song = new_song;
-}
-
-
 // Used for both adding + editing
 function save(table) {
     $('#missing').hide();
@@ -352,16 +370,12 @@ function save(table) {
         let note = $(table + " #categories-button-table tr:last-of-type td:last-of-type textarea").val();
         let tags_array = $("#tag-selection").select2("data");
         var tags = [];
-        var tag_table = "";
-
-        var tags_updated = false;
 
         for (var i = 0; i < tags_array.length; i++) {
             tags.push(tags_array[i].text);
-            if (i <= 1) {
-                tag_table += "<div class='first-tag'>" + tags_array[i].text + "</div>"
-            }
         }
+
+        console.log(tags);
 
         let value = {
             song: songname,
@@ -378,9 +392,15 @@ function save(table) {
 }
 
 function updateOccurences (new_tags, old_tags) {
+
+    console.log(new_tags);
+    console.log(old_tags);
+
+    console.log("Our available tags: " + available_tags);
     var updated = false;
 
-    if (old_tags === [] || old_tags == undefined) { //no tags are in the old list
+    if (old_tags == undefined) { //no tags are in the old list
+        console.log("No available tags before");
         for (var i = 0; i < new_tags.length; i++) {
             if (!tag_occur.has(new_tags[i])) {
                 tag_occur.set(new_tags[i],1);
@@ -404,16 +424,17 @@ function updateOccurences (new_tags, old_tags) {
             }
             else tag_occur.set(temp1[k],tag_occur.get(temp1[k])+1);
         }
-        for (var j = 0; i < temp2.length; j++) { //delete from available tags if neccessary
+        for (var j = 0; j < temp2.length; j++) { //delete from available tags if neccessary
             if (tag_occur.get(temp2[j])==1) {
                 tag_occur.delete(temp2[j]);
-                arr = arr.filter(e => e !== temp2[j]); //delete tag from being available
+                available_tags = available_tags.filter(e => e !== temp2[j]); //delete tag from being available
                 updated = true;
             }
             else tag_occur.set(temp2[j],tag_occur.get(temp1[j])-1);
         }
     }
 
+    console.log("Our available tags: " + available_tags);
     if (updated == true) remakeList();
 }
 
