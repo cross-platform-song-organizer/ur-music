@@ -173,6 +173,10 @@ function songDialog(element) {
 
     tags = song.tags;
 
+    var already_updated = false;
+
+    var previous;
+
     $(`<article id="song-info" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
      <div>Song info</div>
@@ -271,9 +275,19 @@ function songDialog(element) {
     })
 
     $('.save').click(function() {
-        let songname = $("#add-popup table:first-of-type tr:first-of-type td:last-of-type textarea").val();
-        let artist = $("#add-popup table:first-of-type tr:last-of-type td:last-of-type textarea").val();
-        update(song, (songname + ";" + artist));
+        console.log(previous);
+        let songname = $("table:first-of-type tr:first-of-type td:last-of-type textarea").val();
+        let artist = $("table:first-of-type tr:last-of-type td:last-of-type textarea").val();
+        if (already_updated == false) {
+            update(song, (songname + ";" + artist));
+            already_updated = true;
+            previous = all_songs.get(songname + ";" + artist);
+        }
+        else {
+            update(previous, (songname + ";" + artist));
+            previous = all_songs.get(songname + ";" + artist);
+        }
+        
     })
 }
 
@@ -293,6 +307,8 @@ function disable() {
 
 // Used for both adding + editing
 function update(old_song, new_song) {
+    console.log(old_song);
+    console.log(new_song);
     all_songs.delete(old_song.song + ";" + old_song.artist);
     save("#song-info");
     disable();
@@ -312,6 +328,8 @@ function update(old_song, new_song) {
         div.style.display = "none";
         div.style.animationName = "";
     }, 6000);
+
+    song = new_song;
 }
 
 
