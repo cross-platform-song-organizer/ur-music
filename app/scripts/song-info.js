@@ -146,17 +146,17 @@ function addDialog() {
         if (save('#add-popup') != false ) {
             closeInfo("#add-popup");
 
-        //Display alert that song was added or edited successfully
-        var div = document.getElementById("top-alert");
-        document.getElementById("text-of-alert").textContent = "Your song was successfully added!";
-        div.style.display = "flex";
-        setTimeout(function() {
-            div.style.animationName = "fadeOut";
-        }, 3000);
-        setTimeout(function() {
-            div.style.display = "none";
-            div.style.animationName = "";
-        }, 6000);
+            //Display alert that song was added or edited successfully
+            var div = document.getElementById("top-alert");
+            document.getElementById("text-of-alert").textContent = "Your song was successfully added!";
+            div.style.display = "flex";
+            setTimeout(function() {
+                div.style.animationName = "fadeOut";
+            }, 3000);
+            setTimeout(function() {
+                div.style.display = "none";
+                div.style.animationName = "";
+            }, 6000);
         }
     });
 }
@@ -366,6 +366,7 @@ function save(table) {
     if (songname == "" || artist == "") {
         //don't allow them to save!
         $('#missing').show();
+        return false;
     } else if (link != "" && urlExists(link) == false) {
         $('#invalid').show();
     } else {
