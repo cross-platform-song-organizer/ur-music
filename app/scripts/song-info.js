@@ -270,7 +270,9 @@ function songDialog(element) {
     $('.fa-trash').click(function() {
         document.getElementById("confirm-delete-popup").style.display = "block";
         document.getElementById("confirm-delete").onclick = deleteFromSongView;
-        document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete the song.";
+        let songTitle = $("table:first-of-type tr:first-of-type td:last-of-type textarea").val();
+        let artist = $("table:first-of-type tr:last-of-type td:last-of-type textarea").val();
+        document.getElementById("delete-confirm-warning").textContent = `WARNING: This will permanently delete the song ${songTitle} by ${artist}.`;
     });
 
     $('.save').click(function() {

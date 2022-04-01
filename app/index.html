@@ -20,6 +20,7 @@
 <html>
    <body>
       <!-- Contains music library w/ all the songs-->
+      
       <!-- Pop-up alert -->
       <div class="alert" id="top-alert">
          <div id="text-of-alert">[Alert text]</div>
@@ -33,6 +34,16 @@
             <div style="padding-bottom:15px">
                <button class="delete-popup-btn" id="confirm-delete" onclick="deleteOnceConfirmed()" style="background-color: red">Confirm</button>
                <button class="delete-popup-btn" id="cancel-delete" onclick="cancelDelete()">Cancel</button>
+            </div>
+         </div>
+      </div>
+      <!-- Clear checkboxes confirmation popup -->
+      <div class="confirm-delete" id="clear-checkbox-popup">
+         <div class="confirm-content" style="align-items: center;">
+            <p>Are you sure you would like to clear all checkboxes?</p>
+            <div style="padding-bottom:15px">
+               <button class="delete-popup-btn" id="confirm-clear-checkboxes" onclick="clearCheckboxes()" style="background-color: red">Confirm</button>
+               <button class="delete-popup-btn" id="cancel-clear-checkboxes" onclick="cancelClearCheckboxes()">Cancel</button>
             </div>
          </div>
       </div>
