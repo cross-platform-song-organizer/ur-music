@@ -88,8 +88,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
+            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>Listen</i></a></button></td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("#main-library-content table tbody");
     } else {
@@ -97,8 +97,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td></td>
             <td>` + tag_table + `</td>
+            <td></td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("#main-library-content table tbody");
 

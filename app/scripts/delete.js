@@ -21,7 +21,6 @@ $('#delete').click(function() {
 })
 
 function turnOff() {
-    /* Need to add confirmation panel, which leads to deleting */
     $('#main-library-content td:first-of-type').css({
         "display": "none"
     });
@@ -70,7 +69,7 @@ function confirmDialog() {
         } else {
             console.log("Error: no songs selected to delete");
 
-            //Display popup
+            //Display error popup when no songs are selected to delete
             var div = document.getElementById("top-alert");
             document.getElementById("text-of-alert").textContent = "Error: Please select at least one song to delete.";
             div.style.display = "flex";

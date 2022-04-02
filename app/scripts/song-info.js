@@ -324,8 +324,6 @@ function songDialog(element) {
             makeTable();
 
             //Display alert that song was added or edited successfully
-            //TODO: Make pop-up appear on top of the view/edit song window
-            //Also consider if we can have different messages for adding vs editing
             var div = document.getElementById("top-alert");
             document.getElementById("text-of-alert").textContent = "Your song was successfully updated!";
             div.style.display = "flex";
