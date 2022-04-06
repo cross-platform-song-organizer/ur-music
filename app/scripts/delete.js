@@ -21,7 +21,6 @@ $('#delete').click(function() {
 })
 
 function turnOff() {
-    /* Need to add confirmation panel, which leads to deleting */
     $('#main-library-content td:first-of-type').css({
         "display": "none"
     });
@@ -60,12 +59,28 @@ function confirmDialog() {
             
             //Vary warning message based on number of songs to delete
             if (itemsToDelete.length === 1) {
-                document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete the selected song.";
+                var row = $(itemsToDelete[0]).closest("tr").find('td');
+                var songTitle = row[1].innerHTML
+                var artist = row[2].innerHTML;
+                document.getElementById("delete-confirm-warning").textContent = `WARNING: This will permanently delete the song ${songTitle} by ${artist}.`;
             } else {
                 document.getElementById("delete-confirm-warning").textContent = `WARNING: This will permanently delete the ${itemsToDelete.length} selected songs.`;
             }
         } else {
             console.log("Error: no songs selected to delete");
+
+            //Display error popup when no songs are selected to delete
+            var div = document.getElementById("top-alert");
+            document.getElementById("text-of-alert").textContent = "Error: Please select at least one song to delete.";
+            div.style.display = "flex";
+            setTimeout(function() {
+                div.style.animationName = "fadeOut";
+            }, 3000);
+            setTimeout(function() {
+                div.style.display = "none";
+                div.style.animationName = "";
+            }, 6000);
+
         }
     });
 
@@ -84,8 +99,7 @@ function confirmDialog() {
     });
 
     $("#confirm-popup #clear").click(function() {
-        $('.checkbox').prop("checked", false);
-        itemsToDelete = [];
+        document.getElementById("clear-checkbox-popup").style.display = "block";
     });
 
     function deleteOnceConfirmed() {
@@ -118,6 +132,15 @@ function confirmDialog() {
     }
 }
 
-function cancelDelete() { //where is this used?
+//Functions called by buttons in confirmation popups
+function clearCheckboxes() {
+    $('.checkbox').prop("checked", false);
+    itemsToDelete = [];
+    document.getElementById("clear-checkbox-popup").style.display = "none";
+}
+function cancelClearCheckboxes() {
+    document.getElementById("clear-checkbox-popup").style.display = "none";
+}
+function cancelDelete() { //where is this used? <-- This is used by the Cancel button on the delete popup, currently index.html line 36
     document.getElementById("confirm-delete-popup").style.display = "none";
 }

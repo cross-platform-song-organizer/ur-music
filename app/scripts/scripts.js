@@ -46,7 +46,7 @@ $('.view-more').click(function() {
     } else if ($(this).hasClass("fa-filter")) {
         addFilter();
     }
-})
+});
 
 /* Used to call whatever needs to be closed */
 function closeInfo(closer) {
@@ -71,13 +71,14 @@ function makeTable(reqs) {
     const iterator1 = sorted_songs.values();
     for (let value of iterator1) {
 
+
+        var tag_table = "";
         /*
          * if all the required tags exist in the song, 
          * then we'll update the table accordingly
          */
 
         if (reqs == undefined) {
-            var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) {
                     tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
@@ -85,7 +86,6 @@ function makeTable(reqs) {
             }
             addCell(value.song, value.artist, value.link, tag_table);
         } else if (reqs.every(i => value.tags.includes(i))) {
-            var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
             }
@@ -111,8 +111,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
+            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>Listen</i></a></button></td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("#main-library-content table tbody");
     } else {
@@ -120,8 +120,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td></td>
             <td>` + tag_table + `</td>
+            <td></td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("#main-library-content table tbody");
 
@@ -137,7 +137,6 @@ function addCell(song, artist, link, tag_table) {
         songDialog(this); // Open dialogue window w/ info gathered
 
         $("#song-info").fadeIn(200); // Show window
-
     })
 }
 
