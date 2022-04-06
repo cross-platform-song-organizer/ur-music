@@ -1,7 +1,6 @@
 var row;
 var tags;
 var song;
-remakeList();
 /*
  ***************** SONG STUFF *****************
  */
@@ -51,15 +50,6 @@ function infoSetUp() {
             $(button_id).html("View " + ($(button_id).html()).substr($(button_id).html().indexOf("Hide") + 4));
         }
     })
-}
-
-//updates all the tags + puts them in alphabetical order
-function remakeList() {
-    available_tags.sort();
-    tagString = "";
-    for (var i = 0; i < available_tags.length; i++) {
-        tagString += "<option>" + available_tags[i] + "</option>";
-    }
 }
 
 /*
@@ -135,6 +125,14 @@ function addDialog() {
     infoSetUp();
 
     $('#save-song').click(function() {
+
+        $('#invalid').hide(); //in case it was being shown before
+        let link = $("#categories-button-table tr:first-of-type td:last-of-type textarea").val();
+
+        if (link != "" && urlExists(link) == false) {
+            $('#invalid').show();
+            return;
+        }
         save('#add-popup');
         closeInfo("#add-popup");
 
@@ -170,7 +168,7 @@ function songDialog(element) {
      <div>Song info</div>
         <div>
         <i class="fa fa-edit" style="cursor: pointer;"></i>
-        <i class="fa fa-trash" style="cursor: pointer;"></i> <!-- needs pop-up asking for confirmation that they want to delete the song -->
+        <i class="fa fa-trash" style="cursor: pointer;"></i>
         </div>
   </div>
   <div id="missing">Please fill in all required fields.</div>
@@ -257,8 +255,9 @@ function songDialog(element) {
     })
 
     $('.fa-trash').click(function() {
-        all_songs.delete(song.song + ";" + song.artist); //delete this song
-        closeInfo('#song-info');
+        document.getElementById("confirm-delete-popup").style.display = "block";
+        document.getElementById("confirm-delete").onclick = deleteFromSongView;
+        document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete the song.";
     })
 
     $('.save').click(function() {
@@ -266,6 +265,12 @@ function songDialog(element) {
         let artist = $("#add-popup table:first-of-type tr:last-of-type td:last-of-type textarea").val();
         update(song, (songname + ";" + artist));
     })
+}
+
+function deleteFromSongView() {
+    document.getElementById("confirm-delete-popup").style.display = "none";
+    all_songs.delete(song.song + ";" + song.artist); //delete this song
+    closeInfo('#song-info');
 }
 
 function disable() {
@@ -387,7 +392,7 @@ function updateOccurences (new_tags, old_tags) {
 function urlExists(str) {
     var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; //must be a link
     if (regex.test(str)) {
-        if ((str.includes("open.spotify") && str.includes("track")) || (str.includes("music.apple") && str.includes("album")) || (str.includes("music.youtube") && str.includes("watch"))) {
+        if ((str.includes("open.spotify") && str.includes("track")) || (str.includes("music.apple") && str.includes("album")) || (str.includes("youtube") && str.includes("watch"))) {
             return true;
         }
     }
