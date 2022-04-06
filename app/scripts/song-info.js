@@ -1,7 +1,6 @@
 var row;
 var tags;
 var song;
-remakeList();
 /*
  ***************** SONG STUFF *****************
  */
@@ -51,15 +50,6 @@ function infoSetUp() {
             $(button_id).html("View " + ($(button_id).html()).substr($(button_id).html().indexOf("Hide") + 4));
         }
     })
-}
-
-//updates all the tags + puts them in alphabetical order
-function remakeList() {
-    available_tags.sort();
-    tagString = "";
-    for (var i = 0; i < available_tags.length; i++) {
-        tagString += "<option>" + available_tags[i] + "</option>";
-    }
 }
 
 /*

@@ -3,7 +3,30 @@ var tag_occur = new Map(); //keeps how many times a tag has been used; if it rea
 
 var tagString = "";
 var all_songs = new Map(); //contains all of the user's songs <3
-makeTable();
+
+//persistent information load
+$( document ).ready(function() {
+    console.log( "ready!" );
+
+    if (localStorage.getItem("available_tags")!= null) {
+        console.log("Available tags isn't nothing");
+        available_tags = localStorage.getItem("available_tags").split(",");
+    }
+    if (localStorage.getItem("tag_occur") != null) {
+        tag_occur = new Map(JSON.parse(localStorage.tag_occur));
+    }
+    if (localStorage.getItem("all_songs") != null) {
+        all_songs = new Map(JSON.parse(localStorage.all_songs));
+    }
+    makeTable();
+    remakeList();
+});
+
+window.addEventListener('beforeunload', function (e) {
+    localStorage.tag_occur = JSON.stringify([...tag_occur]); 
+    localStorage.all_songs = JSON.stringify([...all_songs]);
+    localStorage.setItem("available_tags",available_tags.toString());
+});
 
 /* Opens pop-ups */
 $('.view-more').click(function() {
@@ -116,4 +139,13 @@ function addCell(song, artist, link, tag_table) {
         $("#song-info").fadeIn(200); // Show window
 
     })
+}
+
+//updates all the tags + puts them in alphabetical order
+function remakeList() {
+    available_tags.sort();
+    tagString = "";
+    for (var i = 0; i < available_tags.length; i++) {
+        tagString += "<option>" + available_tags[i] + "</option>";
+    }
 }
