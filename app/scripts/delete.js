@@ -3,10 +3,10 @@ $('td:first-of-type input').addClass('checkbox');
 
 $('#delete').click(function() {
     if (!$('#delete').hasClass("active")) {
-        $('#main-library-content td:first-of-type').css({
+        $('  .library-content td:first-of-type').css({
             "display": "table-cell"
         });
-        $('#main-library-content th:first-of-type').css({
+        $('  .library-content th:first-of-type').css({
             "display": "table-cell"
         });
         confirmDialog();
@@ -21,10 +21,12 @@ $('#delete').click(function() {
 })
 
 function turnOff() {
-    $('#main-library-content td:first-of-type').css({
+    /* Need to add confirmation panel, which leads to deleting */
+    $('   .library-content td:first-of-type').css({
+
         "display": "none"
     });
-    $('#main-library-content th:first-of-type').css({
+    $('   .library-content th:first-of-type').css({
         "display": "none"
     });
     $('#confirm-popup').remove();
@@ -128,8 +130,6 @@ function confirmDialog() {
             div.style.display = "none";
             div.style.animationName = "";
         }, 6000);
-    
-    }
 }
 
 //Functions called by buttons in confirmation popups
