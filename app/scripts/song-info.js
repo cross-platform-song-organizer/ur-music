@@ -49,7 +49,6 @@ function infoSetUp() {
             $(table_id).hide();
             $(button_id).html("View " + ($(button_id).html()).substr($(button_id).html().indexOf("Hide") + 4));
         }
-
     });
 }
 
@@ -327,12 +326,6 @@ function songDialog(element) {
             }, 6000);
         }
     });
-}
-
-function deleteFromSongView() {
-    document.getElementById("confirm-delete-popup").style.display = "none";
-    all_songs.delete(song.song + ";" + song.artist); //delete this song
-    closeInfo('#song-info');
 }
 
 function deleteFromSongView() {
