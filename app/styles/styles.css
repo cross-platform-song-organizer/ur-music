@@ -22,12 +22,14 @@ main, section {
 }
 nav {
     margin-top: -16vh;
-    margin-left: 10%;
-    margin-right: 10%;
+   left: 10%;
+    right: 10%;
     overflow: hidden;
     display: flex;
+    position: absolute;
     justify-content: space-evenly;
     border-radius: 30px;
+    z-index: 2000;
 }
 nav button {
     float: left;

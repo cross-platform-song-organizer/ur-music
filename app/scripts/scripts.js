@@ -142,6 +142,7 @@ function addCell(song, artist, link, tag_table) {
 
 
 $('nav button').click(function () {
+    console.log("I was clicked!0");
     $("nav button").removeClass("active");
     $(this).addClass("active");
     $("section").hide();
