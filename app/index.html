@@ -48,7 +48,8 @@
             </div>
          </div>
       </div>
-      <main id="main">
+      <main>
+         <section id="main">
          <!-- Top bar stuff-->
          <div class="top-bar">
             <!-- Left side of the bar-->
@@ -111,14 +112,66 @@
             </table>
             </div>
          </article>
-      </main>
+      </section>
 
-      <!-- Possible filter? Maybe just plain ol' search? -->
-      <section id="search">
+       <!-- Possible filter? Maybe just plain ol' search? -->
+       <section id="search" class="sub-section" style="margin-top:10px;">
+         <div class="horizontal">
+            <div>Search</div>
+            <textarea id="search-area"></textarea>
+         </div>
+         <div class="sub-bar">
+            <h1>Your Results</h1>
+         </div>
+
+         <div class="library">
+            <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
+            <div class="library-head">
+               <table>
+                  <thead>
+                     <tr>
+                        <th></th>
+                        <th>Song title</th>
+                        <th>Artist</th>
+                        <th>Link</th>
+                        <th>Tags</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+               </table>
+            </div>
+            <!--
+               Important references:
+               - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
+               -->
+            <div class="search-library-content">
+            <table>
+               <tbody>
+                  <!-- Temp data below -->
+               </tbody>
+            </table>
+            </div>
+         </div>
       </section>
       <!-- All user account stuff -->
       <section id="account">
+         <h1>Your Settings</h1>
+         <div>Mode</div>
+         <select id="mode">
+            <option>Default</option>
+            <option>Dark mode</option>
+         </select>
+         <div>Name</div>
+         <textarea></textarea>
+         <div>Profile image</div>
+
+         <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
+         <input type="file" id="filetag">
+         <div class="user-img">
+            <img src="" id="preview">
+            </div>
       </section>
+   </main>
       <nav>
          <button class="active"><i class="fa fa-book-open"></i></button>
          <button><i class="fa fa-search"></i></button>
