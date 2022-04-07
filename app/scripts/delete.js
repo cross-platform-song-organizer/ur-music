@@ -6,6 +6,9 @@ $('#delete').click(function() {
         $('#main-library-content td:first-of-type').css({
             "display": "table-cell"
         });
+        $('#main th:first-of-type').css({
+            "display": "table-cell"
+        });
         $('#main-library-content th:first-of-type').css({
             "display": "table-cell"
         });
@@ -22,6 +25,9 @@ $('#delete').click(function() {
 
 function turnOff() {
     $('#main-library-content td:first-of-type').css({
+        "display": "none"
+    });
+    $('#main th:first-of-type').css({
         "display": "none"
     });
     $('#main-library-content th:first-of-type').css({
@@ -42,7 +48,7 @@ function confirmDialog() {
                 <button class="clear" id="clear" style="margin-left: 2vw">Clear</button>
             </div>
             </div> 
-    </div>`).appendTo('.top-bar');
+    </div>`).prependTo('#library');
         
     //Pass true to a callback function
     $("#yes").click(function() {
@@ -86,12 +92,7 @@ function confirmDialog() {
 
     //Pass false to callback function
     $("#confirm-popup #no").click(function() {
-        $('#main-library-content td:first-of-type').css({
-            "display": "none"
-        });
-        $('#main-library-content th:first-of-type').css({
-            "display": "none"
-        });
+       turnOff();
         $('#confirm-popup').remove();
         $('#delete').removeClass("active");
         $('.checkbox').prop("checked", false);

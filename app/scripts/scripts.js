@@ -141,7 +141,6 @@ function addCell(song, artist, link, tag_table) {
 
 
 $('nav button').click(function () {
-    console.log("I was clicked!0");
     $("nav button").removeClass("active");
     $(this).addClass("active");
     $("section").hide();
@@ -200,9 +199,10 @@ function changeImage(input) {
     }
 }
 
-$('#search-area').change(function() {
+$('#search-area').keyup(function() {
     console.log(this);
     console.log("New text: " + $(this).val());
+    makeSearch($(this).val());
 })
 
 //reorganizes table in alphabetical order
@@ -210,7 +210,7 @@ function makeSearch(reqs) {
     //in the case no requirements are given, we set the array to empty
     //clears table
     console.log("Gonna make the table");
-    $(".search-library-content table tbody").empty();
+    $("#search-library-content table tbody").empty();
 
     //sorts all songs based on song title
     var sorted_songs = new Map([...all_songs.entries()].sort());
@@ -223,6 +223,8 @@ function makeSearch(reqs) {
          * if all the required tags exist in the song, 
          * then we'll update the table accordingly
          */
+        console.log(value.song);
+        console.log(value.artist);
 
         if (reqs == undefined) {
             var tag_table = "";
@@ -232,7 +234,7 @@ function makeSearch(reqs) {
                 }
             }
             addSearchCell(value.song, value.artist, value.link, tag_table);
-        } else if (reqs.every(i => value.tags.includes(i))) {
+        } else if (value.song.includes(reqs) || value.artist.includes(reqs)) {
             var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
@@ -241,8 +243,8 @@ function makeSearch(reqs) {
         }
     }
 
-    if ($("  .search-library-content table tbody").is(':empty')) {
-        $("  .search-library-content table tbody").append("No songs exist.");
+    if ($("  #search-library-content table tbody").is(':empty')) {
+        $("  #search-library-content table tbody").append("No songs exist.");
     }
 }
 
@@ -259,19 +261,18 @@ function addSearchCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
-            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
-            </tr>`).appendTo("  .search-library-content table tbody");
+            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
+            </tr>`).appendTo("  #search-library-content table tbody");
     } else {
         $(`<tr class="new">
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td></td>
+            
             <td>` + tag_table + `</td>
-            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
-            </tr>`).appendTo("  .search-library-content table tbody");
+            <td></td>
+            </tr>`).appendTo("  #search-library-content table tbody");
     }
 
     $('.new .view-more').click(function() {

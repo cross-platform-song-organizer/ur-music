@@ -63,12 +63,6 @@ button {
     border: none;
 }
 /* Top Bar Stuff */
-.top-bar {
-    width: 100%;
-    top: 50%;
-    display: inline-block;
-    position: relative;
-}
 .sub-bar {
     width: 100%;
     display: flex;
@@ -134,7 +128,7 @@ th {
 th {
     text-align: left;
 }
-th:last-of-type{
+#main th:last-of-type{
     font-weight: 500;
     width: 2.5%;
 }
@@ -153,18 +147,17 @@ td {
 .link {  
     border: none;
     color: transparent;
-    border-radius: 0.75vw;
-    padding: 0.5vw 1vw 0.5vw 1vw;
+    border-radius: 10px;
     float: left;
 }
-td:first-of-type, th:first-of-type, td:last-of-type {
+td:first-of-type, th:first-of-type, #main td:last-of-type {
     width: 2.5%;
 }
 td:last-of-type {
     cursor: pointer;
 }
 
-#library td:first-of-type, th:first-of-type {
+.library-content td:first-of-type, th:first-of-type {
     display: none;
 }
 #confirm-popup #yes, #confirm-popup #no, #confirm-popup #clear {
@@ -204,13 +197,17 @@ input[type="checkbox"]:checked:after {
     overflow: hidden;
     display: inline-block;
     max-width: 90%;
-    padding: 5px 10px 5px 10px;
+    
     border-radius: 50px;
     white-space: nowrap;
     margin: 0 5px 5px 0;
 }
+
+.tag, .link {
+   padding: 5px 10px 5px 10px;
+}
 /* Editing the size of the stuff itself */
-#main-library-head th {
+.library-head th {
     font-size: 15px;
 }
 .library-content{
@@ -221,7 +218,7 @@ input[type="checkbox"]:checked:after {
 }
 
 #search-library-content {
-    height: 40vh;
+    height: 35vh;
 }
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {
@@ -360,4 +357,19 @@ textarea.disabled {
     justify-content: center;
     height: 100%;
     flex-direction: column;
+}
+.settings {
+    margin-left: 15%; margin-right: 15%;position:relative;
+}
+.settings div {
+    margin-bottom: 1vh;
+}
+
+textarea {
+    width:100%;
+}
+
+.settings button {
+    padding: 2vh 2vw 2vh 2vw;
+    border-radius: 15px;
 }

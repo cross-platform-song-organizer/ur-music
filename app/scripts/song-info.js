@@ -337,9 +337,9 @@ function deleteFromSongView() {
 function disable() {
     $(".fa-edit").removeClass("active");
     $(".select2-selection ").css("pointer-events", "none");
-    $('input[type="text"], textarea').attr('readonly', 'readonly');
+    $('#song-info textarea').attr('readonly', 'readonly');
     $("button:contains('Save changes')").hide();
-    $("textarea").addClass("disabled");
+    $("#song-info textarea").addClass("disabled");
 }
 // Used for both adding + editing
 function save(table) {

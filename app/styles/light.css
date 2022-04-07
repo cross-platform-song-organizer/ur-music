@@ -10,10 +10,10 @@ nav button,
 input[type="checkbox"]:hover, .song-info, .song-info-top i {
     background-color: rgba(255,255,255,0.2);
 }
-nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info button:hover {
+nav button:hover, #main td:last-of-type:hover, #confirm-popup button:hover, .song-info button:hover {
     background-color: #C8B6D7;
 }
-.delete {
+.delete, .settings button {
     background-color: #f16565;
 }
 .save {
@@ -59,7 +59,7 @@ tr:hover {
 td, td:last-of-type {
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-nav, .user-img, .tag, #main-library-head, table textarea:hover, .link:hover {
+nav, .user-img, .tag, td button, .library-head, table textarea:hover, textarea, .link:hover {
     background-color: rgba(255,255,255,0.3);
 }
 table textarea, span.select2-selection.select2-selection--multiple, .link {

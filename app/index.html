@@ -46,7 +46,6 @@
          </div>
       </div>
       <main>
-         <div class="top-bar"></div>
          <div class="sub-bar">
             <div id="hey-there" style="display: inline">
                <span id="greeting">Hey there, </span>
@@ -75,7 +74,7 @@
             </div>
             <article id="library">
                <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
-               <div id="main-library-head">
+               <div class="library-head">
                   <table>
                      <thead>
                         <tr>
@@ -123,9 +122,8 @@
                         <th></th>
                         <th>Song title</th>
                         <th>Artist</th>
-                        <th>Link</th>
                         <th>Tags</th>
-                        <th></th>
+                        <th>Link</th>
                      </tr>
                   </thead>
                </table>
@@ -146,20 +144,36 @@
       <!-- All user account stuff -->
       <section id="account">
          <h1>Your Settings</h1>
-         <div>Mode</div>
-         <select id="mode">
-            <option>Default</option>
-            <option>Dark mode</option>
-         </select>
-         <div>Name</div>
-         <textarea></textarea>
-         <div>Profile image</div>
-
-         <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
-         <input type="file" id="filetag">
-         <div class="user-img">
-            <img src="" id="preview">
+         <div class="settings"> <!-- Make centered-->
+            <div>
+               <div>Mode</div>
+               <select id="mode">
+                  <option>Default</option>
+                  <option>Dark mode</option>
+               </select>
             </div>
+            <div>
+               <div>Name</div>
+               <textarea></textarea>
+            </div>
+            <div>
+               <div>Profile image</div>
+               <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
+               <input type="file" id="filetag"> 
+            </div>
+            <div class="user-img">
+               <img src="" id="preview">
+            </div>
+            <div>
+               <button>Update</button>
+               <button>Reset</button>
+            </div>
+            <div style="display: flex;justify-content:space-between;">
+               <button>Clear library</button>
+               <button>Delete account</button>
+            </div>
+         </div>
+         
       </section>
    </main>
    <nav>
