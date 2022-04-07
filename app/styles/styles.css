@@ -213,11 +213,15 @@ input[type="checkbox"]:checked:after {
 #main-library-head th {
     font-size: 15px;
 }
-#main-library-content{
+.library-content{
    /* Need to add diff size for mobile usage*/
     overflow-x: auto;
     margin-top: 0px;
     height: 50vh;
+}
+
+#search-library-content {
+    height: 40vh;
 }
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {

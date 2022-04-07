@@ -79,7 +79,7 @@ table textarea, span.select2-selection.select2-selection--multiple {
 .song-info, span.select2-selection.select2-selection--multiple li.select2-selection__choice  {
     background-color: rgba(48, 48, 48, 0.75);
 }
-#main-library-content{
+.library-content{
     border: 1px solid rgba(255,255,255,0.3);
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {

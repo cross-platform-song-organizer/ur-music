@@ -7,7 +7,7 @@
       <link rel="shortcut icon" type="image/jpg" href="">
       <!-- Replace w/ shortcut img link -->
       <!-- Stylesheets -->
-      <link rel="stylesheet" href="styles/light.css"/>
+      <link rel="stylesheet" id="theme" href="styles/light.css"/>
       <link rel="stylesheet" href="styles/styles.css"/>
       <link rel="stylesheet" href="styles/all.min.css" />
       <!-- JQuery -->
@@ -93,7 +93,7 @@
                   Important references:
                   - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
                   -->
-               <div id="main-library-content">
+               <div id="main-library-content" class="library-content">
                <table>
                   <tbody>
                      <!-- Temp data below -->
@@ -106,13 +106,14 @@
        <!-- Possible filter? Maybe just plain ol' search? -->
        <section id="search" class="sub-section" style="margin-top:10px;">
          <div class="horizontal">
-            <div>Search</div>
+            <h1>Your Search</h1>
             <textarea id="search-area"></textarea>
          </div>
          <div class="sub-bar">
-            <h1>Your Results</h1>
+            <h2>Your Results</h2>
          </div>
 
+         <!-- Shows the initial data set correctly, but the style of the table is messed up-->
          <div class="library">
             <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
             <div class="library-head">
@@ -133,12 +134,12 @@
                Important references:
                - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
                -->
-            <div class="search-library-content">
-            <table>
-               <tbody>
-                  <!-- Temp data below -->
-               </tbody>
-            </table>
+            <div id="search-library-content"  class="library-content">
+               <table>
+                  <tbody>
+                     <!-- Temp data below -->
+                  </tbody>
+               </table>
             </div>
          </div>
       </section>

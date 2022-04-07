@@ -6,8 +6,6 @@ var all_songs = new Map(); //contains all of the user's songs <3
 
 //persistent information load
 $( document ).ready(function() {
-    console.log( "ready!" );
-
     if (localStorage.getItem("available_tags")!= null) {
         console.log("Available tags isn't nothing");
         available_tags = localStorage.getItem("available_tags").split(",");
@@ -20,6 +18,7 @@ $( document ).ready(function() {
     }
     makeTable();
     remakeList();
+    setTheme();
 });
 
 window.addEventListener('beforeunload', function (e) {
@@ -161,12 +160,25 @@ $('nav button').click(function () {
 $('#mode').on('change', function() {
     switch (this.value) {
         case 'Dark mode':
+            localStorage.theme = 'Dark mode';
+            break;
+        default:
+            localStorage.theme = 'Light mode';
+      }
+      setTheme();
+  });
+
+function setTheme () {
+    switch(localStorage.theme) {
+        case 'Dark mode': 
             $('#theme').attr('href','styles/dark.css');
+            $('#mode').val('Dark mode').prop('selected', true);
             break;
         default:
             $('#theme').attr('href','styles/light.css');
-      }
-  });
+            $('#mode').val('Default').prop('selected', true);
+    }
+}
 
 //https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
 var fileTag = document.getElementById("filetag"),

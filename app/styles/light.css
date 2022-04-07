@@ -68,7 +68,7 @@ table textarea, span.select2-selection.select2-selection--multiple, .link {
 .song-info {
     background-color: rgba(255, 255, 255, 0.9);
 }
-#main-library-content{
+.library-content{
     border: 1px solid rgba(255,255,255,0.3);
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
