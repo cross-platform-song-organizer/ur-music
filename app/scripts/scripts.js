@@ -3,7 +3,30 @@ var tag_occur = new Map(); //keeps how many times a tag has been used; if it rea
 
 var tagString = "";
 var all_songs = new Map(); //contains all of the user's songs <3
-makeTable();
+
+//persistent information load
+$( document ).ready(function() {
+    console.log( "ready!" );
+
+    if (localStorage.getItem("available_tags")!= null) {
+        console.log("Available tags isn't nothing");
+        available_tags = localStorage.getItem("available_tags").split(",");
+    }
+    if (localStorage.getItem("tag_occur") != null) {
+        tag_occur = new Map(JSON.parse(localStorage.tag_occur));
+    }
+    if (localStorage.getItem("all_songs") != null) {
+        all_songs = new Map(JSON.parse(localStorage.all_songs));
+    }
+    makeTable();
+    remakeList();
+});
+
+window.addEventListener('beforeunload', function (e) {
+    localStorage.tag_occur = JSON.stringify([...tag_occur]); 
+    localStorage.all_songs = JSON.stringify([...all_songs]);
+    localStorage.setItem("available_tags",available_tags.toString());
+});
 
 $("nav button:first-of-type").addClass("active");
 $("section").not("#main").hide();
@@ -27,7 +50,7 @@ $('.view-more').click(function() {
     } else if ($(this).hasClass("fa-filter")) {
         addFilter();
     }
-})
+});
 
 /* Used to call whatever needs to be closed */
 function closeInfo(closer) {
@@ -52,13 +75,14 @@ function makeTable(reqs) {
     const iterator1 = sorted_songs.values();
     for (let value of iterator1) {
 
+
+        var tag_table = "";
         /*
          * if all the required tags exist in the song, 
          * then we'll update the table accordingly
          */
 
         if (reqs == undefined) {
-            var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) {
                     tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
@@ -66,7 +90,6 @@ function makeTable(reqs) {
             }
             addCell(value.song, value.artist, value.link, tag_table);
         } else if (reqs.every(i => value.tags.includes(i))) {
-            var tag_table = "";
             for (var i = 0; i < value.tags.length; i++) {
                 if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
             }
@@ -92,8 +115,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
+            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>Listen</i></a></button></td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .library-content table tbody");
     } else {
@@ -101,8 +124,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td></td>
             <td>` + tag_table + `</td>
+            <td></td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .library-content table tbody");
     }
@@ -255,10 +278,14 @@ function addSearchCell(song, artist, link, tag_table) {
         songDialog(this); // Open dialogue window w/ info gathered
 
         $("#song-info").fadeIn(200); // Show window
-
     })
+}
 
-    $('.new .checkbox').click(function() {
-        itemsToDelete.push(this);
-    })
+//updates all the tags + puts them in alphabetical order
+function remakeList() {
+    available_tags.sort();
+    tagString = "";
+    for (var i = 0; i < available_tags.length; i++) {
+        tagString += "<option>" + available_tags[i] + "</option>";
+    }
 }
