@@ -1,5 +1,6 @@
 var filter_tags = [];
 
+
 function addFilter() {
     $(`<article id="filter-popup" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
@@ -42,7 +43,6 @@ function addFilter() {
 
     $('#filter-songs').click(function() {
         /* Necessary information */
-        console.log("Will filter soon");
         let tags_array = $("#tag-selection").select2("data");
         var temp = [];
         for (var i = 0; i < tags_array.length; i++) {
@@ -51,7 +51,6 @@ function addFilter() {
 
         //save current filters for later
         filter_tags = temp;
-        console.log("Here are our tags: " + filter_tags);
         makeTable(filter_tags);
 
         $("#main").fadeTo(200, 1);
