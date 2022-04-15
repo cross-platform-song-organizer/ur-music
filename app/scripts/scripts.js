@@ -74,8 +74,6 @@ function makeTable(reqs) {
     //iterates through all the songs and adds them to the table
     const iterator1 = sorted_songs.values();
     for (let value of iterator1) {
-
-
         var tag_table = "";
         /*
          * if all the required tags exist in the song, 
@@ -115,8 +113,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + tag_table + `</td>
             <td>` + `<button class="link"><a href='` + link + `' target='_blank'>Listen</i></a></button></td>
+            <td>` + tag_table + `</td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .library-content table tbody");
     } else {
@@ -124,8 +122,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + tag_table + `</td>
             <td></td>
+            <td>` + tag_table + `</td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .library-content table tbody");
     }
@@ -159,6 +157,8 @@ $('nav button').click(function () {
         $("#search").show();
         makeSearch();
         document.getElementById("search-area").value = ""; //can't seem to clear it any other way, so no JQuery here
+
+        $('#search-area').removeAttr('readonly');
     }
     else {
         $("#account").show();
@@ -195,9 +195,10 @@ function changeImage(input) {
     }
 }
 
-$('#search-area').change(function() {
+$('#search-area').keyup(function() {
     console.log(this);
     console.log("New text: " + $(this).val());
+    makeSearch($(this).val());
 })
 
 //reorganizes table in alphabetical order
@@ -227,12 +228,15 @@ function makeSearch(reqs) {
                 }
             }
             addSearchCell(value.song, value.artist, value.link, tag_table);
-        } else if (reqs.every(i => value.tags.includes(i))) {
-            var tag_table = "";
-            for (var i = 0; i < value.tags.length; i++) {
-                if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
+        } else {
+            reqs = reqs.toLowerCase();
+            if (value.song.toLowerCase().includes(reqs) || value.artist.toLowerCase().includes(reqs)) {
+                var tag_table = "";
+                for (var i = 0; i < value.tags.length; i++) {
+                    if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
+                }
+                addSearchCell(value.song, value.artist, value.link, tag_table);
             }
-            addSearchCell(value.song, value.artist, value.link, tag_table);
         }
     }
 
@@ -256,7 +260,7 @@ function addSearchCell(song, artist, link, tag_table) {
             <td>` + artist + `</td>
             <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
-            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
+            <td></td>
             </tr>`).appendTo("  .search-library-content table tbody");
     } else {
         $(`<tr class="new">
@@ -265,7 +269,6 @@ function addSearchCell(song, artist, link, tag_table) {
             <td>` + artist + `</td>
             <td></td>
             <td>` + tag_table + `</td>
-            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .search-library-content table tbody");
     }
 

@@ -2,6 +2,7 @@
  */
  html, button, textarea, .select2-results__option, #missing, #invalid {
     font-family: sans-serif;
+    border: none;
 }
 
 body {
@@ -161,17 +162,12 @@ td {
     color: transparent;
     border-radius: 0.75vw;
     padding: 0.5vw 1vw 0.5vw 1vw;
-    float: right;
 }
 td:first-of-type, th:first-of-type, td:last-of-type {
     width: 2.5%;
 }
 td:last-of-type {
     cursor: pointer;
-}
-#library td:nth-last-of-type(2), th:nth-last-of-type(2) {
-    white-space: nowrap;
-    text-align: right;
 }
 
 .library td:first-of-type, th:first-of-type {
