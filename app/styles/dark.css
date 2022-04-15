@@ -7,7 +7,7 @@ body {
 }
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover, .song-info, .song-info-top i{
+input[type="checkbox"]:hover, .song-info, .song-info-top i, .link{
     background-color: rgba(255,255,255,0.2);
 }
 nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover  {

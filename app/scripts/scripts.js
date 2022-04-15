@@ -19,6 +19,7 @@ $( document ).ready(function() {
         all_songs = new Map(JSON.parse(localStorage.all_songs));
     }
     makeTable();
+    setMode();
     remakeList();
 });
 
@@ -168,12 +169,24 @@ $('nav button').click(function () {
 $('#mode').on('change', function() {
     switch (this.value) {
         case 'Dark mode':
-            $('#theme').attr('href','styles/dark.css');
+            localStorage.theme = 'Dark';
             break;
         default:
-            $('#theme').attr('href','styles/light.css');
+            localStorage.theme = 'Default';
       }
+      setMode();
   });
+
+function setMode () {
+    if (localStorage.theme == 'Dark') {
+        $('#theme').attr('href','styles/dark.css');
+        $('#mode').val("Dark mode");
+    }
+    else {
+        $('#theme').attr('href','styles/light.css');
+        $('#mode').val("Default");
+    }
+}
 
 //https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
 var fileTag = document.getElementById("filetag"),
