@@ -3,10 +3,10 @@
    <meta charset="UTF-8">
    <title>UR Music</title>
    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-   <link rel="shortcut icon" type="image/jpg" href="">
+   <link rel="shortcut icon" type="image/jpg" href="assets/shortcut.png">
    <!-- Replace w/ shortcut img link -->
    <!-- Stylesheets -->
-   <link rel="stylesheet" href="styles/dark.css"/>
+   <link rel="stylesheet" id="theme" href="styles/light.css"/>
    <link rel="stylesheet" href="styles/styles.css"/>
    <link rel="stylesheet" href="styles/all.min.css" />
    <!-- JQuery -->
@@ -27,7 +27,8 @@
          <div id="text-of-alert">[Alert text]</div>
          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
       </div>
-      <!-- Delete confirmation popup -->
+     
+     <!-- Delete confirmation popup -->
       <div class="confirm-delete" id="confirm-delete-popup">
          <div class="confirm-content" style="align-items: center;">
             <p id="delete-confirm-warning">WARNING: This will permanently delete the selected song(s).</p>
@@ -38,6 +39,7 @@
             </div>
          </div>
       </div>
+     
       <!-- Clear checkboxes confirmation popup -->
       <div class="confirm-delete" id="clear-checkbox-popup">
          <div class="confirm-content" style="align-items: center;">
@@ -48,44 +50,28 @@
             </div>
          </div>
       </div>
-      <main id="main">
-         <!-- Top bar stuff-->
-         <div class="top-bar">
-            <!-- Left side of the bar-->
-            <div class="sub-bar">
-               <div id="hey-there" style="display: inline">
-                  <span id="greeting">Hey there, </span>
-                  <span id="user-name" style="display: inline">Person</span><span id="end-greeting">!</span>
-               </div>
-               <!-- Replace above with below later 
-                  <div id="hey-there" style="display: inline">
-                      <span id="greeting"></span
-                  ><span id="user-name" style="display: inline"></span><span id="end-greeting">!</span>
-                  </div>
-                  -->
-               <div class="user-img">
-                  <!-- img gets replaced if the user provides one -->
-                  <img src="">
-                  <i class="fas fa-user"></i>
-               </div>
-            </div>
-            <!-- Right side of the bar; only for user's profile img-->
-            <div class="sub-bar">
-               <h1>Your Library</h1>
-               <div class="library-edits">
-                  <button id="delete"><i class="fa fa-minus"></i></button>
-                  <button id="add"><i class="fa fa-plus view-more"></i></button>
-                  <button id="filter"><i class="fa fa-filter view-more"></i></button>
-               </div>
+      <main>
+         <div class="top-section">
+            <div id="hey-there" style="display: inline">
+               <span id="greeting">Hey there, </span>
+               <span id="user-name" style="display: inline"></span><span id="end-greeting">!</span>
             </div>
          </div>
-         <article id="add-menu">
-         </article>
-         <article id="filter-menu"></article>
+            <!-- Replace above with below later -->
+         <section id="main">
+            <!-- Top bar stuff-->
+         <div class="sub-bar">
+            <h1>Your Library</h1>
+            <div class="library-edits">
+               <button id="delete"><i class="fa fa-minus"></i></button>
+               <button id="add"><i class="fa fa-plus view-more"></i></button>
+               <button id="filter"><i class="fa fa-filter view-more"></i></button>
+            </div>
+         </div>
          <!-- Pop-up to edit song info -->
-         <article id="library">
+         <div class="library">
             <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
-            <div id="main-library-head">
+            <div class="library-head">
                <table>
                   <thead>
                      <tr>
@@ -93,7 +79,7 @@
                         <th>Song title</th>
                         <th>Artist</th>
                         <th>Tags</th>
-                        <th>Link</th>
+                        <th></th>
                         <th></th>
                      </tr>
                   </thead>
@@ -103,27 +89,80 @@
                Important references:
                - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
                -->
-            <div id="main-library-content">
+            <div class="library-content">
             <table>
                <tbody>
                   <!-- Temp data below -->
                </tbody>
             </table>
             </div>
-         </article>
-      </main>
+         </div>
+      </section>
+
 
       <!-- Possible filter? Maybe just plain ol' search? -->
-      <section id="search">
+      <section id="search" class="sub-section" style="margin-top:10px;">
+         <div class="horizontal">
+            <div>Search</div>
+            <textarea id="search-area"></textarea>
+         </div>
+         <div class="sub-bar">
+            <h1>Your Results</h1>
+         </div>
+
+         <div class="library">
+            <!-- Referenced: https://codepen.io/nikhil8krishnan/pen/WvYPvv -->
+            <div class="library-head">
+               <table>
+                  <thead>
+                     <tr>
+                        <th></th>
+                        <th>Song title</th>
+                        <th>Artist</th>
+                        <th>Link</th>
+                        <th>Tags</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+               </table>
+            </div>
+            <!--
+               Important references:
+               - https://itqna.net/questions/55744/update-table-using-javascript-and-arrays (for updating tables using arrays in JS)
+               -->
+            <div class="search-library-content">
+            <table>
+               <tbody>
+                  <!-- Temp data below -->
+               </tbody>
+            </table>
+            </div>
+         </div>
       </section>
       <!-- All user account stuff -->
       <section id="account">
+         <h1>Your Settings</h1>
+         <div>Mode</div>
+         <select id="mode">
+            <option>Default</option>
+            <option>Dark mode</option>
+         </select>
+         <div>Name</div>
+         <textarea id="name-area"></textarea>
+         <div>Profile image</div>
+
+         <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
+         <input type="file" id="filetag">
+         <div class="user-img">
+            <img src="" id="preview">
+            </div>
       </section>
       <nav>
-         <button class="active"><i class="fa fa-book-open"></i></button>
+         <button><i class="fa fa-book-open"></i></button>
          <button><i class="fa fa-search"></i></button>
          <button><i class="fa fa-user-cog"></i></button>
       </nav>
+      </main>
 
       <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
       <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1041.0.min.js"></script>
