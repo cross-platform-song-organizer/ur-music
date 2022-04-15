@@ -6,6 +6,8 @@ var all_songs = new Map(); //contains all of the user's songs <3
 
 //persistent information load
 $( document ).ready(function() {
+    $('body').css('display', 'none');
+    $('body').fadeIn(500);
     console.log( "ready!" );
 
     if (localStorage.getItem("available_tags")!= null) {
