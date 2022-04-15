@@ -130,6 +130,7 @@ function confirmDialog() {
             div.style.display = "none";
             div.style.animationName = "";
         }, 6000);
+    }
 }
 
 //Functions called by buttons in confirmation popups

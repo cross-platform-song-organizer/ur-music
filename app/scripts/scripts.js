@@ -158,6 +158,7 @@ $('nav button').click(function () {
     else if (this.innerHTML.includes("search")) {
         $("#search").show();
         makeSearch();
+        document.getElementById("search-area").value = ""; //can't seem to clear it any other way, so no JQuery here
     }
     else {
         $("#account").show();
