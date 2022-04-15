@@ -13,9 +13,6 @@
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" />
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.css" />
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" />
-
-   <!-- Scripts -->
-   
 </head>
 <html>
    <body>
@@ -55,6 +52,11 @@
             <div id="hey-there" style="display: inline">
                <span id="greeting">Hey there, </span>
                <span id="user-name" style="display: inline">Person</span><span id="end-greeting">!</span>
+            </div>
+            <div class="user-img">
+               <!-- img gets replaced if the user provides one -->
+               <img src="">
+               <i class="fas fa-user"></i>
             </div>
          </div>
             <!-- Replace above with below later -->
@@ -103,7 +105,7 @@
       <!-- Possible filter? Maybe just plain ol' search? -->
       <section id="search" class="sub-section" style="margin-top:10px;">
          <div class="horizontal">
-            <div>Search</div>
+            <span>Search</span>
             <textarea id="search-area"></textarea>
          </div>
          <div class="sub-bar">

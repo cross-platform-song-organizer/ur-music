@@ -284,6 +284,7 @@ function addSearchCell(song, artist, link, tag_table) {
             <td>` + artist + `</td>
             <td></td>
             <td>` + tag_table + `</td>
+            <td></td>
             </tr>`).appendTo("  .search-library-content table tbody");
     }
 
