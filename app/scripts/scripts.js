@@ -100,7 +100,7 @@ function makeTable(reqs) {
     }
 
     if ($("  .library-content table tbody").is(':empty')) {
-        $("  .library-content table tbody").append("No songs exist.");
+        $("  .library-content table tbody").append("No song exist.");
     }
 }
 
@@ -257,7 +257,7 @@ function makeSearch(reqs) {
     }
 
     if ($("  .search-library-content table tbody").is(':empty')) {
-        $("  .search-library-content table tbody").append("No songs exist.");
+        $("  .search-library-content table tbody").append("No song exist.");
     }
 }
 

@@ -74,9 +74,6 @@ textarea, span.select2-selection.select2-selection--multiple, .link, select  {
 .song-info {
     background-color: rgba(255, 255, 255, 0.9);
 }
-.library-content{
-    border: 1px solid rgba(255,255,255,0.3);
-}
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
     -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
