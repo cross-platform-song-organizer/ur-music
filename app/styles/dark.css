@@ -33,7 +33,7 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 .cancel, .clear, button, .alert {
     background-color: rgb(172, 172, 172);
 }
-nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
+nav .focus, nav .colored, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #041B3D;
 }
 .sub-bar button:hover i {

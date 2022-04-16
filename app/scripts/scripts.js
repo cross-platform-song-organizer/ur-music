@@ -144,28 +144,23 @@ function addCell(song, artist, link, tag_table) {
         $("#song-info").fadeIn(200); // Show window
 
     })
-
-    $('.new .checkbox').click(function() {
-        itemsToDelete.push(this);
-    })
 }
 
 $('nav button').click(function () {
-    $("nav button").removeClass("active");
-    $(this).addClass("active");
+    $("nav button").removeClass("colored");
+    $(this).addClass("colored");
     $("section").hide();
     if (this.innerHTML.includes("book")) {
-        $("#main").show();
+        $('#main').fadeIn(250);
     }
     else if (this.innerHTML.includes("search")) {
-        $("#search").show();
+        $('#search').fadeIn(250);
         makeSearch();
         document.getElementById("search-area").value = ""; //can't seem to clear it any other way, so no JQuery here
-
         $('#search-area').removeAttr('readonly');
     }
     else {
-        $("#account").show();
+        $('#account').fadeIn(250);
     }
 })
 
