@@ -306,7 +306,7 @@ function remakeList() {
     }
 }
 
-$("#account button").click(function() {
+$("#change-name").click(function() {
     localStorage.name = $("#account textarea").val();
     console.log($("#account textarea").val());
     setName();
