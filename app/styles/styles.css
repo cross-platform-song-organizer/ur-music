@@ -279,6 +279,23 @@ input[type="checkbox"]:checked:after {
     padding-top: 15px;
 }
 
+#account div {
+    margin-bottom: 20px; 
+}
+
+#account #mode, #account textarea, #account button {
+    width: 100%;
+    text-align: center;
+}
+
+
+#account textarea {
+    resize:none;
+}
+#account select, #account button {
+    padding: 10px 15px 10px 15px;
+    border: none;
+}
 textarea.disabled {
     background-color: transparent;
 }

@@ -2,15 +2,22 @@ body {
     background: linear-gradient(to right, #41076D, #0C316E);
     color: rgb(226, 226, 226);
 }
+
+#account textarea, #search textarea {
+    color: rgb(53, 53, 53);
+}
+#search textarea, #account textarea {
+    background-color:rgba(230, 230, 230, 0.8);
+}
 .clear {
     -webkit-text-fill-color: rgb(226, 226, 226);
 }
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover, .song-info, .song-info-top i, .link{
+input[type="checkbox"]:hover, .song-info, .song-info-top i, .link, #account button, #account select{
     background-color: rgba(255,255,255,0.2);
 }
-nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover  {
+nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover,#account button:hover, #account select:hover  {
     background-color: #290E3D;
     color: rgb(226, 226, 226);
 }
@@ -61,7 +68,7 @@ textarea, .select2-results__option {
     background-color: rgb(41, 40, 40);
 }
 /* More specific light mode stuff*/
-.fas, .fa, input[type="checkbox"], button, .link a, .alert {
+.fas, .fa, input[type="checkbox"], button, .link a, .alert, select {
     color: rgb(226, 226, 226);
 }
 tr:hover {
@@ -70,10 +77,10 @@ tr:hover {
 td, td:last-of-type {
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-nav, .user-img, .tag, .library-head, textarea:hover  {
+nav, .user-img, .tag, .library-head, textarea:hover, select:hover  {
     background-color: rgba(255,255,255,0.3);
 }
-textarea, span.select2-selection.select2-selection--multiple {
+textarea, span.select2-selection.select2-selection--multiple, select {
     background-color: rgba(255,255,255,0.5);
 }
 .song-info, span.select2-selection.select2-selection--multiple li.select2-selection__choice  {

@@ -23,6 +23,7 @@ $( document ).ready(function() {
     makeTable();
     setMode();
     remakeList();
+    setName();
 });
 
 window.addEventListener('beforeunload', function (e) {
@@ -307,5 +308,28 @@ function remakeList() {
     tagString = "";
     for (var i = 0; i < available_tags.length; i++) {
         tagString += "<option>" + available_tags[i] + "</option>";
+    }
+}
+
+$("#account button").click(function() {
+    localStorage.name = $("#account textarea").val();
+    console.log($("#account textarea").val());
+    setName();
+})
+
+$("textarea").each(function() {
+    this.setAttribute("style", "height:" + (this.scrollHeight) + "px;", "overflow-y", "scroll");
+    this.style.height = "auto";
+}).on("input", function() {
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
+});
+
+function setName() {
+    if (localStorage.name != undefined) {
+        $("#user-name").text(localStorage.name);
+    }
+    else {
+        $("#user-name").text("Person")
     }
 }

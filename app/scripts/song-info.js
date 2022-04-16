@@ -26,7 +26,7 @@ function infoSetUp() {
         $("#tag-selection").prop("disabled", true);
     });
 
-    /* Sets up textareas to automatically resize as needed */
+    /* Sets up textareas to automatically resize as needed; funciton is needed for creating new instances */
 
     $("textarea").each(function() {
         this.setAttribute("style", "height:" + (this.scrollHeight) + "px;", "overflow-y", "scroll");

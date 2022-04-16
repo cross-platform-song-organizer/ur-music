@@ -51,7 +51,7 @@
          <div class="top-section">
             <div id="hey-there" style="display: inline">
                <span id="greeting">Hey there, </span>
-               <span id="user-name" style="display: inline">Person</span><span id="end-greeting">!</span>
+               <span id="user-name" style="display: inline"></span><span id="end-greeting">!</span>
             </div>
             <div class="user-img">
                <!-- img gets replaced if the user provides one -->
@@ -144,20 +144,28 @@
       <!-- All user account stuff -->
       <section id="account">
          <h1>Your Settings</h1>
-         <div>Mode</div>
-         <select id="mode">
-            <option>Default</option>
-            <option>Dark mode</option>
-         </select>
-         <div>Name</div>
-         <textarea></textarea>
-         <div>Profile image</div>
-
-         <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
-         <input type="file" id="filetag">
-         <div class="user-img">
-            <img src="" id="preview">
+         <div>
+            <span>Mode</span>
+            <select id="mode">
+               <option>Default</option>
+               <option>Dark mode</option>
+            </select>
+         </div>
+         <div>
+            <span>Name</span>
+            <div>
+               <textarea></textarea>
+               <button>Change name</button>
             </div>
+         </div>
+         <div>
+            <span>Profile image</span>
+            <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
+            <input type="file" id="filetag">
+            <div class="user-img">
+               <img src="" id="preview">
+            </div>   
+      </div>
       </section>
       <nav>
          <button><i class="fa fa-book-open"></i></button>
