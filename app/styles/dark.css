@@ -3,7 +3,7 @@ body {
     color: rgb(226, 226, 226);
 }
 
-#account textarea, #search textarea {
+#account textarea, #search textarea, .select2-results__option {
     color: rgb(53, 53, 53);
 }
 #search textarea, #account textarea {
@@ -42,13 +42,9 @@ nav .focus, nav .colored, td:last-of-type:focus, input[type="checkbox"]:checked 
 .sub-bar button:focus i, .library-edits .active i {
     color:  #041B3D;
 }
-.song-info td, #missing, #invalid {
+.song-info td, #missing, #invalid, textarea {
     color: rgb(214, 214, 214);
     font-weight: 500;
-}
-textarea, .select2-results__option {
-    color: rgb(226, 226, 226);
-    font-weight: 300;
 }
 .song-info .song-info-top {
     background: rgb(226, 226, 226);
