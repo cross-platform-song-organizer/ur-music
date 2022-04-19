@@ -38,7 +38,8 @@ function addFilter() {
     $('#tag-selection').val(filter_tags).trigger('change');
 
     $('#filter-popup #clear').click(function() {
-        $('#tag-selection').val(null).trigger('change');
+        filtered_tags = [];
+        $('#tag-selection').val(filter_tags).trigger('change');
     })
 
     $('#filter-songs').click(function() {

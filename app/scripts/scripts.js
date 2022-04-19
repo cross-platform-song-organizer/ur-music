@@ -2,6 +2,7 @@ var available_tags = [];
 var tag_occur = new Map(); //keeps how many times a tag has been used; if it reaches -1, delete the tag
 
 var tagString = "";
+var userName = "";
 var all_songs = new Map(); //contains all of the user's songs <3
 
 //persistent information load
@@ -20,6 +21,10 @@ $( document ).ready(function() {
     if (localStorage.getItem("all_songs") != null) {
         all_songs = new Map(JSON.parse(localStorage.all_songs));
     }
+    if (localStorage.getItem("nameKey") != null) {
+        userName = localStorage.getItem("nameKey");
+    }
+    setName();
     makeTable();
     setMode();
     remakeList();
@@ -30,6 +35,7 @@ window.addEventListener('beforeunload', function (e) {
     localStorage.tag_occur = JSON.stringify([...tag_occur]); 
     localStorage.all_songs = JSON.stringify([...all_songs]);
     localStorage.setItem("available_tags",available_tags.toString());
+    localStorage.setItem("nameKey", userName);
 });
 
 $("nav button:first-of-type").addClass("active");
@@ -64,6 +70,14 @@ function closeInfo(closer) {
     $("nav").css("pointer-events", "auto");
     makeTable();
     $(closer).remove();
+}
+
+function setName() {
+    if (userName != "") {
+        $("#user-name").text(userName);
+    } else {
+        $("#user-name").text("Person");
+    }
 }
 
 //reorganizes table in alphabetical order
@@ -161,6 +175,7 @@ $('nav button').click(function () {
     }
     else {
         $('#account').fadeIn(250);
+        document.getElementById("name-area").value = userName;
     }
 })
 
@@ -309,6 +324,8 @@ function remakeList() {
 $("#change-name").click(function() {
     localStorage.name = $("#account textarea").val();
     console.log($("#account textarea").val());
+    userName = this.value;
+    console.log("Username is now: " + userName);
     setName();
 })
 
