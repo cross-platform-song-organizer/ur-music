@@ -28,7 +28,7 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 .cancel, .clear, button, .alert {
     background-color: lightgray;
 }
-nav .active, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked, #account button, #account select {
+nav .colored, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked, #account button, #account select {
     background-color: #A0C8D8;
 }
 .sub-bar button:hover i {

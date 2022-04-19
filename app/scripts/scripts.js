@@ -34,7 +34,7 @@ window.addEventListener('beforeunload', function (e) {
     localStorage.setItem("available_tags",available_tags.toString());
 });
 
-$("nav button:first-of-type").addClass("active");
+$("nav button:first-of-type").addClass("colored");
 $("section").not("#main").hide();
 //$("#main").hide();
 
