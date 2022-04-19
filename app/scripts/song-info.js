@@ -122,6 +122,7 @@ function addDialog() {
     $('#tag-button-table').hide();
     $('#missing').hide();
     $('#invalid').hide();
+    $('#add-popup').css('z-index',1000);
 
     infoSetUp();
 
@@ -234,6 +235,7 @@ function songDialog(element) {
     $('#categories-button-table').hide();
     $('#tag-button-table').hide();
     $("button:contains('Save changes')").hide();
+    $('#song-info').css('z-index',1000);
 
     infoSetUp(); //all the other stuff for things to work
     disable(); //don't automatically enable edit mode
