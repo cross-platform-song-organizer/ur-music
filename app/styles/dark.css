@@ -2,15 +2,22 @@ body {
     background: linear-gradient(to right, #41076D, #0C316E);
     color: rgb(226, 226, 226);
 }
+
+#account textarea, #search textarea, .select2-results__option {
+    color: rgb(53, 53, 53);
+}
+#search textarea, #account textarea {
+    background-color:rgba(230, 230, 230, 0.8);
+}
 .clear {
     -webkit-text-fill-color: rgb(226, 226, 226);
 }
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover, .song-info, .song-info-top i{
+input[type="checkbox"]:hover, .song-info, .song-info-top i, .link, #account button, #account select{
     background-color: rgba(255,255,255,0.2);
 }
-nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover  {
+nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover,#account button:hover, #account select:hover  {
     background-color: #290E3D;
     color: rgb(226, 226, 226);
 }
@@ -26,7 +33,7 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 .cancel, .clear, button, .alert {
     background-color: rgb(172, 172, 172);
 }
-nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked {
+nav .focus, nav .colored, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #041B3D;
 }
 .sub-bar button:hover i {
@@ -35,13 +42,9 @@ nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:chec
 .sub-bar button:focus i, .library-edits .active i {
     color:  #041B3D;
 }
-.song-info td, #missing, #invalid {
+.song-info td, #missing, #invalid, textarea {
     color: rgb(214, 214, 214);
     font-weight: 500;
-}
-.song-info textarea, .select2-results__option {
-    color: rgb(226, 226, 226);
-    font-weight: 300;
 }
 .song-info .song-info-top {
     background: rgb(226, 226, 226);
@@ -61,7 +64,7 @@ nav .focus, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:chec
     background-color: rgb(41, 40, 40);
 }
 /* More specific light mode stuff*/
-.fas, .fa, input[type="checkbox"], button, .link a, .alert {
+.fas, .fa, input[type="checkbox"], button, .link a, .alert, select {
     color: rgb(226, 226, 226);
 }
 tr:hover {
@@ -70,17 +73,14 @@ tr:hover {
 td, td:last-of-type {
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-nav, .user-img, .tag, #main-library-head, table textarea:hover  {
+nav, .user-img, .tag, .library-head, textarea:hover, select:hover  {
     background-color: rgba(255,255,255,0.3);
 }
-table textarea, span.select2-selection.select2-selection--multiple {
+textarea, span.select2-selection.select2-selection--multiple, select {
     background-color: rgba(255,255,255,0.5);
 }
 .song-info, span.select2-selection.select2-selection--multiple li.select2-selection__choice  {
     background-color: rgba(48, 48, 48, 0.75);
-}
-#main-library-content{
-    border: 1px solid rgba(255,255,255,0.3);
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
     -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

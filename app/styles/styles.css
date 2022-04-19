@@ -2,11 +2,11 @@
  */
  html, button, textarea, .select2-results__option, #missing, #invalid {
     font-family: sans-serif;
+    border: none;
 }
-
 body {
     overflow-y: hidden;
-}
+  }
 
 html,
 body {
@@ -70,7 +70,7 @@ button {
     align-items: center;
     justify-content: space-between;
 }
-#hey-there {
+span {
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -149,7 +149,6 @@ td {
     color: transparent;
     border-radius: 0.75vw;
     padding: 0.5vw 1vw 0.5vw 1vw;
-    float: left;
 }
 td:first-of-type, th:first-of-type, td:last-of-type {
     width: 2.5%;
@@ -173,6 +172,16 @@ td:last-of-type {
 }
 #no {
     border-radius: 0 15px 0 0;
+}
+
+.important-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.important-buttons button {
+    padding: 10px 5px 5px 50px;
 }
 #confirm-popup #clear {
     border-radius: 15px 15px 0 0;
@@ -262,6 +271,22 @@ input[type="checkbox"]:checked:after {
     padding-top: 15px;
 }
 
+#account div {
+    margin-bottom: 20px; 
+}
+
+#account #mode, #account textarea, #change-name {
+    width: 100%;
+    text-align: center;
+}
+
+#account textarea {
+    resize:none;
+}
+#account select, #account button {
+    padding: 10px 15px 10px 15px;
+    border: none;
+}
 textarea.disabled {
     background-color: transparent;
 }

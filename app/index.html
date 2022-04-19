@@ -6,16 +6,13 @@
    <link rel="shortcut icon" type="image/jpg" href="assets/shortcut.png">
    <!-- Replace w/ shortcut img link -->
    <!-- Stylesheets -->
-   <link rel="stylesheet" id="theme" href="styles/light.css"/>
-   <link rel="stylesheet" href="styles/styles.css"/>
-   <link rel="stylesheet" href="styles/all.min.css" />
+   <link rel="stylesheet" id="theme" href="styles/loadin.css"/> <!-- Keep empty to make it not jarring if default is set to dark-->
+   <link rel="stylesheet" href="styles/styles.css"/> 
+   <link rel="stylesheet" href="styles/all.min.css"/>
    <!-- JQuery -->
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" />
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.css" />
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" />
-
-   <!-- Scripts -->
-   
 </head>
 <html>
    <body>
@@ -56,6 +53,11 @@
                <span id="greeting">Hey there, </span>
                <span id="user-name" style="display: inline"></span><span id="end-greeting">!</span>
             </div>
+            <div class="user-img">
+               <!-- img gets replaced if the user provides one -->
+               <img src="">
+               <i class="fas fa-user"></i>
+            </div>
          </div>
             <!-- Replace above with below later -->
          <section id="main">
@@ -78,8 +80,8 @@
                         <th></th>
                         <th>Song title</th>
                         <th>Artist</th>
+                        <th>Link</th>
                         <th>Tags</th>
-                        <th></th>
                         <th></th>
                      </tr>
                   </thead>
@@ -103,7 +105,7 @@
       <!-- Possible filter? Maybe just plain ol' search? -->
       <section id="search" class="sub-section" style="margin-top:10px;">
          <div class="horizontal">
-            <div>Search</div>
+            <span>Search</span>
             <textarea id="search-area"></textarea>
          </div>
          <div class="sub-bar">
@@ -148,14 +150,21 @@
             <option>Dark mode</option>
          </select>
          <div>Name</div>
-         <textarea id="name-area"></textarea>
-         <div>Profile image</div>
-
-         <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
-         <input type="file" id="filetag">
-         <div class="user-img">
-            <img src="" id="preview">
-            </div>
+               <textarea id="name-area"></textarea>
+               <button id="change-name">Change name</button>
+         </div>
+         <div>
+            <span>Profile image</span>
+            <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
+            <input type="file" id="filetag">
+            <div class="user-img">
+               <img src="" id="preview">
+            </div>   
+         </div>
+         <div class="important-buttons">
+            <button id="clear-library">Clear library</button>
+            <button id="delete-account">Delete account</button>
+         </div>
       </section>
       <nav>
          <button><i class="fa fa-book-open"></i></button>

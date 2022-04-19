@@ -7,6 +7,8 @@ var all_songs = new Map(); //contains all of the user's songs <3
 
 //persistent information load
 $( document ).ready(function() {
+    $('body').css('display', 'none');
+    $('body').fadeIn(500);
     console.log( "ready!" );
 
     if (localStorage.getItem("available_tags")!= null) {
@@ -24,7 +26,9 @@ $( document ).ready(function() {
     }
     setName();
     makeTable();
+    setMode();
     remakeList();
+    setName();
 });
 
 window.addEventListener('beforeunload', function (e) {
@@ -88,8 +92,6 @@ function makeTable(reqs) {
     //iterates through all the songs and adds them to the table
     const iterator1 = sorted_songs.values();
     for (let value of iterator1) {
-
-
         var tag_table = "";
         /*
          * if all the required tags exist in the song, 
@@ -112,7 +114,7 @@ function makeTable(reqs) {
     }
 
     if ($("  .library-content table tbody").is(':empty')) {
-        $("  .library-content table tbody").append("No songs exist.");
+        $("  .library-content table tbody").append("No song exist.");
     }
 }
 
@@ -129,8 +131,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + tag_table + `</td>
             <td>` + `<button class="link"><a href='` + link + `' target='_blank'>Listen</i></a></button></td>
+            <td>` + tag_table + `</td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .library-content table tbody");
     } else {
@@ -138,8 +140,8 @@ function addCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + tag_table + `</td>
             <td></td>
+            <td>` + tag_table + `</td>
             <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
             </tr>`).appendTo("  .library-content table tbody");
     }
@@ -156,26 +158,23 @@ function addCell(song, artist, link, tag_table) {
         $("#song-info").fadeIn(200); // Show window
 
     })
-
-    $('.new .checkbox').click(function() {
-        itemsToDelete.push(this);
-    })
 }
 
 $('nav button').click(function () {
-    $("nav button").removeClass("active");
-    $(this).addClass("active");
+    $("nav button").removeClass("colored");
+    $(this).addClass("colored");
     $("section").hide();
     if (this.innerHTML.includes("book")) {
-        $("#main").show();
+        $('#main').fadeIn(250);
     }
     else if (this.innerHTML.includes("search")) {
-        $("#search").show();
+        $('#search').fadeIn(250);
         makeSearch();
         document.getElementById("search-area").value = ""; //can't seem to clear it any other way, so no JQuery here
+        $('#search-area').removeAttr('readonly');
     }
     else {
-        $("#account").show();
+        $('#account').fadeIn(250);
         document.getElementById("name-area").value = userName;
     }
 })
@@ -183,18 +182,24 @@ $('nav button').click(function () {
 $('#mode').on('change', function() {
     switch (this.value) {
         case 'Dark mode':
-            $('#theme').attr('href','styles/dark.css');
+            localStorage.theme = 'Dark';
             break;
         default:
-            $('#theme').attr('href','styles/light.css');
+            localStorage.theme = 'Default';
       }
+      setMode();
   });
 
-$('#name-area').change(function() {
-    userName = this.value;
-    console.log("Username is now: " + userName);
-    setName();
-})
+function setMode () {
+    if (localStorage.theme == 'Dark') {
+        $('#theme').attr('href','styles/dark.css');
+        $('#mode').val("Dark mode");
+    }
+    else {
+        $('#theme').attr('href','styles/light.css');
+        $('#mode').val("Default");
+    }
+}
 
 //https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
 var fileTag = document.getElementById("filetag"),
@@ -216,9 +221,10 @@ function changeImage(input) {
     }
 }
 
-$('#search-area').change(function() {
+$('#search-area').keyup(function() {
     console.log(this);
     console.log("New text: " + $(this).val());
+    makeSearch($(this).val());
 })
 
 //reorganizes table in alphabetical order
@@ -248,17 +254,20 @@ function makeSearch(reqs) {
                 }
             }
             addSearchCell(value.song, value.artist, value.link, tag_table);
-        } else if (reqs.every(i => value.tags.includes(i))) {
-            var tag_table = "";
-            for (var i = 0; i < value.tags.length; i++) {
-                if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
+        } else {
+            reqs = reqs.toLowerCase();
+            if (value.song.toLowerCase().includes(reqs) || value.artist.toLowerCase().includes(reqs)) {
+                var tag_table = "";
+                for (var i = 0; i < value.tags.length; i++) {
+                    if (i <= 1) tag_table += "<div class='tag'>" + value.tags[i] + "</div>";
+                }
+                addSearchCell(value.song, value.artist, value.link, tag_table);
             }
-            addSearchCell(value.song, value.artist, value.link, tag_table);
         }
     }
 
     if ($("  .search-library-content table tbody").is(':empty')) {
-        $("  .search-library-content table tbody").append("No songs exist.");
+        $("  .search-library-content table tbody").append("No song exist.");
     }
 }
 
@@ -277,7 +286,7 @@ function addSearchCell(song, artist, link, tag_table) {
             <td>` + artist + `</td>
             <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
             <td>` + tag_table + `</td>
-            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
+            <td></td>
             </tr>`).appendTo("  .search-library-content table tbody");
     } else {
         $(`<tr class="new">
@@ -286,7 +295,7 @@ function addSearchCell(song, artist, link, tag_table) {
             <td>` + artist + `</td>
             <td></td>
             <td>` + tag_table + `</td>
-            <td class="view-more"><i class="fas fa-ellipsis-v"></i></td>
+            <td></td>
             </tr>`).appendTo("  .search-library-content table tbody");
     }
 
@@ -309,5 +318,30 @@ function remakeList() {
     tagString = "";
     for (var i = 0; i < available_tags.length; i++) {
         tagString += "<option>" + available_tags[i] + "</option>";
+    }
+}
+
+$("#change-name").click(function() {
+    localStorage.name = $("#account textarea").val();
+    console.log($("#account textarea").val());
+    userName = this.value;
+    console.log("Username is now: " + userName);
+    setName();
+})
+
+$("textarea").each(function() {
+    this.setAttribute("style", "height:" + (this.scrollHeight) + "px;", "overflow-y", "scroll");
+    this.style.height = "auto";
+}).on("input", function() {
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
+});
+
+function setName() {
+    if (localStorage.name != undefined) {
+        $("#user-name").text(localStorage.name);
+    }
+    else {
+        $("#user-name").text("Person")
     }
 }

@@ -42,7 +42,7 @@ function confirmDialog() {
                 <button class="clear" id="clear" style="margin-left: 2vw">Clear</button>
             </div>
             </div> 
-    </div>`).appendTo('.top-bar');
+    </div>`).prependTo('.library');
         
     //Pass true to a callback function
     $("#yes").click(function() {
@@ -104,8 +104,17 @@ function confirmDialog() {
 
     function deleteOnceConfirmed() {
         document.getElementById("confirm-delete-popup").style.display = "none";
+        var updated = false;
     
         for (var i = 0; i < itemsToDelete.length; i++) {
+            for (var j = 0; j < itemsToDelete[i].tags.length; j++) {
+                if (tag_occur.get(itemsToDelete[i].tags[j])==1) {
+                    tag_occur.delete(itemsToDelete[i].tags[j]);
+                    available_tags = available_tags.filter(e => e !== itemsToDelete[i].tags[j]); //delete tag from being available
+                    updated = true;
+                }
+                else tag_occur.set(itemsToDelete[i].tags[j],tag_occur.get(itemsToDelete[i].tags[j])-1);
+            }
             var row = $(itemsToDelete[i]).closest("tr").find('td');
             all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
             $($(itemsToDelete[i]).closest("tr")).remove();
@@ -128,7 +137,6 @@ function confirmDialog() {
             div.style.display = "none";
             div.style.animationName = "";
         }, 6000);
-    
     }
 }
 
