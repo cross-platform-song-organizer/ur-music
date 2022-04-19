@@ -62,7 +62,7 @@ function confirmDialog() {
             //Vary warning message based on number of songs to delete
             if (itemsToDelete.length === 1) {
                 var row = $(itemsToDelete[0]).closest("tr").find('td');
-                var songTitle = row[1].innerHTML
+                var songTitle = row[1].innerHTML;
                 var artist = row[2].innerHTML;
                 document.getElementById("delete-confirm-warning").textContent = `WARNING: This will permanently delete the song ${songTitle} by ${artist}.`;
             } else {
@@ -104,22 +104,36 @@ function confirmDialog() {
         document.getElementById("clear-checkbox-popup").style.display = "block";
     });
 
+    //need to fix; not working correctly
     function deleteOnceConfirmed() {
         document.getElementById("confirm-delete-popup").style.display = "none";
-        var updated = false;
-    
-        for (var i = 0; i < itemsToDelete.length; i++) {
-            for (var j = 0; j < itemsToDelete[i].tags.length; j++) {
-                if (tag_occur.get(itemsToDelete[i].tags[j])==1) {
-                    tag_occur.delete(itemsToDelete[i].tags[j]);
-                    available_tags = available_tags.filter(e => e !== itemsToDelete[i].tags[j]); //delete tag from being available
-                    updated = true;
-                }
-                else tag_occur.set(itemsToDelete[i].tags[j],tag_occur.get(itemsToDelete[i].tags[j])-1);
-            }
+
+        for (var i = itemsToDelete.length - 1; i >= 0; i--) {
             var row = $(itemsToDelete[i]).closest("tr").find('td');
+            console.log(row);
+            var song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
+
+            console.log(song);
+
+            var updated = false;
+            if (song.tags.length > 0) {
+                for (var j = 0; j < song.tags.length; j++) {
+                    if (tag_occur.get(song.tags[j])==1) {
+                        tag_occur.delete(song.tags[j]);
+                        available_tags = available_tags.filter(e => e !== song.tags[j]); //delete tag from being available
+                        updated = true;
+                    }
+                    else tag_occur.set(song.tags[j],tag_occur.get(song.tags[j])-1);
+                }
+            }
+
+            if (updated == true) remakeList();
+            
             all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
             $($(itemsToDelete[i]).closest("tr")).remove();
+            if ($("  .library-content table tbody").is(':empty')) {
+                $("  .library-content table tbody").append("No song exist.");
+            }
         }
     
         //Display alert that song was deleted successfully

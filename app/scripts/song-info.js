@@ -331,12 +331,21 @@ function songDialog(element) {
 
 function deleteFromSongView() {
     document.getElementById("confirm-delete-popup").style.display = "none";
-    all_songs.delete(song.song + ";" + song.artist); //delete this song
-    closeInfo('#song-info');
-}
 
-function deleteFromSongView() {
-    document.getElementById("confirm-delete-popup").style.display = "none";
+    console.log(song.tags);
+    for (var j = 0; j < song.tags.length; j++) {
+        console.log(song.tags[j]);
+        var updated = false;
+        if (tag_occur.get(song.tags[j])==1) {
+            console.log("It is the last one");
+            tag_occur.delete(song.tags[j]);
+            available_tags = available_tags.filter(e => e !== song.tags[j]); //delete tag from being available
+            updated = true;
+        }
+        else tag_occur.set(song.tags[j],tag_occur.get(song.tags[j])-1);
+
+        if (updated == true) remakeList();
+    }
     all_songs.delete(song.song + ";" + song.artist); //delete this song
     closeInfo('#song-info');
 }

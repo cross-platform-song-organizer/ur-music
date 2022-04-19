@@ -22,10 +22,11 @@ $( document ).ready(function() {
     if (localStorage.getItem("all_songs") != null) {
         all_songs = new Map(JSON.parse(localStorage.all_songs));
     }
-    makeTable();
     setMode();
-    remakeList();
     setName();
+
+    makeTable();
+    remakeList();
 });
 
 window.addEventListener('beforeunload', function (e) {
@@ -154,6 +155,8 @@ $('nav button').click(function () {
     $("section").hide();
     if (this.innerHTML.includes("book")) {
         $('#main').fadeIn(250);
+        makeTable();
+        remakeList();
     }
     else if (this.innerHTML.includes("search")) {
         $('#search').fadeIn(250);
@@ -326,11 +329,25 @@ $("textarea").each(function() {
 });
 
 function setName() {
+    console.log(localStorage.name);
     if (localStorage.name != undefined) {
         $("#user-name").text(localStorage.name);
         userName = localStorage.name; //Austin did this
     }
     else {
         $("#user-name").text("Person");
+        userName = "";
     }
 }
+
+function clearLibrary() {
+    available_tags = [];
+    tag_occur = new Map(); //keeps how many times a tag has been used; if it reaches -1, delete the tag
+    tagString = "";
+    all_songs = new Map(); //contains all of the user's songs <3
+}
+
+$("#delete-account").click(function () {
+    localStorage.clear();
+    window.location.reload(); //forcefully reloads
+})

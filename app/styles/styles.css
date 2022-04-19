@@ -188,8 +188,9 @@ td:last-of-type {
 
 .important-buttons {
     display: flex;
-    width: 100%;
+    max-width: 500px;
     justify-content: space-between;
+    margin: auto;
 }
 
 .important-buttons button {
