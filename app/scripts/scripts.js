@@ -4,6 +4,8 @@ var tag_occur = new Map(); //keeps how many times a tag has been used; if it rea
 var tagString = "";
 var all_songs = new Map(); //contains all of the user's songs <3
 
+var userName = ""; //Austin did this
+
 //persistent information load
 $( document ).ready(function() {
     $('body').css('display', 'none');
@@ -160,6 +162,9 @@ $('nav button').click(function () {
         $('#search-area').removeAttr('readonly');
     }
     else {
+        if (localStorage.name != undefined) { //Austin did this
+            document.getElementById("name").value = localStorage.name;
+        }
         $('#account').fadeIn(250);
     }
 })
@@ -323,8 +328,9 @@ $("textarea").each(function() {
 function setName() {
     if (localStorage.name != undefined) {
         $("#user-name").text(localStorage.name);
+        userName = localStorage.name; //Austin did this
     }
     else {
-        $("#user-name").text("Person")
+        $("#user-name").text("Person");
     }
 }
