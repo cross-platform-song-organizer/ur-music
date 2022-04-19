@@ -90,7 +90,7 @@ span {
     border-radius: 100px;
     margin-left: 6.5%;
 } 
-i.fas.fa-user {
+#user-image {
     font-size: 50px;
     left: 20%;
     top: 15%;
@@ -294,9 +294,13 @@ input[type="checkbox"]:checked:after {
     margin-bottom: 20px; 
 }
 
-#account #mode, #account textarea, #change-name {
+#account #mode, #account textarea, #change-name, #account #color-selector, #account #change-color {
     width: 100%;
     text-align: center;
+}
+
+#account #color-selector {
+    height: 50px;
 }
 
 #account textarea {
@@ -411,4 +415,16 @@ textarea.disabled {
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-top: 25px;
+}
+
+#select-image {
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+#select-image i {
+    cursor: pointer;
+    font-size: 50px;
+    margin-top: 10px;
 }

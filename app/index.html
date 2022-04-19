@@ -54,9 +54,7 @@
                <span id="user-name" style="display: inline"></span><span id="end-greeting">!</span>
             </div>
             <div class="user-img">
-               <!-- img gets replaced if the user provides one -->
-               <img src="">
-               <i class="fas fa-user"></i>
+               <i id="user-image" class="fas fa-user"></i>
             </div>
          </div>
             <!-- Replace above with below later -->
@@ -161,10 +159,22 @@
          <div>
             <span>Profile image</span>
             <!-- https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display -->
-            <input type="file" id="filetag">
-            <div class="user-img">
-               <img src="" id="preview">
-            </div>   
+            <div >
+                  <div id="select-image">
+                     <i class="fas fa-user"></i>
+                     <i class="fas fa-user-astronaut"></i>
+                     <i class="fas fa-user-graduate"></i>
+                     <i class="fas fa-user-secret"></i>
+                     <i class="fas fa-user-tie"></i>
+                     <i class="fas fa-ghost"></i>
+                     <i class="fas fa-head-side-mask"></i>
+                     <i class="fas fa-user-ninja"></i>
+                  </div>
+            </div>
+            <div>
+               <input id="color-selector" type="color" style="padding: 0; background-color:transparent;">
+               <button onclick="changeColor()" id="change-color">Change color</button>
+            </div>
          </div>
          <div class="important-buttons">
             <button id="clear-library" onclick="clearLibrary()">Clear library</button> <!-- Make confirmation for this -->

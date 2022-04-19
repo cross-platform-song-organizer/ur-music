@@ -31,10 +31,10 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 nav .colored, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:checked, #account button, #account select {
     background-color: #A0C8D8;
 }
-.sub-bar button:hover i {
+.sub-bar button:hover i, #select-image i:hover {
     color:  #C8B6D7;
 }
-.sub-bar button:focus i, .library-edits .active i {
+.sub-bar button:focus i, #select-image i.selected, .library-edits .active i {
     color:  #A0C8D8;
 }
 .song-info td, .song-info textarea, .select2-results__option, #missing, #invalid {
@@ -74,6 +74,7 @@ textarea, span.select2-selection.select2-selection--multiple, .link, select  {
 .song-info {
     background-color: rgba(255, 255, 255, 0.9);
 }
+
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
     -moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

@@ -24,6 +24,8 @@ $( document ).ready(function() {
     }
     setMode();
     setName();
+    setColor();
+    setImage();
 
     makeTable();
     remakeList();
@@ -165,9 +167,18 @@ $('nav button').click(function () {
         $('#search-area').removeAttr('readonly');
     }
     else {
+        rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
         if (localStorage.name != undefined) { //Austin did this
             document.getElementById("name").value = localStorage.name;
         }
+        if (localStorage.image != undefined) {
+            console.log(localStorage.image.split(" ")[1]);
+            $('.'+localStorage.image.split(" ")[1]).addClass("selected");
+        }
+        if (localStorage.color != undefined) {
+            document.getElementById("color-selector").value = localStorage.color;
+        }
+        else document.getElementById("color-selector").value = rgb2hex($("#user-image").css("color"));
         $('#account').fadeIn(250);
     }
 })
@@ -193,14 +204,6 @@ function setMode () {
         $('#mode').val("Default");
     }
 }
-
-//https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
-var fileTag = document.getElementById("filetag"),
-  preview = document.getElementById("preview");
-  
-fileTag.addEventListener("change", function() {
-    changeImage(this);
-});
 
 function changeImage(input) {
     var reader;
@@ -351,3 +354,34 @@ $("#delete-account").click(function () {
     localStorage.clear();
     window.location.reload(); //forcefully reloads
 })
+
+$("#select-image i").click(function () {
+    $("#select-image i").removeClass("selected");
+    localStorage.image = $(this).attr("class");
+    setImage();
+    $(this).addClass("selected");
+})
+
+function setImage () {
+    console.log("Changing image");
+    $("#user-image").removeClass();
+    if (localStorage.image != undefined) {
+        $("#user-image").removeClass();
+        $("#user-image").addClass(localStorage.image);
+    }
+    else {
+        $("#user-image").addClass("fas fa-user",document.getElementById("color-selector").value);
+    }
+}
+
+function changeColor() {
+    localStorage.color = document.getElementById("color-selector").value;
+    setColor();
+}
+
+function setColor() {
+    console.log(localStorage.color);
+    if (localStorage.color != undefined) {
+        $("#user-image").css("color",localStorage.color);
+    }
+}
