@@ -15,15 +15,17 @@ body {
   height: 100%; /* needed for container min-height */
 }
 
-main, section {
+main, section{
     position: relative;
     height: auto !important;
     min-height: 100%;
 }
 nav {
-    margin-top: -16vh;
-    margin-left: 10%;
-    margin-right: 10%;
+    position: absolute;
+    bottom: 5vh;
+    left: 10%;
+    right: 10%;
+    width: 80%;
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;
@@ -37,20 +39,23 @@ nav button {
     transition: 0.3s;
     width: 33.5%;
 }
-/* Section stuff*/
-main, section {
-    -moz-animation: fadeEffect 1s;
-    -webkit-animation: fadeEffect 1s;
-    animation: fadeEffect 1s;
-}
-main {
-    vertical-align: middle;
+.top-section  {
     margin-top: 25px;
     margin-left: 2.5%;
     margin-right: 2.5%;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: space-between;
 }
+/* Section stuff*/
 section {
-    display: none;
+    -moz-animation: fadeEffect 1s;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+    vertical-align: middle;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 button {
     cursor: pointer;
@@ -84,13 +89,21 @@ span {
     overflow: hidden;
     border-radius: 100px;
     margin-left: 6.5%;
-}
+} 
 i.fas.fa-user {
     font-size: 50px;
     left: 20%;
     top: 15%;
     position: absolute;
 }
+
+i.fa.fa-cloud-upload-alt {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    font-size: 30px;
+}
+
 .user-img img {
     position: absolute;
     left: 43.6%;
@@ -140,7 +153,6 @@ td {
     font-size: 15px;
 }
 
-
 .link a:link {
     text-decoration: none;
 }
@@ -157,7 +169,7 @@ td:last-of-type {
     cursor: pointer;
 }
 
-#library td:first-of-type, th:first-of-type {
+.library td:first-of-type, th:first-of-type {
     display: none;
 }
 #confirm-popup #yes, #confirm-popup #no, #confirm-popup #clear {
@@ -213,15 +225,21 @@ input[type="checkbox"]:checked:after {
     margin: 0 5px 5px 0;
 }
 /* Editing the size of the stuff itself */
-#main-library-head th {
+.library-head th {
     font-size: 15px;
 }
-#main-library-content{
+.library-content{
    /* Need to add diff size for mobile usage*/
     overflow-x: auto;
     margin-top: 0px;
     height: 50vh;
 }
+.search-library-content{
+    /* Need to add diff size for mobile usage*/
+     overflow-x: auto;
+     margin-top: 0px;
+     height: 40vh;
+ }
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {
     width: 6px;
@@ -375,4 +393,21 @@ textarea.disabled {
     justify-content: center;
     height: 100%;
     flex-direction: column;
+}
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search-area {
+    width: 80%;
+    height: 20px;
+    resize: none;
+}
+
+.sub-section {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 25px;
 }
