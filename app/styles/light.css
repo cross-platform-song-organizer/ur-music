@@ -10,7 +10,7 @@ body {
 }
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover, .song-info, .song-info-top i, .link {
+input[type="checkbox"]:hover, .song-info, .link {
     background-color: rgba(255,255,255,0.2);
 }
 nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info button:hover, #account button:hover, #account select:hover {
@@ -46,7 +46,11 @@ nav .colored, nav button:focus, td:last-of-type:focus, input[type="checkbox"]:ch
     background: -webkit-linear-gradient(#B693D1, #698BC2);
     background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #B693D1;
+}
+
+.song-info .song-info-top i {
+    color: #B693D1;
 }
 .song-info .song-info-top i.active {
     background: linear-gradient(to right, #698BC2, #B693D1);

@@ -14,7 +14,7 @@ body {
 }
 /* Palette color changes */ 
 nav button, 
-input[type="checkbox"]:hover, .song-info, .song-info-top i, .link, #account button, #account select{
+input[type="checkbox"]:hover, .song-info, .link, #account button, #account select{
     background-color: rgba(255,255,255,0.2);
 }
 nav button:hover, td:last-of-type:hover, #confirm-popup #yes:hover, #confirm-popup #no:hover, #confirm-popup #clear:hover,#account button:hover, #account select:hover  {
@@ -36,7 +36,7 @@ nav button:hover, td:last-of-type:hover, #confirm-popup button:hover, .song-info
 nav .colored, nav .colored, td:last-of-type:focus, input[type="checkbox"]:checked {
     background-color: #041B3D;
 }
-.sub-bar button:hover i, #select-image i:hover  {
+.sub-bar button:hover i, #select-image i:hover, i:hover  {
     color:  #290E3D;
 }
 .sub-bar button:focus i, .library-edits .active i, #select-image i.selected  {
@@ -51,8 +51,13 @@ nav .colored, nav .colored, td:last-of-type:focus, input[type="checkbox"]:checke
     background: rgb(226, 226, 226);
     background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgb(226, 226, 226);
 }
+
+.song-info .song-info-top i {
+    color: rgb(226, 226, 226);
+}
+
 .song-info .song-info-top i.active {
     background: linear-gradient(to right, #B693D1, #0C316E);
     background: -webkit-linear-gradient(#B693D1, #0C316E);
