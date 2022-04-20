@@ -314,7 +314,7 @@ function remakeList() {
     available_tags.sort();
     tagString = "";
     for (var i = 0; i < available_tags.length; i++) {
-        if (available_tags[i] != "") {
+        if (available_tags[i] != "") {  //Austin did this
             tagString += "<option>" +  + "</option>";
         }
     }
@@ -345,8 +345,8 @@ function setName() {
         userName = "";
     }
 }
-
-function clearLibrary() {
+ 
+function clearLibrary() {  //Austin fixed this
     available_tags = [];
     tag_occur = new Map(); //keeps how many times a tag has been used; if it reaches -1, delete the tag
     tagString = "";
@@ -354,7 +354,7 @@ function clearLibrary() {
     remakeList();
 }
 
-$("#delete-account").click(function () {
+$("#delete-account").click(function () { //Austin fixed this
     clearLibrary();
     localStorage.clear();
     window.location.reload(); //forcefully reloads
