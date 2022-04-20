@@ -1,8 +1,6 @@
 var filter_tags = [];
 
 function addFilter() {
-    remakeList();
-    console.log(tagString);
     $(`<article id="filter-popup" class="song-info">
   <div class="song-info-top" style="display: flex; justify-content: space-between;width:90%;padding-top:15px;">
      <div>Filter songs</div>
@@ -28,7 +26,7 @@ function addFilter() {
   <div style="padding-bottom:15px;">
     
     <button class="save" id="filter-songs">Filter</button>
-    <button id="cancel-song">Cancel</button>
+    <button id="cancel-song" onclick="closeInfo('#filter-popup')">Cancel</button>
     </div>
 </article>
 )
@@ -42,18 +40,9 @@ function addFilter() {
         $('#tag-selection').val(null).trigger('change');
     })
 
-    $('#cancel-song').click(function() {
-        makeTable(filter_tags);
-
-        $("#main").fadeTo(200, 1);
-        $("#main").css("pointer-events", "auto");
-        $("nav").fadeTo(200, 1);
-        $("nav").css("pointer-events", "auto");
-        $("#filter-popup").remove();
-    })
-    
     $('#filter-songs').click(function() {
         /* Necessary information */
+        console.log("Will filter soon");
         let tags_array = $("#tag-selection").select2("data");
         var temp = [];
         for (var i = 0; i < tags_array.length; i++) {
@@ -62,6 +51,7 @@ function addFilter() {
 
         //save current filters for later
         filter_tags = temp;
+        console.log("Here are our tags: " + filter_tags);
         makeTable(filter_tags);
 
         $("#main").fadeTo(200, 1);

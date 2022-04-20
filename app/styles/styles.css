@@ -2,11 +2,11 @@
  */
  html, button, textarea, .select2-results__option, #missing, #invalid {
     font-family: sans-serif;
+    border: none;
 }
-
 body {
     overflow-y: hidden;
-}
+  }
 
 html,
 body {
@@ -15,15 +15,17 @@ body {
   height: 100%; /* needed for container min-height */
 }
 
-main, section {
+main, section{
     position: relative;
     height: auto !important;
     min-height: 100%;
 }
 nav {
-    margin-top: -16vh;
-    margin-left: 10%;
-    margin-right: 10%;
+    position: absolute;
+    bottom: 5vh;
+    left: 10%;
+    right: 10%;
+    width: 80%;
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;
@@ -37,20 +39,23 @@ nav button {
     transition: 0.3s;
     width: 33.5%;
 }
-/* Section stuff*/
-main, section {
-    -moz-animation: fadeEffect 1s;
-    -webkit-animation: fadeEffect 1s;
-    animation: fadeEffect 1s;
-}
-main {
-    vertical-align: middle;
+.top-section  {
     margin-top: 25px;
     margin-left: 2.5%;
     margin-right: 2.5%;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: space-between;
 }
+/* Section stuff*/
 section {
-    display: none;
+    -moz-animation: fadeEffect 1s;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+    vertical-align: middle;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 button {
     cursor: pointer;
@@ -70,7 +75,7 @@ button {
     align-items: center;
     justify-content: space-between;
 }
-#hey-there {
+span {
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -84,13 +89,21 @@ button {
     overflow: hidden;
     border-radius: 100px;
     margin-left: 6.5%;
-}
-i.fas.fa-user {
+} 
+#user-image {
     font-size: 50px;
     left: 20%;
     top: 15%;
     position: absolute;
 }
+
+i.fa.fa-cloud-upload-alt {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    font-size: 30px;
+}
+
 .user-img img {
     position: absolute;
     left: 43.6%;
@@ -115,6 +128,7 @@ table{
     table-layout: fixed;
     border-collapse: separate;
     border-spacing: 0;
+    overflow-x: auto;
 }
 table td {
     overflow-wrap: break-word;
@@ -140,7 +154,6 @@ td {
     font-size: 15px;
 }
 
-
 .link a:link {
     text-decoration: none;
 }
@@ -149,7 +162,6 @@ td {
     color: transparent;
     border-radius: 0.75vw;
     padding: 0.5vw 1vw 0.5vw 1vw;
-    float: left;
 }
 td:first-of-type, th:first-of-type, td:last-of-type {
     width: 2.5%;
@@ -158,7 +170,7 @@ td:last-of-type {
     cursor: pointer;
 }
 
-#library td:first-of-type, th:first-of-type {
+.library td:first-of-type, th:first-of-type {
     display: none;
 }
 #confirm-popup #yes, #confirm-popup #no, #confirm-popup #clear {
@@ -173,6 +185,17 @@ td:last-of-type {
 }
 #no {
     border-radius: 0 15px 0 0;
+}
+
+.important-buttons {
+    display: flex;
+    max-width: 500px;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.important-buttons button {
+    padding: 10px 5px 5px 50px;
 }
 #confirm-popup #clear {
     border-radius: 15px 15px 0 0;
@@ -204,15 +227,21 @@ input[type="checkbox"]:checked:after {
     margin: 0 5px 5px 0;
 }
 /* Editing the size of the stuff itself */
-#main-library-head th {
+.library-head th {
     font-size: 15px;
 }
-#main-library-content{
+.library-content{
    /* Need to add diff size for mobile usage*/
     overflow-x: auto;
     margin-top: 0px;
     height: 50vh;
 }
+.search-library-content{
+    /* Need to add diff size for mobile usage*/
+     overflow-x: auto;
+     margin-top: 0px;
+     height: 40vh;
+ }
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {
     width: 6px;
@@ -248,10 +277,6 @@ input[type="checkbox"]:checked:after {
     font-size: 32px;
     font-weight: bold;
 }
-/* Select 2 Changes */
-.song-info td:first-of-type {
-    width: 0%;
-}
 .song-info textarea {
     text-align: center;
     border: none;
@@ -262,6 +287,26 @@ input[type="checkbox"]:checked:after {
     padding-top: 15px;
 }
 
+#account div {
+    margin-bottom: 20px; 
+}
+
+#account #mode, #account textarea, #change-name, #account #color-selector, #account #change-color {
+    width: 100%;
+    text-align: center;
+}
+
+#account #color-selector {
+    height: 50px;
+}
+
+#account textarea {
+    resize:none;
+}
+#account select, #account button {
+    padding: 10px 15px 10px 15px;
+    border: none;
+}
 textarea.disabled {
     background-color: transparent;
 }
@@ -350,4 +395,33 @@ textarea.disabled {
     justify-content: center;
     height: 100%;
     flex-direction: column;
+}
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search-area {
+    width: 80%;
+    height: 20px;
+    resize: none;
+}
+
+.sub-section {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 25px;
+}
+
+#select-image {
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+#select-image i {
+    cursor: pointer;
+    font-size: 50px;
+    margin-top: 10px;
 }
