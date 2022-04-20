@@ -44,7 +44,7 @@ function confirmDialog() {
                 <button class="clear" id="clear" style="margin-left: 2vw">Clear</button>
             </div>
             </div> 
-    </div>`).prependTo('.library');
+    </div>`).prependTo('#main .library');
         
     //Pass true to a callback function
     $("#yes").click(function() {

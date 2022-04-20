@@ -162,8 +162,11 @@ function songDialog(element) {
     turnOff();
     row = $(element.closest('tr')).find('td');
 
-    song = all_songs.get(row[1].innerHTML + ";" + row[2].innerHTML);
-
+    song = row[1].innerHTML + ";" + row[2].innerHTML; 
+    song = $("<textarea></textarea>").html(song).text(); //fix use of &, <, or >
+    
+    song = all_songs.get(song);
+    
     tags = song.tags;
 
     var previous = song;

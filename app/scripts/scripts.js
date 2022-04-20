@@ -155,6 +155,7 @@ $('nav button').click(function () {
     $("nav button").removeClass("colored");
     $(this).addClass("colored");
     $("section").hide();
+    turnOff();
     if (this.innerHTML.includes("book")) {
         $('#main').fadeIn(250);
         makeTable();
@@ -162,11 +163,13 @@ $('nav button').click(function () {
     }
     else if (this.innerHTML.includes("search")) {
         $('#search').fadeIn(250);
+        $("#confirm-popup").remove();
         makeSearch();
         document.getElementById("search-area").value = ""; //can't seem to clear it any other way, so no JQuery here
         $('#search-area').removeAttr('readonly');
     }
     else {
+        $('#name').removeAttr('readonly');
         rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
         if (localStorage.name != undefined) { //Austin did this
             document.getElementById("name").value = localStorage.name;
@@ -280,7 +283,7 @@ function addSearchCell(song, artist, link, tag_table) {
             <td><input type="checkbox" class="checkbox"></td>
             <td>` + song + `</td>
             <td>` + artist + `</td>
-            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>View</a></button></td>
+            <td>` + `<button class="link"><a href='` + link + `' target='_blank'>Listen</a></button></td>
             <td>` + tag_table + `</td>
             <td></td>
             </tr>`).appendTo("  .search-library-content table tbody");
@@ -321,8 +324,8 @@ function remakeList() {
 }
 
 $("#change-name").click(function() {
-    localStorage.name = $("#account textarea").val();
-    console.log($("#account textarea").val());
+    localStorage.name = $("#name").val();
+    console.log($("#name").val());
     setName();
 })
 
