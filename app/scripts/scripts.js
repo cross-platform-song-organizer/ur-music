@@ -315,7 +315,7 @@ function remakeList() {
     tagString = "";
     for (var i = 0; i < available_tags.length; i++) {
         if (available_tags[i] != "") {  //Austin did this
-            tagString += "<option>" +  + "</option>";
+            tagString += "<option>" + available_tags[i] + "</option>";
         }
     }
 }
