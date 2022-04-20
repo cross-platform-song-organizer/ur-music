@@ -276,10 +276,6 @@ input[type="checkbox"]:checked:after {
     font-size: 32px;
     font-weight: bold;
 }
-/* Select 2 Changes */
-.song-info td:first-of-type {
-    width: 0%;
-}
 .song-info textarea {
     text-align: center;
     border: none;
