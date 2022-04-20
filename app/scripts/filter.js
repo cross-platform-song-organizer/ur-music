@@ -28,7 +28,7 @@ function addFilter() {
   <div style="padding-bottom:15px;">
     
     <button class="save" id="filter-songs">Filter</button>
-    <button id="cancel-song" onclick="closeInfo('#filter-popup')">Cancel</button>
+    <button id="cancel-song">Cancel</button>
     </div>
 </article>
 )
@@ -42,6 +42,16 @@ function addFilter() {
         $('#tag-selection').val(null).trigger('change');
     })
 
+    $('#cancel-song').click(function() {
+        makeTable(filter_tags);
+
+        $("#main").fadeTo(200, 1);
+        $("#main").css("pointer-events", "auto");
+        $("nav").fadeTo(200, 1);
+        $("nav").css("pointer-events", "auto");
+        $("#filter-popup").remove();
+    })
+    
     $('#filter-songs').click(function() {
         /* Necessary information */
         let tags_array = $("#tag-selection").select2("data");
