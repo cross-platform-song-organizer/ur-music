@@ -200,10 +200,12 @@ $('#mode').on('change', function() {
 function setMode () {
     if (localStorage.theme == 'Dark') {
         $('#theme').attr('href','styles/dark.css');
+        $("#shortcut").attr('href','assets/shortcut-dark.png');
         $('#mode').val("Dark mode");
     }
     else {
         $('#theme').attr('href','styles/light.css');
+        $("#shortcut").attr('href','assets/shortcut-default.png');
         $('#mode').val("Default");
     }
 }
