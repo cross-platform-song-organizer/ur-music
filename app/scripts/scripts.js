@@ -6,6 +6,14 @@ var all_songs = new Map(); //contains all of the user's songs <3
 
 var userName = ""; //Austin did this
 
+//prevents no stylesheet from loading
+if (localStorage.reloaded == null) {
+    clearLibrary();
+    localStorage.clear();
+    localStorage.reloaded = true;
+    window.location.reload(); //forcefully reloads
+}
+
 //persistent information load
 $( document ).ready(function() {
     $('body').css('display', 'none');
