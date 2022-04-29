@@ -8,7 +8,7 @@ var userName = ""; //Austin did this
 
 //prevents no stylesheet from loading
 if (localStorage.reloaded == null) {
-    clearLibrary();
+    clearLibrary(false);
     localStorage.clear();
     localStorage.reloaded = true;
     window.location.reload(); //forcefully reloads
@@ -113,7 +113,7 @@ function makeTable(reqs) {
     }
 
     if ($("  .library-content table tbody").is(':empty')) {
-        $("  .library-content table tbody").append("No song exist.");
+        $("  .library-content table tbody").append("No songs exist.");
     }
 }
 
@@ -276,7 +276,7 @@ function makeSearch(reqs) {
     }
 
     if ($("  .search-library-content table tbody").is(':empty')) {
-        $("  .search-library-content table tbody").append("No song exist.");
+        $("  .search-library-content table tbody").append("No songs exist.");
     }
 }
 
@@ -359,19 +359,58 @@ function setName() {
     }
 }
  
-function clearLibrary() {  //Austin fixed this
+function confirmClearLibrary() {  
+    
+    //Create pop-up confirmation
+    document.getElementById("confirm-delete-popup").style.display = "block";
+    document.getElementById("confirm-delete").onclick = clearLibrary;
+    document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently clear your library.";
+
+}
+
+function clearLibrary(displayAlert = true) { //Austin fixed this
+    
+    document.getElementById("confirm-delete-popup").style.display = "none";
+
     available_tags = [];
     tag_occur = new Map(); //keeps how many times a tag has been used; if it reaches -1, delete the tag
     tagString = "";
     all_songs = new Map(); //contains all of the user's songs <3
     remakeList();
+
+    //Display alert that library was cleared successfully
+    if (displayAlert) {
+        console.log("displayAlert is true");
+        var div = document.getElementById("top-alert");
+        document.getElementById("text-of-alert").textContent = "You successfully cleared your library!";
+        div.style.display = "flex";
+        setTimeout(function() {
+            div.style.animationName = "fadeOut";
+        }, 3000);
+        setTimeout(function() {
+            div.style.display = "none";
+            div.style.animationName = "";
+        }, 6000);
+    }
 }
 
 $("#delete-account").click(function () { //Austin fixed this
-    clearLibrary();
+    
+    //Create pop-up confirmation
+    document.getElementById("confirm-delete-popup").style.display = "block";
+    document.getElementById("confirm-delete").onclick = deleteAccount;
+    document.getElementById("delete-confirm-warning").textContent = "WARNING: This will permanently delete your account.";
+
+})
+
+function deleteAccount() {
+    
+    document.getElementById("confirm-delete-popup").style.display = "none";
+
+    clearLibrary(false);
     localStorage.clear();
     window.location.reload(); //forcefully reloads
-})
+}
 
 $("#select-image i").click(function () {
     $("#select-image i").removeClass("selected");
