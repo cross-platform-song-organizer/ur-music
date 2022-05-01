@@ -132,7 +132,7 @@ function confirmDialog() {
             all_songs.delete(row[1].innerHTML + ";" + row[2].innerHTML); // Delete from stored array
             $($(itemsToDelete[i]).closest("tr")).remove();
             if ($("  .library-content table tbody").is(':empty')) {
-                $("  .library-content table tbody").append("No song exist.");
+                $("  .library-content table tbody").append("No songs exist.");
             }
         }
     
